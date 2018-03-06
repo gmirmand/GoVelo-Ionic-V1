@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/v2/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +13,244 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+//Mixins
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+
+@mixin fontSize($size) {
+  font-size: $size; //Fallback in px
+  font-size: calculateRem($size);
+}
+
+//  Enable media queries by default (to disable it, you have to override it to false after including this mixin
+$enable-media-queries: true;
+
+//
+// Respond-to mixin
+//
+// @param $name
+//
+// @author Benjamin Gondy <bgondy@webqam.fr>
+@mixin respond-to($name) {
+  @if ($enable-media-queries) {
+    @if ($name == xxs) {
+      @media only screen and (min-width: $breakpoint-xxs) {
+        @content;
+      }
+    } @else if ($name == xs) {
+      @media only screen and (min-width: $breakpoint-xs) {
+        @content;
+      }
+    } @else if ($name == s) {
+      @media only screen and (min-width: $breakpoint-s) {
+        @content;
+      }
+    } @else if ($name == m) {
+      @media only screen and (min-width: $breakpoint-m) {
+        @content;
+      }
+    } @else if ($name == l) {
+      @media only screen and (min-width: $breakpoint-l) {
+        @content;
+      }
+    } @else if ($name == xl) {
+      @media only screen and (min-width: $breakpoint-xl) {
+        @content;
+      }
+    } @else if ($name == fullHD) {
+      @media only screen and (min-width: $breakpoint-fullHD) {
+        @content;
+      }
+    }
+  }
+    //  Force use of the medium size for browsers that don't understand media queries
+  @else if ($name == m
+      OR $name == no-mq
+      OR $name == false
+      OR $name == ie8
+      OR $name == lte-ie8
+      OR $name == lt-ie8
+  ) {
+    @content;
+  }
+}
+
+//Global
+.page-home {
+  background-color: $blanc;
+  font-family: $font-text;
+  @include fontSize(18px);
+  @include respond-to(s) {
+    font-size: inherit;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+/*************
+STRUCTURE
+*************/
+.container-8 {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.container-9 {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/*COMMUN*/
+
+#auth .scroll, #home .scroll, #login .scroll {
+  height: 90vh;
+}
+
+.header.logo {
+  text-align: center;
+  padding: 4vh 0;
+  height: 40vh;
+  img {
+    margin-top: 20%;
+  }
+}
+
+.content-center {
+  text-align: center;
+  padding: 4vh 0;
+}
+
+.content {
+  &-10 {
+    height: 10vh;
+  }
+  &-20 {
+    height: 20vh;
+  }
+  &-30 {
+    height: 30vh;
+  }
+  &-40 {
+    height: 40vh;
+  }
+  &-50 {
+    height: 50vh;
+  }
+  &-60 {
+    height: 60vh;
+  }
+  &-70 {
+    height: 70vh;
+  }
+  &-80 {
+    height: 80vh;
+  }
+}
+
+/*COLOR*/
+.bg-grey {
+  background-color: $color-lightgrey;
+}
+
+/*ELEMENT*/
+h2 {
+  font-weight: bold;
+  text-align: center;
+  padding: 4vh 0;
+  i.ion-chevron-left {
+    position: absolute;
+    left: 15px;
+  }
+}
+
+.separator {
+  height: 3px;
+  background-color: $bleu;
+  margin: 4vh 0;
+}
+
+/*icon*/
+.icon-cercle {
+  width: 35px;
+  height: 35px;
+  border: 2px solid $bleu;
+  border-radius: 50%;
+  line-height: 24px;
+  display: inline-block;
+  text-align: center;
+  .ion-checkmark {
+    font-size: 25px;
+  }
+}
+
+/*font-color*/
+.font-grey-light {
+  color: $noir;
+  opacity: 0.8;
+}
+
+.font-black {
+  color: $noir;
+}
+
+.font-bleu {
+  color: $bleu;
+}
+
+.font-green {
+  color: $vert;
+}
+
+//Forms
+.list-input {
+  text-align: left;
+  padding-bottom: 2vh;
+  color: $bleu;
+  .champ {
+    .label {
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      background-color: transparent;
+      border-bottom: 2px solid $bleu;
+      margin-bottom: 3vh;
+    }
+  }
+}
+
+//Buttons
+.button {
+  border-radius: 50px;
+  width: 100%;
+  margin-bottom: 4vh;
+  font-weight: bold;
+  font-size: 12px;
+  &_inverse {
+    &_blanc {
+      border: 1px solid $bleu;
+      color: $bleu;
+      background-color: white;
+
+      &:hover {
+        color: white;
+        background-color: $bleu;
+      }
+    }
+    &_bleu {
+      border: 1px solid $bleu;
+      color: $blanc;
+      background-color: $bleu;
+      &:hover {
+        color: $bleu;
+        background-color: $blanc;
+      }
+    }
+
+  }
+}

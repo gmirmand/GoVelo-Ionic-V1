@@ -32,6 +32,30 @@ $colors: (
   dark:       #222
 );
 
+/*TYPO*/
+$font-text: "Arial", "Open Sans", sans-serif;
+$font-titre: 'source sans';
+
+/*COLOR*/
+$color-lightgrey: #f2f2f2;
+$bleu : #0B9CB3;
+$bleu-clair:#BCE0FD;
+$vert : #80C262;
+$noir: #414042;
+$blanc : #fff;
+
+//  Breakpoints
+$breakpoint-xxs: 320px;
+$breakpoint-xxs1: 320px;
+$breakpoint-xs: 560px;
+$breakpoint-s: 768px;
+$breakpoint-m: 992px;
+$breakpoint-l: 1170px;
+$breakpoint-xl: 1344px;
+$breakpoint-xxl: 1680px;
+$breakpoint-fullHD: 1920px;
+
+
 
 // App iOS Variables
 // --------------------------------------------------

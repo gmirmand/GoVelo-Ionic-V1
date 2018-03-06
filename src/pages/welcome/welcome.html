@@ -1,13 +1,16 @@
-<ion-content scroll="false">
-  <div class="splash-bg"></div>
-  <div class="splash-info">
-    <div class="splash-logo"></div>
-    <div class="splash-intro">
-      {{ 'WELCOME_INTRO' | translate }}
+<ion-content class="padding bg-grey Auth " id="auth" scroll="false">
+    <div class="container-9">
+        <div class="header logo">
+            <img src="assets/img/govelo-logo-200.png" alt="GoVélo!">
+            <div class="header-icon">
+            </div>
+        </div>
+        <div class="content-40 content-center">
+            <button class="button button_inverse_bleu signup" ion-button clear (click)="signup()">{{ 'SIGNUP' | translate }}</button>
+            <button class="button button_inverse_blanc signin" ion-button clear (click)="login()">{{ 'LOGIN' | translate }}</button>
+        </div>
+        <div class="content-footer content-10">
+            <a ng-href="#/tab/home" class="skip">{{ 'SKIP' | translate}}</a>
+        </div>
     </div>
-  </div>
-  <div padding>
-    <button ion-button block (click)="signup()">{{ 'SIGNUP' | translate }}</button>
-    <button ion-button block (click)="login()" class="login">{{ 'LOGIN' | translate }}</button>
-  </div>
 </ion-content>
