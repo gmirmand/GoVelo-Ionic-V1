@@ -1,0 +1,8 @@
+{
+  "name": "GoVelo-Ionic-V1",
+  "app_id": "48027595",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
