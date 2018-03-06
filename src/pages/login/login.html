@@ -8,62 +8,32 @@
 
 
 <ion-content>
-    <ion-simple-wizard [(step)]="step" [showSteps]="true" (finish)="onFinish()" [finishIcon]="'done-all'"
-                       [(stepCondition)]="stepCondition">
-        <ion-wizard-step>
-            <div class="list-connect">
-                <button class="button  button_inverse_blanc" >SE CONNECTER AVEC FACEBOOK</button>
-                <button class="button  button_inverse_blanc" >SE CONNECTER AVEC GOOGLE+</button>
+    <form (submit)="doLogin()">
+        <ion-list>
+            <ion-item>
+                <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
+                <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+            </ion-item>
+
+            <!--
+            Want to use a Username instead of an Email? Here you go:
+
+            <ion-item>
+              <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
+              <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
+            </ion-item>
+            -->
+
+            <ion-item>
+                <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
+                <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+            </ion-item>
+
+            <div padding>
+                <button ion-button clear class="button  button_inverse_bleu">{{ 'LOGIN_BUTTON' | translate }}</button>
             </div>
-            <div class="line-under">
-                <p>OU</p>
-            </div>
-            <div class="list-input">
-                <label class="champ">
-                    <span class="label">Adresse e-mail</span>
-                    <input type="text"  ng-model="data.username">
-                </label>
-                <label class="champ">
-                    <span class="label">Mot de passe</span>
-                    <input type="password"  ng-model="data.password">
-                </label>
-            </div>
-            <button ion-button clear class="button  button_inverse_bleu" (click)="toggle()">SE CONNECTER</button>
-        </ion-wizard-step>
-        <ion-wizard-step>
-            <form (submit)="doLogin()">
-                <ion-list>
-
-                    <ion-item>
-                        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-                        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
-                    </ion-item>
-
-                    <!--
-                    Want to use a Username instead of an Email? Here you go:
-
-                    <ion-item>
-                      <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
-                      <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
-                    </ion-item>
-                    -->
-
-                    <ion-item>
-                        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
-                        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
-                    </ion-item>
-
-                    <div padding>
-                        <button ion-button color="primary" block>{{ 'LOGIN_BUTTON' | translate }}</button>
-                    </div>
-
-                </ion-list>
-            </form>
-        </ion-wizard-step>
-        <ion-wizard-step>
-            Step N content
-        </ion-wizard-step>
-    </ion-simple-wizard>
-
-
+            <a button ion-button clear (click)="forget()">{{'FORGET_PASSWORD' | translate}}</a><br>
+            <a button ion-button clear (click)="signup()">{{'NO_ACCOUNT' | translate}}</a>
+        </ion-list>
+    </form>
 </ion-content>

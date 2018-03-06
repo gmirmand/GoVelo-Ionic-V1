@@ -6,11 +6,11 @@
             </div>
         </div>
         <div class="content-40 content-center">
-            <button class="button button_inverse_bleu signup" ion-button clear (click)="signup()">{{ 'SIGNUP' | translate }}</button>
-            <button class="button button_inverse_blanc signin" ion-button clear (click)="login()">{{ 'LOGIN' | translate }}</button>
+            <button ion-button clear (click)="signup()" class="button button_inverse_bleu signup">{{ 'SIGNUP' | translate }}</button>
+            <button ion-button clear (click)="login()" class="button button_inverse_blanc signin">{{ 'LOGIN' | translate }}</button>
         </div>
         <div class="content-footer content-10">
-            <a ng-href="#/tab/home" class="skip">{{ 'SKIP' | translate}}</a>
+            <a clear (click)="skip()" class="skip">{{ 'SKIP' | translate}}</a>
         </div>
     </div>
 </ion-content>

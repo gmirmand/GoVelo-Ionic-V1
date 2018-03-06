@@ -22,32 +22,14 @@ export class LoginPage {
     // Our translated text strings
     private loginErrorString: string;
 
-    step: any;
-    stepCondition: any;
-    stepDefaultCondition: any;
-    currentStep: any;
-
     constructor(public navCtrl: NavController,
                 public user: User,
                 public toastCtrl: ToastController,
-                public translateService: TranslateService,
-                public evts: Events) {
+                public translateService: TranslateService) {
 
         this.translateService.get('LOGIN_ERROR').subscribe((value) => {
             this.loginErrorString = value;
         });
-
-        /**
-         * Step Wizard Settings
-         */
-        this.step = 1;//The value of the first step, always 1
-        this.stepCondition = false;//Set to true if you don't need condition in every step
-        this.stepDefaultCondition = this.stepCondition;//Save the default condition for every step
-    }
-
-    //Wizard
-    toggle() {
-        this.stepCondition = !this.stepCondition;
     }
 
     // Attempt to login in through our User service
@@ -64,5 +46,13 @@ export class LoginPage {
             });
             toast.present();
         });
+    }
+
+    forget(){
+    //    ToDo
+    }
+
+    signup() {
+        this.navCtrl.push('SignupPage');
     }
 }

@@ -1,30 +1,38 @@
-import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {IonicPage, NavController} from 'ionic-angular';
 
-import { Tab1Root } from '../pages';
-import { Tab2Root } from '../pages';
-import { Tab3Root } from '../pages';
+import {tabProposeRoot} from '../pages';
+import {tabFindRoot} from '../pages';
+import {tabHomeRoot} from '../pages';
+import {tabMessageRoot} from '../pages';
+import {tabParamsRoot} from '../pages';
 
 @IonicPage()
 @Component({
-  selector: 'page-tabs',
-  templateUrl: 'tabs.html'
+    selector: 'page-tabs',
+    templateUrl: 'tabs.html'
 })
 export class TabsPage {
-  tab1Root: any = Tab1Root;
-  tab2Root: any = Tab2Root;
-  tab3Root: any = Tab3Root;
+    tabProposeRoot: any = tabProposeRoot;
+    tabFindRoot: any = tabFindRoot;
+    tabHomeRoot: any = tabHomeRoot;
+    tabMessageRoot: any = tabMessageRoot;
+    tabParamsRoot: any = tabParamsRoot;
 
-  tab1Title = " ";
-  tab2Title = " ";
-  tab3Title = " ";
+    tabProposeTitle = " ";
+    tabFindTitle = " ";
+    tabHomeTitle = " ";
+    tabMessageTitle = " ";
+    tabParamsTitle = " ";
 
-  constructor(public navCtrl: NavController, public translateService: TranslateService) {
-    translateService.get(['TAB1_TITLE', 'TAB2_TITLE', 'TAB3_TITLE']).subscribe(values => {
-      this.tab1Title = values['TAB1_TITLE'];
-      this.tab2Title = values['TAB2_TITLE'];
-      this.tab3Title = values['TAB3_TITLE'];
-    });
-  }
+    constructor(public navCtrl: NavController, public translateService: TranslateService) {
+        translateService.get(['TAB_PROPOSE', 'TAB_FIND', 'TAB_HOME', 'TAB_MESSAGE', 'TAB_PARAMS']).subscribe(values => {
+            this.tabProposeTitle = values['TAB_PROPOSE'];
+            this.tabFindTitle = values['TAB_FIND'];
+            this.tabHomeTitle = values['TAB_HOME'];
+            this.tabMessageTitle = values['TAB_MESSAGE'];
+            this.tabParamsTitle = values['TAB_PARAMS'];
+        });
+    }
 }

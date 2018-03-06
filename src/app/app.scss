@@ -79,7 +79,7 @@ $enable-media-queries: true;
 }
 
 //Global
-.page-home {
+ion-app {
   background-color: $blanc;
   font-family: $font-text;
   @include fontSize(18px);
@@ -90,6 +90,9 @@ $enable-media-queries: true;
 
 a {
   text-decoration: none;
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 /*************
@@ -122,7 +125,6 @@ STRUCTURE
 
 .content-center {
   text-align: center;
-  padding: 4vh 0;
 }
 
 .content {
@@ -160,11 +162,9 @@ STRUCTURE
 /*ELEMENT*/
 h2 {
   font-weight: bold;
-  text-align: center;
-  padding: 4vh 0;
-  i.ion-chevron-left {
-    position: absolute;
-    left: 15px;
+  padding: 20px 0;
+  &.center {
+    text-align: center;
   }
 }
 
@@ -206,23 +206,209 @@ h2 {
   color: $vert;
 }
 
+/*IONIC TABLE*/
+ion-header.header {
+  background-color: transparent;
+  background-image: inherit;
+  .toolbar-background {
+    background-color: transparent;
+  }
+  &:after {
+    display: none;
+  }
+  .title {
+    display: none;
+  }
+  .button {
+    text-align: left;
+    .icon {
+      color: $bleu;
+    }
+    .back-text {
+      display: none;
+      padding: 20px 0;
+    }
+  }
+}
+
+.has-header {
+  top: 0;
+}
+
+/****carousel de vélo******/
+.carousel_bike {
+  background-image: linear-gradient(-240deg, $bleu, $vert);
+  border-radius: 5%;
+  width: 200px;
+  padding: 20px 10px;
+  text-align: center;
+  position: relative;
+  .circle-img {
+    border-radius: 50%;
+    border: 2px solid $blanc;
+    overflow: hidden;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    img {
+      width: 120px;
+    }
+  }
+  .h3 {
+    color: $blanc;
+    font-size: 24px;
+    margin-bottom: 0px;
+  }
+  .h4 {
+    margin-top: 0px;
+    font-size: 14px;
+    line-height: 14px;
+    color: $blanc;
+  }
+  .param {
+    position: absolute;
+    right: -25px;
+    bottom: -25px;
+    img {
+      width: 50px;
+    }
+
+  }
+}
+
 //Forms
-.list-input {
+
+
+.slides-form{
+  height:100%;
+}
+.left-buttons .button-form{
+  i{
+    font-size:20px ;
+    color:$bleu ;
+  }
+}
+.pass_form{
+  margin-left:5px;
+}
+.list-input{
   text-align: left;
   padding-bottom: 2vh;
   color: $bleu;
   .champ {
     .label {
       font-weight: bold;
+      .message{
+        font-size:14px;
+        color:$bleu-clair;
+      }
     }
-    input {
+    input, textarea {
       width: 100%;
       background-color: transparent;
-      border-bottom: 2px solid $bleu;
+      border-bottom: 2px solid $bleu-clair;
       margin-bottom: 3vh;
+      color:$bleu;
+      font-size:14px;
+    }
+    textarea {
+      min-height: 120px;
+    }
+  }
+  .locker{
+    display:flex;
+    justify-content: space-between;
+    label{
+      width:55%;
+    }
+    .preview{
+      text-align:right;
+      width:35%;
+      margin-left:10px;
+      font-size:50px;
     }
   }
 }
+.one-input {
+  text-align: left;
+  padding-bottom: 2vh;
+  color: $bleu;
+  .champ {
+    display:flex;
+    justify-content: space-between;
+    .label {
+      font-weight: bold;
+      font-size:20px;
+      width:45%;
+    }
+    input{
+      text-align:right;
+      width: 30%;
+      background-color: transparent;
+      border-bottom: 2px solid $bleu-clair;
+      margin-bottom: 3vh;
+      color:$bleu;
+      font-size:24px;
+    }
+    span{
+      font-size:25px;
+    }
+  }
+}
+.list_button{
+  text-align:center;
+  .item-checkbox {
+    .checkbox {
+      display:none;
+    }
+  }
+  .checkbox_form{
+    border:4px solid $bleu-clair;
+    color:$bleu;
+    background-color:$blanc;
+    margin-bottom:4vh;
+    font-weight:bold;
+    border-radius:50px;
+    padding:10px 50px;
+    &.active{
+      border:4px solid $bleu-clair;
+      color:$blanc;
+      background-color:$bleu;
+    }
+    &_light{
+      display:inline-block;
+    }
+    &_full{
+      width:100%;
+    }
+  }
+}
+/**********
+PROPOSE FORM
+**********/
+#propose-form{
+  .line-under {
+    height: 2px;
+    padding: 0;
+    background: $noir;
+    overflow: visible;
+    position: relative;
+    margin: 5vh auto 5vh auto;
+    text-align:center;
+  }
+
+  .line-under p {
+    color: $noir;
+    background-color: $blanc;
+    top: -10px;
+    margin-left: -40px;
+    padding: 5px 25px;
+    display: inline;
+    position: absolute;
+  }
+}
+
+
 
 //Buttons
 .button {
