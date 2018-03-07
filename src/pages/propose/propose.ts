@@ -18,15 +18,15 @@ export class ProposePage {
     stepCondition: any;
     stepDefaultCondition: any;
     currentStep: any;
-    propose: { title: string, description: string, img1: string, type1: string, type2: string, type3: string, type4: string, type5: string, town: string, address: string, price: string, started: string, ended:string, bankname:string, RIB:string, locker:string } = {
+    propose: { title: string, description: string, img1: string, type1: boolean, type2: boolean, type3: boolean, type4: boolean, type5: boolean, town: string, address: string, price: string, started: string, ended: string, bankname: string, RIB: string, locker: string } = {
         title: '',
         description: '',
         img1: '',
-        type1: '',
-        type2: '',
-        type3: '',
-        type4: '',
-        type5: '',
+        type1: false,
+        type2: false,
+        type3: false,
+        type4: false,
+        type5: false,
         town: '',
         address: '',
         price: '',
@@ -65,6 +65,19 @@ export class ProposePage {
     //Wizard
     toggle() {
         this.stepCondition = !this.stepCondition;
+    }
+
+    //Steps
+    step1(e) {
+        this.stepCondition = !!(this.propose.title && this.propose.title.trim() !== '' && this.propose.description && this.propose.description.trim() !== '');
+    }
+
+    step3(e) {
+        this.stepCondition = (this.propose.type1
+            || this.propose.type2
+            || this.propose.type3
+            || this.propose.type4
+            || this.propose.type5);
     }
 
     ionViewDidLoad() {

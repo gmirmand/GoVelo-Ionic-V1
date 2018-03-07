@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+import {TranslateModule} from '@ngx-translate/core';
 import {IonicPageModule} from 'ionic-angular';
 import {ProposePage} from './propose';
 
@@ -13,6 +14,7 @@ import {IonSimpleWizardStep} from "../ion-simple-wizard/ion-simple-wizard.step.c
     ],
     imports: [
         IonicPageModule.forChild(ProposePage),
+        TranslateModule.forChild()
     ],
 })
 export class ProposePageModule {

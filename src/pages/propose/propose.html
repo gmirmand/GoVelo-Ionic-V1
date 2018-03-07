@@ -22,7 +22,7 @@
                 <div class="slide-container">
                     <h2> Choisissez un vélo </h2>
                     <div class="container-bike">
-                        <button class="button button-stable bike" ng-click="existing()"> <!-- GO STEP 7 -->
+                        <button class="button button-stable bike"> <!-- GO STEP 7 -->
                             <img src="/img/bike.svg" alt="Votre vélo" class="header">
                             <div class="h3">VTT</div>
                             <div class="h5">Le Puy en velay</div>
@@ -43,13 +43,15 @@
             <ion-wizard-step>
                 <div class="slide-container">
                     <h2> Titre et description de l'annonce </h2>
-                    <label class="item item-input item-stacked-label" name="tile">
+                    <label class="item item-input item-stacked-label" name="title">
                         <span class="input-label"> Titre de l'annonce</span>
-                        <input type="text" name="title" [(ngModel)]="propose.title" placeholder="Mon vélo" id="title">
+                        <input (input)="step1($event)" type="text" name="title" [(ngModel)]="propose.title"
+                               placeholder="Mon vélo" id="title">
                     </label>
                     <label class="item item-input item-stacked-label" name="description">
                         <span class="input-label"> Description du vélo</span>
-                        <textarea name="description" value="" [(ngModel)]="propose.description" id="description"
+                        <textarea (input)="step1($event)" name="description" value="" [(ngModel)]="propose.description"
+                                  id="description"
                                   placeholder="Description de mon vélo (date d'acchat, état, roues...)">
                         </textarea>
                     </label>
@@ -70,26 +72,43 @@
                     </div>
                     <!--ENDFOREACH-->
                     <p>1 photos ajoutée(s).</p>
+
+
+                    <button type="button" ion-button clear class="button button-block button-calm no-animation"
+                            (click)="toggle()">
+                        {{'NEXT' | translate}}
+                        <ion-icon ios="ion-ios7-arrow-forward"></ion-icon>
+                    </button>
                 </div>
             </ion-wizard-step>
             <ion-wizard-step>
                 <div class="slide-container">
                     <h2> Quel type de vélo ? </h2>
-                    <ion-checkbox name="type" [(ngModel)]="propose.type1" value="VTT" id="VTT">
-                        VTT
-                    </ion-checkbox>
-                    <ion-checkbox name="type" [(ngModel)]="propose.type2" value="BMX" id="BMX">
-                        BMX
-                    </ion-checkbox>
-                    <ion-checkbox name="type" [(ngModel)]="propose.type3" value="Route" id="Route">
-                        Route
-                    </ion-checkbox>
-                    <ion-checkbox name="type" [(ngModel)]="propose.type4" value="Pliant" id="Pliant">
-                        Pliant
-                    </ion-checkbox>
-                    <ion-checkbox name="type" [(ngModel)]="propose.type5" value="Electrique" id="Electrique">
-                        Electrique
-                    </ion-checkbox>
+                    <ion-item>
+                        <ion-label>VTT</ion-label>
+                        <ion-checkbox (input)="step3($event)" name="type" [(ngModel)]="propose.type1" value="VTT" id="VTT">
+                        </ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>BMX</ion-label>
+                        <ion-checkbox (input)="step3($event)" name="type" [(ngModel)]="propose.type2" value="BMX" id="BMX">
+                        </ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Route</ion-label>
+                        <ion-checkbox (input)="step3($event)" name="type" [(ngModel)]="propose.type3" value="Route" id="Route">
+                        </ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Pliant</ion-label>
+                        <ion-checkbox (input)="step3($event)" name="type" [(ngModel)]="propose.type4" value="Pliant" id="Pliant">
+                        </ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Electrique</ion-label>
+                        <ion-checkbox (input)="step3($event)" name="type" [(ngModel)]="propose.type5" value="Electrique" id="Electrique">
+                        </ion-checkbox>
+                    </ion-item>
                 </div>
             </ion-wizard-step>
 
@@ -181,7 +200,8 @@
                             <label class="item item-input item-stacked-label" for="locker">
                                 <span class="input-label">Code cadenas</span>
                                 <!--Remplacer par des input number x3-6-->
-                                <input type="text" minlength="3" maxlength="6" name="locker" [(ngModel)]="propose.locker"
+                                <input type="text" minlength="3" maxlength="6" name="locker"
+                                       [(ngModel)]="propose.locker"
                                        id="locker">
                             </label>
                         </div>
