@@ -28,6 +28,6 @@ export class WelcomePage {
     }
 
     skip() {
-        this.navCtrl.push('TabsPage');
+        this.navCtrl.push(MainPage);
     }
 }
