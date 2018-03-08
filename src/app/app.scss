@@ -109,19 +109,30 @@ STRUCTURE
 }
 
 /*COMMUN*/
-
+.scroll-content{
+  margin-top:0 !important;
+}
 #auth .scroll, #home .scroll, #login .scroll {
   height: 90vh;
 }
 
-.header.logo {
+.header{
   text-align: center;
-  padding: 4vh 0;
-  height: 40vh;
-  img {
-    margin-top: 20%;
+
+  &.logo_big {
+    img {
+      margin-top: 20%;
+      padding: 40px 0;
+    }
+  }
+  &.logo_little {
+    img {
+      width:100%;
+      padding: 20px 0;
+    }
   }
 }
+
 
 .content-center {
   text-align: center;
@@ -190,10 +201,12 @@ h2 {
 
 /*font-color*/
 .font-grey-light {
-  color: $noir;
-  opacity: 0.8;
+  color: $color-lightgrey;
 }
-
+.font-black-light {
+  color: $noir;
+  opacity:0.8;
+}
 .font-black {
   color: $noir;
 }
@@ -414,7 +427,8 @@ PROPOSE FORM
 .button {
   border-radius: 50px;
   width: 100%;
-  margin-bottom: 4vh;
+  margin-bottom: 45px;
+  padding : 20px 0;
   font-weight: bold;
   font-size: 12px;
   &_inverse {

@@ -1,3 +1,71 @@
 page-home {
-
+  .info_plus {
+    padding: 20px 0;
+    .info {
+      .title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+  }
+  .proposer, .trouver {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    color: $blanc;
+    padding: 5px 5px;
+    margin-top: 20px;
+    box-shadow: 5px 5px 25px 0 rgba(0,0,0,0.2);
+    .button-cercle {
+      width: 0;
+      text-align:center;
+      ion-icon {
+        height: 80px;
+        width: 80px;
+        line-height: 80px;
+        box-shadow: 0 0 25px 0 rgba(0,0,0,0.2);
+        border-radius: 50%;
+        font-size: 3.2em;
+        transform: translateX(-40px);
+      }
+    }
+    .proposer_left, .trouver_right {
+      width: 60%;
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+    }
+    .proposer_right, .trouver_left {
+      width: 40%;
+      text-align: center;
+      img {
+        width: 80%;
+      }
+    }
+  }
+  .proposer {
+    background-color: $bleu;
+    .button-cercle {
+      ion-icon {
+        background-color: $bleu;
+      }
+    }
+    .proposer_left {
+      margin-left: 50px;
+    }
+  }
+  .trouver {
+    background-color: $vert;
+    .button-cercle {
+      ion-icon {
+        background-color: $vert;
+      }
+    }
+    .trouver_right {
+      margin-right: 50px;
+    }
+  }
 }
