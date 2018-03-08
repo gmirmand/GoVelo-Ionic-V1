@@ -1,0 +1,14 @@
+ion-simple-wizard :host {
+  display: flex;
+  flex-direction: column; }
+ion-simple-wizard .ion-wizard-footer {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: block;
+  width: 100%;
+  text-align: center; }
+
+/*# sourceMappingURL=ion-simple-wizard.component.css.map */

@@ -14,12 +14,28 @@ export class SignupPage {
     // The account fields for the login form.
     // If you're using the username field with or without email, make
     // sure to add it to the type
-    account: { firstname: string,lastname: string, email: string, password: string, confirmpassword: string } = {
+    account: {
+        firstname: string,
+        lastname: string,
+        email: string,
+        password: string,
+        confirmpassword: string,
+        female: boolean,
+        male: boolean,
+        age: number,
+        phone: string,
+        img: string,
+    } = {
         firstname: '',
         lastname: '',
         email: '',
         password: '',
-        confirmpassword: ''
+        confirmpassword: '',
+        female: undefined,
+        male: undefined,
+        age: undefined,
+        phone: '',
+        img: '',
     };
     step: any;
     stepCondition: any;
@@ -65,11 +81,21 @@ export class SignupPage {
     toggle() {
         this.stepCondition = !this.stepCondition;
     }
+
     step1(e) {
         this.stepCondition = !!(this.account.firstname && this.account.firstname.trim() !== '' && this.account.lastname && this.account.lastname.trim() !== '');
     }
+
     step2(e) {
-        this.stepCondition = !!(this.account.email && this.account.email.trim() !== '' && this.account.password&& this.account.password.trim() !== ''&& this.account.confirmpassword && this.account.confirmpassword.trim() !== '');
+        this.stepCondition = !!(this.account.email && this.account.email.trim() !== '' && this.account.password && this.account.password.trim() !== '' && this.account.confirmpassword && this.account.confirmpassword.trim() !== '');
+    }
+
+    step3(e) {
+        this.stepCondition = ((this.account.female === true || this.account.male === true) && this.account.phone && this.account.phone.length === 10 && this.account.phone.trim() !== '' && this.account.age >= 18);
+    }
+
+    step4(e) {
+        this.stepCondition = (1 === 1);
     }
 
     //Signup

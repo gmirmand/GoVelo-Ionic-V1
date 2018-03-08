@@ -40,12 +40,12 @@
                     <label class="item item-input item-stacked-label" for="firstname">
                         <span class="input-label">{{"FIRSTNAME" | translate}}</span>
                         <ion-input required type="text" [(ngModel)]="account.firstname" name="name" id="firstname"
-                                   (input)="step1($event)"></ion-input>
+                                   (input)="step1($event)" placeholder="Clark" e></ion-input>
                     </label>
                     <label class="item item-input item-stacked-label" for="lastname">
                         <span class="input-label">{{"LASTNAME" | translate}}</span>
                         <ion-input required type="text" [(ngModel)]="account.lastname" name="name" id="lastname"
-                                   (input)="step1($event)"></ion-input>
+                                   (input)="step1($event)" placeholder="Kent"></ion-input>
                     </label>
                 </div>
             </ion-wizard-step>
@@ -57,17 +57,17 @@
                     <label class="item item-input item-stacked-label" for="mail">
                         <span class="input-label">{{"MAIL_ADDRESS" | translate}}</span>
                         <ion-input required type="email" name="mail" [(ngModel)]="account.email" id="mail"
-                                   (input)="step2($event)"></ion-input>
+                                   (input)="step2($event)" placeholder="Your mail"></ion-input>
                     </label>
                     <label class="item item-input item-stacked-label" for="password">
                         <span class="input-label">{{"PASSWORD" | translate}}</span>
                         <ion-input required type="password" name="password" [(ngModel)]="account.password" id="password"
-                                   (input)="step2($event)"></ion-input>
+                                   (input)="step2($event)" placeholder="************"></ion-input>
                     </label>
                     <label class="item item-input item-stacked-label" for="passwordconfirm">
                         <span class="input-label">{{"PASSWORD_CONFIRM" | translate}}</span>
                         <ion-input required type="password" name="passwordconfirm" [(ngModel)]="account.confirmpassword"
-                                   id="passwordconfirm" (input)="step2($event)"></ion-input>
+                                   id="passwordconfirm" (input)="step2($event)" placeholder="************"></ion-input>
                     </label>
                     <!--<button type="button" ion-wizard-start="startcontinu()" >
                         Etape suivante
@@ -76,6 +76,45 @@
                         <b>{{"FINISH_SIGNUP"|translate}}</b><br>
                         {{"PERSONAL_DATA"|translate}}
                     </button>
+                </div>
+            </ion-wizard-step>
+            <ion-wizard-step>
+                <div class="slide-container">
+                    <h2> Vos informations personnelles </h2>
+                    <ion-item>
+                        <ion-label>Homme</ion-label>
+                        <ion-checkbox (click)="step3($event)" name="sexe" [(ngModel)]="account.female" value="0"
+                                      id="Homme" [checked]="false">
+                        </ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Femme</ion-label>
+                        <ion-checkbox (click)="step3($event)" name="sexe" [(ngModel)]="account.male" value="1"
+                                      id="Femme" [checked]="false">
+                        </ion-checkbox>
+                    </ion-item>
+                    <label class="item item-input item-stacked-label" for="age">
+                        <span class="input-label">{{"AGE" | translate}}</span>
+                        <ion-input required type="number" name="age" [(ngModel)]="account.age" id="age"
+                                   (input)="step3($event)" placeholder="25"></ion-input>
+                    </label>
+                    <label class="item item-input item-stacked-label" for="phone">
+                        <span class="input-label">{{"PHONE" | translate}}</span>
+                        <ion-input required type="tel" name="phone" [(ngModel)]="account.phone" id="phone"
+                                   (input)="step3($event)" placeholder="0606060606" min="10" max="10"></ion-input>
+                    </label>
+                </div>
+            </ion-wizard-step>
+            <ion-wizard-step>
+                <div class="slide-container">
+                    <h2>Votre photo de profil</h2>
+                    <div class="picture picture-1">
+                        <input (change)="step4($event)" type="file" name="picture" [(ngModel)]="account.img">
+                        <div class="container-picture">
+                            <div class="picture">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </ion-wizard-step>
         </ion-simple-wizard>

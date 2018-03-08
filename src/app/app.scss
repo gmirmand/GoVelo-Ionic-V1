@@ -90,7 +90,7 @@ ion-app {
 
 a {
   text-decoration: none;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 }
@@ -110,7 +110,7 @@ STRUCTURE
 
 /*COMMUN*/
 
-#auth .scroll, #home .scroll, #login .scroll {
+#auth .scroll, #home .scroll, page-signup .scroll {
   height: 90vh;
 }
 
@@ -278,115 +278,75 @@ ion-header.header {
 
 //Forms
 
-
-.slides-form{
-  height:100%;
+.step_center {
+  text-align: center;
 }
-.left-buttons .button-form{
-  i{
-    font-size:20px ;
-    color:$bleu ;
+
+.slides-form {
+  height: 100%;
+}
+
+.left-buttons .button-form {
+  i {
+    font-size: 20px;
+    color: $bleu;
   }
 }
-.pass_form{
-  margin-left:5px;
+
+.pass_form {
+  margin-left: 5px;
 }
-.list-input{
+
+.list-input, .one-input {
   text-align: left;
   padding-bottom: 2vh;
   color: $bleu;
   .champ {
     .label {
       font-weight: bold;
-      .message{
-        font-size:14px;
-        color:$bleu-clair;
-      }
     }
     input, textarea {
       width: 100%;
       background-color: transparent;
-      border-bottom: 2px solid $bleu-clair;
+      border-bottom: 2px solid $bleu;
       margin-bottom: 3vh;
-      color:$bleu;
-      font-size:14px;
+      color: $bleu;
+      font-size: 14px;
     }
     textarea {
       min-height: 120px;
     }
   }
-  .locker{
-    display:flex;
-    justify-content: space-between;
-    label{
-      width:55%;
-    }
-    .preview{
-      text-align:right;
-      width:35%;
-      margin-left:10px;
-      font-size:50px;
-    }
-  }
 }
-.one-input {
-  text-align: left;
-  padding-bottom: 2vh;
-  color: $bleu;
-  .champ {
-    display:flex;
-    justify-content: space-between;
-    .label {
-      font-weight: bold;
-      font-size:20px;
-      width:45%;
-    }
-    input{
-      text-align:right;
-      width: 30%;
-      background-color: transparent;
-      border-bottom: 2px solid $bleu-clair;
-      margin-bottom: 3vh;
-      color:$bleu;
-      font-size:24px;
-    }
-    span{
-      font-size:25px;
-    }
-  }
-}
-.list_button{
-  text-align:center;
+
+.list_button {
+  text-align: center;
   .item-checkbox {
     .checkbox {
-      display:none;
+      display: none;
     }
   }
-  .checkbox_form{
-    border:4px solid $bleu-clair;
-    color:$bleu;
-    background-color:$blanc;
-    margin-bottom:4vh;
-    font-weight:bold;
-    border-radius:50px;
-    padding:10px 50px;
-    &.active{
-      border:4px solid $bleu-clair;
-      color:$blanc;
-      background-color:$bleu;
+  .checkbox_form {
+    border: 4px solid $bleu-clair;
+    color: $bleu;
+    background-color: $blanc;
+    margin-bottom: 4vh;
+    font-weight: bold;
+    border-radius: 50px;
+    padding: 10px 50px;
+    &_light {
+      display: inline-block;
     }
-    &_light{
-      display:inline-block;
-    }
-    &_full{
-      width:100%;
+    &_full {
+      width: 100%;
     }
   }
 }
+
 /**********
 PROPOSE FORM
 **********/
-#propose-form{
+#propose-form {
   .line-under {
     height: 2px;
     padding: 0;
@@ -394,7 +354,6 @@ PROPOSE FORM
     overflow: visible;
     position: relative;
     margin: 5vh auto 5vh auto;
-    text-align:center;
   }
 
   .line-under p {
@@ -408,7 +367,30 @@ PROPOSE FORM
   }
 }
 
+/**********
+PROPOSE FORM
+**********/
+#propose-form {
+  .line-under {
+    height: 2px;
+    padding: 0;
+    background: $noir;
+    overflow: visible;
+    position: relative;
+    margin: 5vh auto 5vh auto;
+    text-align: center;
+  }
 
+  .line-under p {
+    color: $noir;
+    background-color: $blanc;
+    top: -10px;
+    margin-left: -40px;
+    padding: 5px 25px;
+    display: inline;
+    position: absolute;
+  }
+}
 
 //Buttons
 .button {
@@ -419,7 +401,7 @@ PROPOSE FORM
   font-size: 12px;
   &_inverse {
     &_blanc {
-      border: 1px solid $bleu;
+      border: 4px solid $bleu;
       color: $bleu;
       background-color: white;
 
@@ -429,7 +411,7 @@ PROPOSE FORM
       }
     }
     &_bleu {
-      border: 1px solid $bleu;
+      border: 4px solid $bleu;
       color: $blanc;
       background-color: $bleu;
       &:hover {
@@ -437,6 +419,39 @@ PROPOSE FORM
         background-color: $blanc;
       }
     }
-
+    &_bClair {
+      border: 4px solid $bleu-clair;
+      color: $bleu;
+      background-color: $blanc;
+    }
   }
 }
+
+/*****************
+LOGIN
+*****************/
+#login, #signup {
+  .line-under {
+    height: 2px;
+    padding: 0;
+    background: $noir;
+    overflow: visible;
+    position: relative;
+    margin: 0 auto 5vh auto;
+  }
+
+  .line-under p {
+    color: $noir;
+    background-color: $color-lightgrey;
+    top: -10px;
+    margin-left: -40px;
+    padding: 5px 25px;
+    display: inline;
+    position: absolute;
+  }
+}
+
+.list-connect {
+  margin-bottom: 1vh;
+}
+
