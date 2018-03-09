@@ -1,0 +1,153 @@
+<!--
+  Generated template for the AnnouncementDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>announcement-details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="header" [style.backgroundImage]="'url(assets/img/bike.jpeg)'">
+    <!--<div class="icon-share">-->
+      <!--<a href="/share">-->
+        <!--<img src="assets/img/icons/share-bleu.png" alt="Photo principal">-->
+      <!--</a>-->
+    <!--</div>-->
+
+  </div>
+  <div class="container-9">
+    <div class="desc-container">
+      <div class="desc-header">
+        <h2 class="font-bleu">
+          Loue bon vélo à la journée
+        </h2>
+        <div class="type">
+          <div class="button_static_bleu button">
+            Route
+          </div>
+
+        </div>
+      </div>
+      <p class="desc">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid assumenda
+        consequatur dicta distinctio doloribus, ea eos facilis fugiat harum hic, laborum mollitia, nostrum
+        numquam quidem quod similique ullam vel?
+      </p>
+    </div>
+    <div class="price-container">
+      <div class="title">
+        <p>Prix journalier :</p>
+          <p><span class="bold">3€</span>/jour</p>
+      </div>
+    </div>
+    <div class="img-container">
+      <div class="title font-bleu">
+        Image(s) additionnelle(s)
+      </div>
+      <div class="container">
+        <div class="image-item" [style.backgroundImage]="'url(assets/img/bike.jpeg)'">
+        </div>
+        <div class="image-item" [style.backgroundImage]="'url(assets/img/bike_2.jpeg)'">
+        </div>
+      </div>
+    </div>
+    <div class="geolocation-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2819.2651158143076!2d3.87845681473174!3d45.03984166968068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47f5fa5336bf4ae7%3A0x9210d60804d0376f!2sUdA+-+IUT+Le+Puy+en+Velay!5e0!3m2!1sfr!2sfr!4v1519926156045"
+              style="width: 100vw; height: 25vh;" frameborder="0" style="border:0" allowfullscreen></iframe>
+      <div class="specifications content-center">
+        <p class="font-bleu">Le Puy-en-Velay, à un rayon de 200m</p>
+        <p class="info">Par soucis de sécurité, l'adresse exacte sera révélée après réservation</p>
+      </div>
+    </div>
+    <div class="separator"></div>
+    <div class="calendar-container card">
+      <div class="title font-bleu">Disponibilités</div>
+
+      <div class="calendar">
+        <div class="calendar-header">
+          <div class="previous"></div>
+          <div class="next"></div>
+        </div>
+        <div class="calendar-dates">
+          <table>
+            <tr class="week">
+              <td>Lun.</td>
+              <td>Mar.</td>
+              <td>Mer.</td>
+              <td>Jeu.</td>
+              <td>Vre.</td>
+              <td>Sam.</td>
+              <td>Dim.</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <!--2/3/4/5/...-->
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="infos">
+        <div class="color"></div>
+        jours de disponibilités de location du vélo.
+      </div>
+    </div>
+    <div class="separator"></div>
+    <div class="account-container">
+      <div class="title font-bleu">Profil du propriétaire</div>
+      <div class="container account-infos">
+        <div class="infos">
+          <h1 class="name font-bleu">
+            Clark
+          </h1>
+          <div class="location">
+            Le Puy-en-Velay
+          </div>
+          <div class="certifier font-green">
+            <p>PROFIL CERTIFIÉ</p>
+          </div>
+            <div class="stars font-bleu">
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star-half"></ion-icon>
+                  <ion-icon name="star-outline"></ion-icon>
+            </div>
+        </div>
+        <div class="infos info-user ">
+          <a (click)="profil()">
+          <div class="info-img" [style.backgroundImage]="'url(assets/img/marty-avatar.png)'">
+              <img src="assets/img/icons/ok-bleu-contour-clair.png" alt="certified" class="certified">
+              <div class="level-user">
+                <span class="level">3</span>
+              </div>
+          </div>
+          </a>
+        </div>
+      </div>
+      <div class="links">
+        <a (click)="velos_user()" class="font-bleu"><ion-icon name="arrow-back"></ion-icon> Voir ses autres vélos</a>
+        <a (click)="profil()" class="font-bleu">Voir le profil complet <ion-icon name="ios-arrow-forward"></ion-icon></a>
+      </div>
+    </div>
+    <div class="separator"></div>
+    <div class="button_end">
+      <div class="contact">
+        <button (click)="chats()" class="button button_inverse_blanc">
+            Contacter
+        </button>
+      </div>
+      <div class="contact">
+        <button (click)="rental()" class="button button_inverse_bleu">
+          Réserver
+        </button>
+      </div>
+    </div>
+  </div>
+</ion-content>
