@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 
+import {CalendarComponentOptions} from 'ion2-calendar'
+
 /**
  * Generated class for the ProposePage page.
  *
@@ -18,23 +20,52 @@ export class ProposePage {
     stepCondition: any;
     stepDefaultCondition: any;
     currentStep: any;
-    propose: { title: string, description: string, img1: string, type1: boolean, type2: boolean, type3: boolean, type4: boolean, type5: boolean, town: string, address: string, price: string, started: string, ended: string, bankname: string, RIB: string, locker: string } = {
+    disabled: boolean = true;
+    propose: {
+        title: string,
+        description: string,
+        img: FileList,
+        picnb: number,
+        type: boolean,
+        town: string,
+        address: string,
+        price: number,
+        started: string,
+        ended: string,
+        bankname: string,
+        RIB: string,
+        lock1: number,
+        lock2: number,
+        lock3: number,
+        lock4: number,
+        dateRange: {
+            from: string,
+            to: string
+        },
+        dateRangeArray: any[]
+    } = {
         title: '',
         description: '',
-        img1: '',
-        type1: false,
-        type2: false,
-        type3: false,
-        type4: false,
-        type5: false,
+        img: undefined,
+        picnb: 0,
+        type: false,
         town: '',
         address: '',
-        price: '',
+        price: null,
         started: '',
         ended: '',
         bankname: '',
         RIB: '',
-        locker: ''
+        lock1: null,
+        lock2: null,
+        lock3: null,
+        lock4: null,
+        dateRange: undefined,
+        dateRangeArray: []
+    };
+    type: 'js-date'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
+    optionsRange: CalendarComponentOptions = {
+        pickMode: 'range'
     };
 
     constructor(public navCtrl: NavController,
@@ -69,19 +100,58 @@ export class ProposePage {
 
     //Steps
     step1(e) {
-        this.stepCondition = !!(this.propose.title && this.propose.title.trim() !== '' && this.propose.description && this.propose.description.trim() !== '');
+        this.stepCondition = !!(this.propose.title && this.propose.title.trim() !== ''
+            && this.propose.description && this.propose.description.trim() !== '');
+    }
+
+    step2(e) {
+        this.propose.img = e.target.files;
+        this.propose.picnb = this.propose.img.length;
+        this.stepCondition = (this.propose.picnb > 0);
     }
 
     step3(e) {
-        this.stepCondition = (this.propose.type1
-            || this.propose.type2
-            || this.propose.type3
-            || this.propose.type4
-            || this.propose.type5);
+        console.log(this.propose.type);
+        this.stepCondition = (this.propose.type);
+    }
+
+    step4(e) {
+        this.stepCondition = !!(this.propose.town && this.propose.town.trim() !== ''
+            && this.propose.address && this.propose.address.trim() !== '');
+    }
+
+    step5(e) {
+        this.stepCondition = (this.propose.price && this.propose.price < 50);
+    }
+
+    step6(e) {
+        this.disabled = false;
+        this.stepCondition = (this.propose.dateRangeArray);
+    }
+
+    step7(e) {
+        this.stepCondition = (this.propose.bankname && this.propose.bankname.trim() !== ''
+            && this.propose.RIB && this.propose.RIB.trim() !== '');
+    }
+
+    addCalendar() {
+        if (this.propose.dateRange.from) {
+            this.disabled = true;
+            if (!this.propose.dateRange.to)
+                this.propose.dateRange.to = this.propose.dateRange.from;
+            this.propose.dateRangeArray.push(this.propose.dateRange);
+        }
+    }
+
+    delete(index) {
+        this.propose.dateRangeArray.splice(index, 1);
+    }
+
+    proposeForm() {
+
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad ProposePage');
     }
-
 }

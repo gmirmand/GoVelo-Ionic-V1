@@ -6,13 +6,118 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>find</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>find</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <form class="slides-form" (ngSubmit)="findForm(step)">
+        <ion-simple-wizard [(step)]="step" [showSteps]="true" [finishIcon]="'done-all'"
+                           [(stepCondition)]="stepCondition">
+            <ion-wizard-step>
+                <div class="slide-container">
 
+                    <h1> Où cherchez-vous un vélo ? </h1>
+                    <button class="button button-block button-calm" (click)="toggle()">Ma position
+                    </button>
+
+                    <div class="separator">Ou</div>
+
+                    <div class="list list-inset">
+                        <label class="item item-input">Ville
+                            <input type="text" (input)="step1($event)" [(ngModel)]="find.town" name="town">
+                        </label>
+                        <label class="item item-input"> Adresse
+                            <input type="text" (input)="step1($event)" [(ngModel)]="find.address" name="address">
+                        </label>
+                    </div>
+                    <ion-item>
+                        <ion-label>Dans un rayon de</ion-label>
+                        <ion-select name="radius" (ionChange)="step1($event)" [(ngModel)]="find.radius" type="number">
+                            <ion-option value="100">100</ion-option>
+                            <ion-option value="200">200</ion-option>
+                            <ion-option value="400">400</ion-option>
+                            <ion-option value="800">800</ion-option>
+                            <ion-option value="1200">1200</ion-option>
+                            <ion-option value="2000">2200</ion-option>
+                            <ion-option value="3000">2030</ion-option>
+                        </ion-select>
+                        mètres
+                    </ion-item>
+                </div>
+            </ion-wizard-step>
+
+            <ion-wizard-step>
+                <div class="slide-container">
+                    <h2> Quel type de vélo ? </h2>
+                    <ion-item>
+                        <ion-label>VTT</ion-label>
+                        <ion-checkbox (click)="step2($event)" name="type" [(ngModel)]="find.type1" value="VTT"
+                                      id="VTT">
+                        </ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>BMX</ion-label>
+                        <ion-checkbox (click)="step2($event)" name="type" [(ngModel)]="find.type2" value="BMX"
+                                      id="BMX">
+                        </ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Route</ion-label>
+                        <ion-checkbox (click)="step2($event)" name="type" [(ngModel)]="find.type3" value="Route"
+                                      id="Route">
+                        </ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Pliant</ion-label>
+                        <ion-checkbox (click)="step2($event)" name="type" [(ngModel)]="find.type4" value="Pliant"
+                                      id="Pliant">
+                        </ion-checkbox>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Electrique</ion-label>
+                        <ion-checkbox (click)="step2($event)" name="type" [(ngModel)]="find.type5" value="Electrique"
+                                      id="Electrique">
+                        </ion-checkbox>
+                    </ion-item>
+                </div>
+            </ion-wizard-step>
+
+            <ion-wizard-step>
+                <div class="slide-container">
+                    <h1> De quand à quand ? </h1>
+                    <ion-item>
+                        <ion-label>Du</ion-label>
+                        <ion-datetime name="started" displayFormat="DD/MM/YYYY" [(ngModel)]="find.started"
+                                      (ngModelChange)="step3($event)"></ion-datetime>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Au</ion-label>
+                        <ion-datetime name="ended" displayFormat="DD/MM/YYYY" [(ngModel)]="find.ended"
+                                      (ngModelChange)="step3($event)"></ion-datetime>
+                    </ion-item>
+                </div>
+            </ion-wizard-step>
+
+            <ion-wizard-step>
+                <div class="slide-container">
+                    <h1> Pour quel prix ?</h1>
+                    <div class="values">
+                        <span class="lower">{{find.price.lower}}</span>
+                        <span class="upper">{{find.price.upper}}</span>
+                    </div>
+                    <ion-item>
+                        <ion-range [min]="0" [max]="50" [step]="3" name="price" dualKnobs="true" pin="true"
+                                   [(ngModel)]="find.price" (ionChange)="step4($event)">
+                            <ion-label range-left>0</ion-label>
+                            <ion-label range-right>100</ion-label>
+                        </ion-range>
+                    </ion-item>
+                </div>
+            </ion-wizard-step>
+        </ion-simple-wizard>
+    </form>
 </ion-content>
