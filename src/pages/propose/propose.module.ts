@@ -1,9 +1,12 @@
 import {NgModule} from '@angular/core';
+import {TranslateModule} from '@ngx-translate/core';
 import {IonicPageModule} from 'ionic-angular';
 import {ProposePage} from './propose';
+import { CalendarModule } from "ion2-calendar";
+import { CommonModule } from '@angular/common';
 
-import {IonSimpleWizard} from "../ion-simple-wizard/ion-simple-wizard.component";
-import {IonSimpleWizardStep} from "../ion-simple-wizard/ion-simple-wizard.step.component";
+import {IonSimpleWizard} from "../../components/ion-simple-wizard-propose/ion-simple-wizard.component";
+import {IonSimpleWizardStep} from "../../components/ion-simple-wizard-propose/ion-simple-wizard.step.component";
 
 @NgModule({
     declarations: [
@@ -12,7 +15,10 @@ import {IonSimpleWizardStep} from "../ion-simple-wizard/ion-simple-wizard.step.c
         IonSimpleWizardStep
     ],
     imports: [
+        CalendarModule,
         IonicPageModule.forChild(ProposePage),
+        TranslateModule.forChild(),
+        CommonModule
     ],
 })
 export class ProposePageModule {

@@ -49,5 +49,6 @@
   "YOUR_MAIL_AND_PASSWORD": "Votre adresse e-mail et mot de passe",
   "MAIL_ADDRESS": "Adresse e-mail",
   "FINISH_SIGNUP": "Finaliser mon inscription",
-  "PERSONAL_DATA": "et renseigner mes données personnelles ultérieurement."
+  "PERSONAL_DATA": "et renseigner mes données personnelles ultérieurement.",
+  "PAIEMENT_TITLE": "Paiement et sécurité"
 }

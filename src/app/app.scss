@@ -24,13 +24,15 @@
   font-size: $size; //Fallback in px
   font-size: calculateRem($size);
 }
+
 @mixin bgImg() {
-  background-position:center center;
+  background-position: center center;
   background-repeat: no-repeat;
-  background-size:cover;
+  background-size: cover;
 }
+
 @mixin flexCenter() {
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
@@ -98,9 +100,13 @@ ion-app {
   }
 }
 
+.scroll-content, .fixed-content{
+  margin-top: 28px !important;
+}
+
 a {
   text-decoration: none;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 }
@@ -119,14 +125,12 @@ STRUCTURE
 }
 
 /*COMMUN*/
-.scroll-content{
-  margin-top:0 !important;
-}
+
 #auth .scroll, #home .scroll, #login .scroll {
   height: 90vh;
 }
 
-.header{
+.header {
   text-align: center;
 
   &.logo_big {
@@ -137,12 +141,11 @@ STRUCTURE
   }
   &.logo_little {
     img {
-      width:100%;
+      width: 100%;
       padding: 20px 0;
     }
   }
 }
-
 
 .content-center {
   text-align: center;
@@ -211,12 +214,10 @@ h2 {
 
 /*font-color*/
 .font-grey-light {
-  color: $color-lightgrey;
-}
-.font-black-light {
   color: $noir;
-  opacity:0.8;
+  opacity: 0.8;
 }
+
 .font-black {
   color: $noir;
 }
@@ -230,9 +231,10 @@ h2 {
 }
 
 /*IONIC TABLE*/
-.header-ios .toolbar-ios:last-child .toolbar-background-ios{
-  border:none;
+.header-ios .toolbar-ios:last-child .toolbar-background-ios {
+  border: none;
 }
+
 ion-header.header {
   background-color: transparent;
   background-image: inherit;
@@ -304,29 +306,31 @@ ion-header.header {
 
 //Forms
 
-
-.slides-form{
-  height:100%;
+.slides-form {
+  height: 100%;
 }
-.left-buttons .button-form{
-  i{
-    font-size:20px ;
-    color:$bleu ;
+
+.left-buttons .button-form {
+  i {
+    font-size: 20px;
+    color: $bleu;
   }
 }
-.pass_form{
-  margin-left:5px;
+
+.pass_form {
+  margin-left: 5px;
 }
-.list-input{
+
+.list-input {
   text-align: left;
   padding-bottom: 2vh;
   color: $bleu;
   .champ {
     .label {
       font-weight: bold;
-      .message{
-        font-size:14px;
-        color:$bleu-clair;
+      .message {
+        font-size: 14px;
+        color: $bleu-clair;
       }
     }
     input, textarea {
@@ -334,85 +338,61 @@ ion-header.header {
       background-color: transparent;
       border-bottom: 2px solid $bleu-clair;
       margin-bottom: 3vh;
-      color:$bleu;
-      font-size:14px;
+      color: $bleu;
+      font-size: 14px;
     }
     textarea {
       min-height: 120px;
     }
   }
-  .locker{
-    display:flex;
+  .locker {
+    display: flex;
     justify-content: space-between;
-    label{
-      width:55%;
+    label {
+      width: 55%;
     }
-    .preview{
-      text-align:right;
-      width:35%;
-      margin-left:10px;
-      font-size:50px;
+    .preview {
+      text-align: right;
+      width: 35%;
+      margin-left: 10px;
+      font-size: 50px;
     }
   }
 }
-.one-input {
-  text-align: left;
-  padding-bottom: 2vh;
-  color: $bleu;
-  .champ {
-    display:flex;
-    justify-content: space-between;
-    .label {
-      font-weight: bold;
-      font-size:20px;
-      width:45%;
-    }
-    input{
-      text-align:right;
-      width: 30%;
-      background-color: transparent;
-      border-bottom: 2px solid $bleu-clair;
-      margin-bottom: 3vh;
-      color:$bleu;
-      font-size:24px;
-    }
-    span{
-      font-size:25px;
-    }
-  }
-}
-.list_button{
-  text-align:center;
+
+.list_button {
+  text-align: center;
   .item-checkbox {
     .checkbox {
-      display:none;
+      display: none;
     }
   }
-  .checkbox_form{
-    border:4px solid $bleu-clair;
-    color:$bleu;
-    background-color:$blanc;
-    margin-bottom:4vh;
-    font-weight:bold;
-    border-radius:50px;
-    padding:10px 50px;
-    &.active{
-      border:4px solid $bleu-clair;
-      color:$blanc;
-      background-color:$bleu;
+  .checkbox_form {
+    border: 4px solid $bleu-clair;
+    color: $bleu;
+    background-color: $blanc;
+    margin-bottom: 4vh;
+    font-weight: bold;
+    border-radius: 50px;
+    padding: 10px 50px;
+    &.active {
+      border: 4px solid $bleu-clair;
+      color: $blanc;
+      background-color: $bleu;
     }
-    &_light{
-      display:inline-block;
+    &_light {
+      display: inline-block;
     }
-    &_full{
-      width:100%;
+    &_full {
+      width: 100%;
     }
   }
 }
+
 /**********
 PROPOSE FORM
 **********/
-#propose-form{
+#propose-form {
   .line-under {
     height: 2px;
     padding: 0;
@@ -420,7 +400,7 @@ PROPOSE FORM
     overflow: visible;
     position: relative;
     margin: 5vh auto 5vh auto;
-    text-align:center;
+    text-align: center;
   }
 
   .line-under p {
@@ -434,14 +414,12 @@ PROPOSE FORM
   }
 }
 
-
-
 //Buttons
 .button {
   border-radius: 50px;
   width: 100%;
   margin-bottom: 45px;
-  padding : 20px 0;
+  padding: 20px 0;
   font-weight: bold;
   font-size: 14px;
   &_inverse {
@@ -463,25 +441,30 @@ PROPOSE FORM
         background-color: $blanc;
       }
     }
-
-  }
-  &_static{
-    &_bleu{
-      background-color:$bleu;
-      color:$blanc;
+    &_bClair {
+      border: 4px solid $bleu-clair;
+      color: $bleu;
+      background-color: $blanc;
     }
   }
-  &_static{
-    &_blanc{
-      background-color:$blanc;
-      color:$bleu;
-      border:3px solid $bleu;
+  &_static {
+    &_bleu {
+      background-color: $bleu;
+      color: $blanc;
+    }
+  }
+  &_static {
+    &_blanc {
+      background-color: $blanc;
+      color: $bleu;
+      border: 3px solid $bleu;
     }
   }
 }
-.button_end{
+
+.button_end {
   @include flexCenter();
-  >div{
-    width:45%;
+  > div {
+    width: 45%;
   }
 }

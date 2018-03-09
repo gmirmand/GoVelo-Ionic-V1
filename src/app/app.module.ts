@@ -1,5 +1,5 @@
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Camera} from '@ionic-native/camera';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -8,6 +8,7 @@ import {IonicStorageModule, Storage} from '@ionic/storage';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
+import { BrowserModule } from '@angular/platform-browser';
 
 import {Items} from '../mocks/providers/items';
 import {Settings} from '../providers/providers';
@@ -41,6 +42,7 @@ export function provideSettings(storage: Storage) {
         MyApp
     ],
     imports: [
+        BrowserModule,
         HttpClientModule,
         TranslateModule.forRoot({
             loader: {
@@ -52,7 +54,6 @@ export function provideSettings(storage: Storage) {
         IonicModule.forRoot(MyApp),
         IonicStorageModule.forRoot(),
         BrowserAnimationsModule
-
     ],
     bootstrap: [IonicApp],
     entryComponents: [
@@ -68,8 +69,7 @@ export function provideSettings(storage: Storage) {
         {provide: Settings, useFactory: provideSettings, deps: [Storage]},
         // Keep this to enable Ionic's runtime error handling during development
         {provide: ErrorHandler, useClass: IonicErrorHandler}
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    ]
 })
 export class AppModule {
 }

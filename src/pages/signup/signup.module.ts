@@ -3,14 +3,15 @@ import {TranslateModule} from '@ngx-translate/core';
 import {IonicPageModule} from 'ionic-angular';
 
 import {SignupPage} from './signup';
-import {IonSimpleWizard} from "../ion-simple-wizard/ion-simple-wizard.component";
-import {IonSimpleWizardStep} from "../ion-simple-wizard/ion-simple-wizard.step.component";
+
+import {IonSimpleWizard} from "../../components/ion-simple-wizard-signup/ion-simple-wizard.component";
+import {IonSimpleWizardStep} from "../../components/ion-simple-wizard-signup/ion-simple-wizard.step.component";
 
 @NgModule({
     declarations: [
         SignupPage,
         IonSimpleWizard,
-        IonSimpleWizardStep
+        IonSimpleWizardStep,
     ],
     imports: [
         IonicPageModule.forChild(SignupPage),

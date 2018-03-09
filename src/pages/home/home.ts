@@ -15,17 +15,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-  }
-    propose() {
-        this.navCtrl.push('LoginPage');
-    }
-    trouver() {
-        this.navCtrl.push('LoginPage');
+    constructor(public navCtrl: NavController, public navParams: NavParams) {
     }
 
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad HomePage');
+    }
+
+    goPropose() {
+        this.navCtrl.parent.select(1);
+    }
+
+    goFind() {
+        this.navCtrl.parent.select(3);
+    }
 }
