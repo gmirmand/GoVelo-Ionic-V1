@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$blanc".
-        on line 93 of app.scss
+        on line 95 of app.scss
 
-88:   }
-89: }
-90: 
-91: //Global
-92: ion-app {
-93:   background-color: $blanc;
-94:   font-family: $font-text;
-95:   @include fontSize(18px);
-96:   @include respond-to(s) {
-97:     font-size: inherit;
-98:   }
+90:   }
+91: }
+92: 
+93: //Global
+94: ion-app {
+95:   background-color: $blanc;
+96:   font-family: $font-text;
+97:   @include fontSize(18px);
+98:   @include respond-to(s) {
+99:     font-size: inherit;
+100:   }
 
 Backtrace:
-app.scss:93
+app.scss:95
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/node.rb:58:in `perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
@@ -67,4 +67,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$blanc\".\A         on line 93 of app.scss\A \A 88:   }\A 89: }\A 90: \A 91: //Global\A 92: ion-app {\A 93:   background-color: $blanc;\A 94:   font-family: $font-text;\A 95:   @include fontSize(18px);\A 96:   @include respond-to(s) {\A 97:     font-size: inherit;\A 98:   }"; }
+  content: "Error: Undefined variable: \"$blanc\".\A         on line 95 of app.scss\A \A 90:   }\A 91: }\A 92: \A 93: //Global\A 94: ion-app {\A 95:   background-color: $blanc;\A 96:   font-family: $font-text;\A 97:   @include fontSize(18px);\A 98:   @include respond-to(s) {\A 99:     font-size: inherit;\A 100:   }"; }

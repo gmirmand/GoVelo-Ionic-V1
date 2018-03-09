@@ -100,6 +100,10 @@ ion-app {
   }
 }
 
+.scroll-content, .fixed-content{
+  margin-top: 28px !important;
+}
+
 a {
   text-decoration: none;
   &:hover {
