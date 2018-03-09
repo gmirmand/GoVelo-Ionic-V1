@@ -83,6 +83,10 @@ page-announcement-details {
       >div{
         width:45%;
       }
+      p{
+        -webkit-margin-before: 0.3em;
+        -webkit-margin-after: 0.3em;
+      }
       .info-user{
         .info-img{
           @include bgImg();
