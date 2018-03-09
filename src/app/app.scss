@@ -110,18 +110,27 @@ STRUCTURE
 
 /*COMMUN*/
 
-#auth .scroll, #home .scroll, page-signup .scroll {
+#auth .scroll, #home .scroll, #login .scroll {
   height: 90vh;
 }
 
-.header.logo {
+.header{
   text-align: center;
-  padding: 4vh 0;
-  height: 40vh;
-  img {
-    margin-top: 20%;
+
+  &.logo_big {
+    img {
+      margin-top: 20%;
+      padding: 40px 0;
+    }
+  }
+  &.logo_little {
+    img {
+      width:100%;
+      padding: 20px 0;
+    }
   }
 }
+
 
 .content-center {
   text-align: center;
@@ -191,9 +200,8 @@ h2 {
 /*font-color*/
 .font-grey-light {
   color: $noir;
-  opacity: 0.8;
+  opacity:0.8;
 }
-
 .font-black {
   color: $noir;
 }
@@ -278,43 +286,54 @@ ion-header.header {
 
 //Forms
 
-.step_center {
-  text-align: center;
-}
 
-.slides-form {
-  height: 100%;
+.slides-form{
+  height:100%;
 }
-
-.left-buttons .button-form {
-  i {
-    font-size: 20px;
-    color: $bleu;
+.left-buttons .button-form{
+  i{
+    font-size:20px ;
+    color:$bleu ;
   }
 }
-
-.pass_form {
-  margin-left: 5px;
+.pass_form{
+  margin-left:5px;
 }
-
-.list-input, .one-input {
+.list-input{
   text-align: left;
   padding-bottom: 2vh;
   color: $bleu;
   .champ {
     .label {
       font-weight: bold;
+      .message{
+        font-size:14px;
+        color:$bleu-clair;
+      }
     }
     input, textarea {
       width: 100%;
       background-color: transparent;
-      border-bottom: 2px solid $bleu;
+      border-bottom: 2px solid $bleu-clair;
       margin-bottom: 3vh;
-      color: $bleu;
-      font-size: 14px;
+      color:$bleu;
+      font-size:14px;
     }
     textarea {
       min-height: 120px;
+    }
+  }
+  .locker{
+    display:flex;
+    justify-content: space-between;
+    label{
+      width:55%;
+    }
+    .preview{
+      text-align:right;
+      width:35%;
+      margin-left:10px;
+      font-size:50px;
     }
   }
 }
@@ -392,16 +411,19 @@ PROPOSE FORM
   }
 }
 
+
+
 //Buttons
 .button {
   border-radius: 50px;
   width: 100%;
-  margin-bottom: 4vh;
+  margin-bottom: 45px;
+  padding : 20px 0;
   font-weight: bold;
   font-size: 12px;
   &_inverse {
     &_blanc {
-      border: 4px solid $bleu;
+      border: 1px solid $bleu;
       color: $bleu;
       background-color: white;
 
@@ -411,7 +433,7 @@ PROPOSE FORM
       }
     }
     &_bleu {
-      border: 4px solid $bleu;
+      border: 1px solid $bleu;
       color: $blanc;
       background-color: $bleu;
       &:hover {

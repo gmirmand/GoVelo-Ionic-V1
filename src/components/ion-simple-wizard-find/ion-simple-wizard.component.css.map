@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACE,uBAAM;EACJ,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;AAGxB,oCAAmB;EACjB,SAAS,EAAE,oBAAoB;EAC/B,iBAAiB,EAAE,oBAAoB;EACvC,MAAM,EAAE,CAAC;EACT,IAAI,EAAE,CAAC;EACP,OAAO,EAAE,GAAG;EACZ,OAAO,EAAE,KAAK;EACd,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,MAAM",
+"sources": ["ion-simple-wizard.component.scss"],
+"names": [],
+"file": "ion-simple-wizard.component.css"
+}
