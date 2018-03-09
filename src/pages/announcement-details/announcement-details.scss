@@ -1,0 +1,129 @@
+/*****************
+ANNOUNCEMENTS
+*****************/
+page-announcement-details {
+    .header{
+      height:250px;
+      overflow:hidden;
+      position:relative;
+      @include bgImg();
+      .icon-share{
+        position:absolute;
+        top:0;
+        right:0;
+        a img{
+          width:50px;
+        }
+      }
+    }
+    .desc-container{
+      .desc-header{
+        @include flexCenter();
+        h2{
+          width:60%;
+          padding:10px 0;
+        }
+        .type{
+          width:40%;
+          margin-left:5px;
+          div{
+            margin:20px 0;
+          }
+        }
+      }
+      .desc{
+        text-align: justify;
+      }
+    }
+    .price-container{
+      border-top:3px solid;
+      border-bottom:3px solid;
+      border-image: linear-gradient(135deg,$bleu,$vert) 1;
+      margin: 25px 0;
+      padding:15px 0;
+
+      .title{
+        @include flexCenter();
+        .bold{
+          font-size:30px;
+        }
+        p{
+          background-image: linear-gradient(to bottom right, $bleu, $vert);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-size:24px;
+          line-height:30px;
+          font-weight:900;
+        }
+      }
+    }
+    .img-container{
+      .container{
+        @include flexCenter();
+        margin: 20px 0;
+        .image-item{
+          width:45%;
+          border-radius:20px;
+          @include bgImg();
+          height:110px;
+
+        }
+      }
+    }
+  .geolocation-container{
+    iframe{
+      width: 100vw;
+      transform: translateX(-5%);
+    }
+  }
+  .account-container{
+    .account-infos{
+      @include flexCenter();
+      padding-bottom:20px;
+      >div{
+        width:45%;
+      }
+      .info-user{
+        .info-img{
+          @include bgImg();
+          width: 115px;
+          height: 115px;
+          border-radius: 50%;
+          border: 10px solid;
+          margin:0 auto;
+          position:relative;
+          img{
+            width: 25px;
+            position: absolute;
+            bottom: -15px;
+            right: 25px;
+            z-index:2;
+          }
+          .level-user{
+            border-radius: 50%;
+            border: 2px solid #BCE0FD;
+            background-color: #fff;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            bottom: -12px;
+            right: -5px;
+            z-index: 1;
+            text-align:center;
+            .level{
+              line-height: 36px;
+              font-size: 20px;
+            }
+
+          }
+        }
+
+
+      }
+    }
+  }
+  .links{
+    @include flexCenter();
+    a{}
+  }
+}

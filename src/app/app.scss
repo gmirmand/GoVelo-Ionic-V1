@@ -24,6 +24,16 @@
   font-size: $size; //Fallback in px
   font-size: calculateRem($size);
 }
+@mixin bgImg() {
+  background-position:center center;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+@mixin flexCenter() {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 //  Enable media queries by default (to disable it, you have to override it to false after including this mixin
 $enable-media-queries: true;
@@ -220,6 +230,9 @@ h2 {
 }
 
 /*IONIC TABLE*/
+.header-ios .toolbar-ios:last-child .toolbar-background-ios{
+  border:none;
+}
 ion-header.header {
   background-color: transparent;
   background-image: inherit;
@@ -430,13 +443,12 @@ PROPOSE FORM
   margin-bottom: 45px;
   padding : 20px 0;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 14px;
   &_inverse {
     &_blanc {
       border: 1px solid $bleu;
       color: $bleu;
       background-color: white;
-
       &:hover {
         color: white;
         background-color: $bleu;
@@ -452,5 +464,24 @@ PROPOSE FORM
       }
     }
 
+  }
+  &_static{
+    &_bleu{
+      background-color:$bleu;
+      color:$blanc;
+    }
+  }
+  &_static{
+    &_blanc{
+      background-color:$blanc;
+      color:$bleu;
+      border:3px solid $bleu;
+    }
+  }
+}
+.button_end{
+  @include flexCenter();
+  >div{
+    width:45%;
   }
 }

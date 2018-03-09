@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the HomePage page.
+ * Generated class for the AnnouncementDetailsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,22 +10,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-announcement-details',
+  templateUrl: 'announcement-details.html',
 })
-export class HomePage {
+export class AnnouncementDetailsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
+  profil() {
+    this.navCtrl.push('LoginPage');
+  }
+    velos_user() {
+        this.navCtrl.push('LoginPage');
+    }
+    chats() {
+        this.navCtrl.push('LoginPage');
+    }
+    rental() {
+        this.navCtrl.push('LoginPage');
+    }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+    console.log('ionViewDidLoad AnnouncementDetailsPage');
   }
-    propose() {
-        this.navCtrl.push('LoginPage');
-    }
-    trouver() {
-        this.navCtrl.push('LoginPage');
-    }
 
 }
