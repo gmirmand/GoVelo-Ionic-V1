@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 
-import {CalendarComponentOptions} from 'ion2-calendar'
+import {CalendarComponentOptions} from 'ion2-calendar';
 
 /**
  * Generated class for the ProposePage page.
@@ -111,7 +111,6 @@ export class ProposePage {
     }
 
     step3(e) {
-        console.log(this.propose.type);
         this.stepCondition = (this.propose.type);
     }
 
@@ -126,12 +125,11 @@ export class ProposePage {
 
     step6(e) {
         this.disabled = false;
-        this.stepCondition = (this.propose.dateRangeArray);
+        this.stepCondition = (this.propose.dateRangeArray.length > 0);
     }
 
     step7(e) {
-        this.stepCondition = (this.propose.bankname && this.propose.bankname.trim() !== ''
-            && this.propose.RIB && this.propose.RIB.trim() !== '');
+        // this.stepCondition = (this.propose.bankname && this.propose.bankname.trim() !== '' && this.propose.RIB && this.propose.RIB.trim() !== '');
     }
 
     addCalendar() {
@@ -141,6 +139,7 @@ export class ProposePage {
                 this.propose.dateRange.to = this.propose.dateRange.from;
             this.propose.dateRangeArray.push(this.propose.dateRange);
         }
+        this.step6(this.evts);
     }
 
     delete(index) {
@@ -148,10 +147,12 @@ export class ProposePage {
     }
 
     proposeForm() {
-
+        console.log('test');
+        this.navCtrl.parent.select(3);
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad ProposePage');
+        this.toggle();
     }
 }

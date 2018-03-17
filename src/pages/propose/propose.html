@@ -30,8 +30,9 @@
                             <div class="param"><img src="/img/icons/params.svg" alt="paramètres"></div>
                         </button>
                     </div>
+                    <!--<button type="button" (click)="proposeForm()">TEST</button>-->
 
-                    <div class="separator">Ou</div>
+                    <div class="separator" (click)="proposeForm()">Ou</div>
 
                     <button type="button" ion-button clear class="button button-block button-calm no-animation"
                             (click)="toggle()">
@@ -169,7 +170,7 @@
 
                     </ion-item>
                     <span>Appuyez 2 fois sur la même date pour sélectionner une seule journée.</span>
-                    <button [disabled]="disabled" ion-button clear class="button button-stable bike"
+                    <button type="button" [disabled]="disabled" ion-button clear class="button button-stable bike"
                             (click)="addCalendar()"> Ajouter la
                         période
                     </button>
@@ -220,6 +221,9 @@
                             <div>{{propose.lock3}}</div>
                             <div>{{propose.lock4}}</div>
                         </div>
+                        <button type="button" ion-button clear class="button button-stable bike"
+                                (click)="toggle()"> Ajouter la fiche ?
+                        </button>
                     </div>
                 </div>
             </ion-wizard-step>

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AnnouncementDetailsPage} from "../pages";
 
 /**
  * Generated class for the FindPage page.
@@ -19,6 +20,7 @@ export class FindPage {
     stepCondition: any;
     stepDefaultCondition: any;
     currentStep: any;
+    announcementId: null;
     find: {
         town: string,
         address: string,
@@ -51,6 +53,7 @@ export class FindPage {
         /**
          * Step Wizard Settings
          */
+        this.announcementId = this.navParams.get('announcementId');
         this.step = 1;//The value of the first step, always 1
         this.stepCondition = false;//Set to true if you don't need condition in every step
         this.stepDefaultCondition = this.stepCondition;//Save the default condition for every step
@@ -103,6 +106,9 @@ export class FindPage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad FindPage');
+        if (this.announcementId) {
+            this.navCtrl.setRoot(AnnouncementDetailsPage);
+        }
     }
 
     //Send form

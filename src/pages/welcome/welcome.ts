@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
-import {ListMasterPage} from "../list-master/list-master";
 import {MainPage} from "../pages";
 
 /**
