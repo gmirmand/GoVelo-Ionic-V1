@@ -12,4 +12,4 @@ export const tabProposeRoot = 'ProposePage';
 export const tabFindRoot = 'FindPage';
 export const tabHomeRoot = 'HomePage';
 export const tabMessageRoot = 'SettingsPage';
-export const tabParamsRoot = 'SettingsPage';
+export const tabProfilRoot = 'ProfilPage';
