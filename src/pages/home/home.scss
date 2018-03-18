@@ -1,9 +1,14 @@
 page-home {
+  .home {
+    padding-bottom: 20px;
+  }
   .info_plus {
     padding: 20px 0;
     .info {
       .title {
-        font-size: 20px;
+        font-size: 26px;
+        line-height: 1;
+        color: $color-grey;
         font-weight: bold;
       }
     }
@@ -12,30 +17,29 @@ page-home {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 15px;
+    border-radius: 5px;
     color: $blanc;
-    padding: 5px 5px;
+    padding: 20px 10px;
     margin-top: 20px;
-    box-shadow: 5px 5px 25px 0 rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 25px 0 rgba(0, 0, 0, 0.2);
     .button-cercle {
       width: 0;
-      text-align:center;
+      text-align: center;
       ion-icon {
         height: 70px;
         width: 70px;
         line-height: 70px;
-        box-shadow: 0 0 25px 0 rgba(0,0,0,0.2);
+        box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.2);
         border-radius: 50%;
         font-size: 3.2em;
-        transform: translateX(-35px);
+        transform: translateX(-50%);
       }
     }
     .proposer_left, .trouver_right {
-      width: 60%;
       .title {
         font-size: 24px;
         font-weight: bold;
-        margin: 10px 0;
+        margin: 0 0 10px;
       }
     }
     .proposer_right, .trouver_left {

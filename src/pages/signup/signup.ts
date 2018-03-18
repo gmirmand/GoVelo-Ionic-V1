@@ -1,6 +1,11 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {IonicPage, NavController, ToastController, Events} from 'ionic-angular';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
+//Validators
+import {AgeValidator} from '../../validators/age';
+import {EmailValidator} from '../../validators/email';
 
 import {User} from '../../providers/providers';
 import {MainPage} from '../pages';
@@ -14,33 +19,16 @@ export class SignupPage {
     // The account fields for the login form.
     // If you're using the username field with or without email, make
     // sure to add it to the type
-    account: {
-        firstname: string,
-        lastname: string,
-        email: string,
-        password: string,
-        confirmpassword: string,
-        female: boolean,
-        male: boolean,
-        age: number,
-        phone: string,
-        img: string,
-    } = {
-        firstname: '',
-        lastname: '',
-        email: '',
-        password: '',
-        confirmpassword: '',
-        female: undefined,
-        male: undefined,
-        age: undefined,
-        phone: '',
-        img: '',
-    };
-    step: any;
-    stepCondition: any;
-    stepDefaultCondition: any;
-    currentStep: any;
+    @ViewChild('signupSlider') signupSlider: any;
+
+    account: any;
+
+    slideOneForm: FormGroup;
+    slideTwoForm: FormGroup;
+    slideTreeForm: FormGroup;
+    slideFourForm: FormGroup;
+
+    submitAttempt: boolean = false;
 
     // Our translated text strings
     private signupErrorString: string;
@@ -49,53 +37,72 @@ export class SignupPage {
                 public user: User,
                 public toastCtrl: ToastController,
                 public translateService: TranslateService,
-                public evts: Events) {
+                public evts: Events,
+                public formBuilder: FormBuilder) {
+
+        //Form
+        //Slide1
+        this.slideOneForm = formBuilder.group({
+            firstName: ['ToRemove', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+            lastName: ['ToRemove', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])]
+        });
+
+        //Slide2
+        this.slideTwoForm = formBuilder.group({
+            email: ['ToRemove@ToRemove.ToRemove', Validators.compose([Validators.required, Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')]), EmailValidator.checkEmail],
+            passWord: ['ToRemove00*', Validators.compose([Validators.minLength(8), Validators.maxLength(50), Validators.required, Validators.pattern('^(?=.*[\\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\\w!@#$%^&*]{8,}$')])]
+        });
+
+        //Slide3
+        this.slideTreeForm = formBuilder.group({
+            sex:[0, Validators.required],
+            age: [20, AgeValidator.isValid],
+            phone: ['0404040404', Validators.compose([Validators.required, Validators.pattern('(\\+\\d+(\\s|-))?0\\d(\\s|-)?(\\d{2}(\\s|-)?){4}')])]
+        });
+
+        //Slide4
+        this.slideFourForm = formBuilder.group({
+            profilPicture: ['']
+        });
 
         this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
             this.signupErrorString = value;
         });
-
-        /**
-         * Step Wizard Settings
-         */
-        this.step = 1;//The value of the first step, always 1
-        this.stepCondition = false;//Set to true if you don't need condition in every step
-        this.stepDefaultCondition = this.stepCondition;//Save the default condition for every step
-        this.evts.subscribe('step:changed', step => {
-            //Handle the current step if you need
-            this.currentStep = step[0];
-            //Set the step condition to the default value
-            this.stepCondition = this.stepDefaultCondition;
-        });
-        this.evts.subscribe('step:next', () => {
-            //Do something if next
-            console.log('Next pressed: ', this.currentStep);
-        });
-        this.evts.subscribe('step:back', () => {
-            //Do something if back
-            console.log('Back pressed: ', this.currentStep);
-        });
     }
 
-    //Wizard
-    toggle() {
-        this.stepCondition = !this.stepCondition;
+
+    //Steps slider signup
+
+    next() {
+        this.signupSlider.slideNext();
     }
 
-    step1(e) {
-        this.stepCondition = !!(this.account.firstname && this.account.firstname.trim() !== '' && this.account.lastname && this.account.lastname.trim() !== '');
+    prev() {
+        this.signupSlider.slidePrev();
     }
 
-    step2(e) {
-        this.stepCondition = !!(this.account.email && this.account.email.trim() !== '' && this.account.password && this.account.password.trim() !== '' && this.account.confirmpassword && this.account.confirmpassword.trim() !== '');
-    }
+    save() {
+        this.submitAttempt = true;
 
-    step3(e) {
-        this.stepCondition = ((this.account.female === true || this.account.male === true) && this.account.phone && this.account.phone.length === 10 && this.account.phone.trim() !== '' && this.account.age >= 18);
-    }
-
-    step4(e) {
-        this.stepCondition = (1 === 1);
+        if (!this.slideOneForm.valid) {
+            this.signupSlider.slideTo(1);
+        }
+        else if (!this.slideTwoForm.valid) {
+            this.signupSlider.slideTo(2);
+        }
+        else if (!this.slideTreeForm.valid) {
+            this.signupSlider.slideTo(3);
+        }
+        else if (!this.slideFourForm.valid) {
+            this.signupSlider.slideTo(4);
+        }
+        else {
+            console.log("success!");
+            this.account = [];
+            this.account = this.account.concat(this.slideOneForm.value).concat(this.slideTwoForm.value).concat(this.slideTreeForm.value).concat(this.slideFourForm.value);
+            console.log(this.account);
+            this.doSignup();
+        }
     }
 
     //Signup

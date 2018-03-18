@@ -1,122 +1,201 @@
 <ion-header>
-
-    <ion-navbar>
+    <ion-navbar color="primary">
         <ion-title>{{ 'SIGNUP_TITLE' | translate }}</ion-title>
+        <ion-buttons start class="start">
+            <button ion-button icon-left (click)="prev()">
+                <ion-icon name="arrow-back"></ion-icon>
+                Prev
+            </button>
+        </ion-buttons>
     </ion-navbar>
-
 </ion-header>
 
-
 <ion-content>
-    <form (submit)="doSignup()" #signupForm="ngForm">
-        <ion-simple-wizard [(step)]="step" [showSteps]="true" [finishIcon]="'done-all'"
-                           [(stepCondition)]="stepCondition">
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h1> {{"SIGNUP" | translate}} </h1>
-                    <button type="button" ion-button clear class="button button-block button-calm signup signup-RS">
-                        {{'GOOGLE_SIGNUP' | translate}}
-                    </button>
-                    <button type="button" ion-button clear class="button button-block button-calm signup signup-RS">
-                        {{'FACEBOOK_SIGNUP' | translate}}
-                    </button>
 
-                    <div class="separator">{{"OR" | translate}}</div>
+    <ion-slides #signupSlider pager>
+        <ion-slide>
 
-                    <button type="button" ion-button clear class="button button-block button-calm no-animation"
-                            (click)="toggle()">
-                        {{'MAIL_SIGNUP' | translate}}
-                        <ion-icon ios="ion-ios7-arrow-forward"></ion-icon>
-                    </button>
-                    <a ng-href="#/tab/auth/login">{{'ALREADY_HAVE_ACCOUNT' | translate}}</a>
-                </div>
-            </ion-wizard-step>
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2>
-                        {{"WHATS_YOUR_NAME" | translate}}
-                    </h2>
 
-                    <label class="item item-input item-stacked-label" for="firstname">
-                        <span class="input-label">{{"FIRSTNAME" | translate}}</span>
-                        <ion-input required type="text" [(ngModel)]="account.firstname" name="name" id="firstname"
-                                   (input)="step1($event)" placeholder="Clark" e></ion-input>
-                    </label>
-                    <label class="item item-input item-stacked-label" for="lastname">
-                        <span class="input-label">{{"LASTNAME" | translate}}</span>
-                        <ion-input required type="text" [(ngModel)]="account.lastname" name="name" id="lastname"
-                                   (input)="step1($event)" placeholder="Kent"></ion-input>
-                    </label>
-                </div>
-            </ion-wizard-step>
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2>
-                        {{"YOUR_MAIL_AND_PASSWORD" | translate}}
-                    </h2>
-                    <label class="item item-input item-stacked-label" for="mail">
-                        <span class="input-label">{{"MAIL_ADDRESS" | translate}}</span>
-                        <ion-input required type="email" name="mail" [(ngModel)]="account.email" id="mail"
-                                   (input)="step2($event)" placeholder="Your mail"></ion-input>
-                    </label>
-                    <label class="item item-input item-stacked-label" for="password">
-                        <span class="input-label">{{"PASSWORD" | translate}}</span>
-                        <ion-input required type="password" name="password" [(ngModel)]="account.password" id="password"
-                                   (input)="step2($event)" placeholder="************"></ion-input>
-                    </label>
-                    <label class="item item-input item-stacked-label" for="passwordconfirm">
-                        <span class="input-label">{{"PASSWORD_CONFIRM" | translate}}</span>
-                        <ion-input required type="password" name="passwordconfirm" [(ngModel)]="account.confirmpassword"
-                                   id="passwordconfirm" (input)="step2($event)" placeholder="************"></ion-input>
-                    </label>
-                    <!--<button type="button" ion-wizard-start="startcontinu()" >
-                        Etape suivante
-                    </button>-->
-                    <button type="submit" id="submit_not_finish">
-                        <b>{{"FINISH_SIGNUP"|translate}}</b><br>
-                        {{"PERSONAL_DATA"|translate}}
-                    </button>
-                </div>
-            </ion-wizard-step>
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2> Vos informations personnelles </h2>
+            <button type="button" ion-button clear class="button button-block button-calm signup signup-RS">
+                {{'GOOGLE_SIGNUP' | translate}}
+            </button>
+            <button type="button" ion-button clear class="button button-block button-calm signup signup-RS">
+                {{'FACEBOOK_SIGNUP' | translate}}
+            </button>
+
+            <div class="separator">{{"OR" | translate}}</div>
+
+            <button ion-button icon-right (click)="next()">
+                {{'MAIL_SIGNUP' | translate}}
+            </button>
+            <a ng-href="#/tab/auth/login">{{'ALREADY_HAVE_ACCOUNT' | translate}}</a>
+        </ion-slide>
+
+        <ion-slide>
+            <h2> {{"WHATS_YOUR_NAME" | translate}} </h2>
+            <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+            <ion-list no-lines>
+                <form [formGroup]="slideOneForm">
+                    <!--FIRSTNAME-->
                     <ion-item>
-                        <ion-label>Homme</ion-label>
-                        <ion-checkbox (click)="step3($event)" name="sexe" [(ngModel)]="account.female" value="0"
-                                      id="Homme" [checked]="false">
-                        </ion-checkbox>
+                        <ion-label floating>{{"FIRSTNAME" | translate}}</ion-label>
+                        <ion-input formControlName="firstName" type="text"
+                                   [class.invalid]="!slideOneForm.controls.firstName.valid && (slideOneForm.controls.firstName.dirty || submitAttempt)"></ion-input>
                     </ion-item>
+
+                    <ion-item
+                            *ngIf="!slideOneForm.controls.firstName.valid  && (slideOneForm.controls.firstName.dirty || submitAttempt)">
+                        <p>Please enter a valid name.</p>
+                    </ion-item>
+
+                    <!--LASTNAME-->
                     <ion-item>
-                        <ion-label>Femme</ion-label>
-                        <ion-checkbox (click)="step3($event)" name="sexe" [(ngModel)]="account.male" value="1"
-                                      id="Femme" [checked]="false">
-                        </ion-checkbox>
+                        <ion-label floating>{{"LASTNAME" | translate}}</ion-label>
+                        <ion-input formControlName="lastName" type="text"
+                                   [class.invalid]="!slideOneForm.controls.lastName.valid && (slideOneForm.controls.lastName.dirty || submitAttempt)"></ion-input>
                     </ion-item>
-                    <label class="item item-input item-stacked-label" for="age">
-                        <span class="input-label">{{"AGE" | translate}}</span>
-                        <ion-input required type="number" name="age" [(ngModel)]="account.age" id="age"
-                                   (input)="step3($event)" placeholder="25"></ion-input>
-                    </label>
-                    <label class="item item-input item-stacked-label" for="phone">
-                        <span class="input-label">{{"PHONE" | translate}}</span>
-                        <ion-input required type="tel" name="phone" [(ngModel)]="account.phone" id="phone"
-                                   (input)="step3($event)" placeholder="0606060606" min="10" max="10"></ion-input>
-                    </label>
-                </div>
-            </ion-wizard-step>
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2>Votre photo de profil</h2>
-                    <div class="picture picture-1">
-                        <input (change)="step4($event)" type="file" name="picture" [(ngModel)]="account.img">
-                        <div class="container-picture">
-                            <div class="picture">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </ion-wizard-step>
-        </ion-simple-wizard>
-    </form>
+
+                    <ion-item
+                            *ngIf="!slideOneForm.controls.lastName.valid  && (slideOneForm.controls.lastName.dirty || submitAttempt)">
+                        <p>Please enter a valid name.</p>
+                    </ion-item>
+                </form>
+
+                <button ion-button icon-right (click)="next()">
+                    {{'NEXT' | translate}}
+                    <ion-icon name="arrow-next"></ion-icon>
+                </button>
+            </ion-list>
+        </ion-slide>
+
+        <ion-slide>
+            <h2> {{"YOUR_MAIL_AND_PASSWORD" | translate}} </h2>
+            <ion-list no-lines>
+                <form [formGroup]="slideTwoForm">
+                    <!--EMAIL-->
+                    <ion-item>
+                        <ion-label floating>email</ion-label>
+                        <ion-input
+                                [class.invalid]="!slideTwoForm.controls.email.valid && (slideTwoForm.controls.email.dirty || submitAttempt)"
+                                formControlName="email" type="text"></ion-input>
+                    </ion-item>
+
+                    <ion-item *ngIf="slideTwoForm.controls.email.pending">
+                        <p>Checking email...</p>
+                    </ion-item>
+
+                    <ion-item
+                            *ngIf="!slideTwoForm.controls.email.valid && !slideTwoForm.controls.email.pending && (slideTwoForm.controls.email.dirty || submitAttempt)">
+                        <p>Sorry, that email can not be used!</p>
+                    </ion-item>
+
+                    <!--MOT DE PASSE-->
+                    <ion-item>
+                        <ion-label floating>{{"PASSWORD" | translate}}</ion-label>
+                        <ion-input formControlName="passWord" type="password"
+                                   [class.invalid]="!slideTwoForm.controls.passWord.valid && (slideTwoForm.controls.passWord.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+
+                    <ion-item
+                            *ngIf="!slideTwoForm.controls.passWord.valid  && (slideTwoForm.controls.passWord.dirty || submitAttempt)">
+                        <p>Please enter a valid password (at least 1 lowercase, 1 uppercase, 1 numeric, one special
+                            character & must be eight characters or longer)</p>
+                    </ion-item>
+                </form>
+
+                <button ion-button icon-right (click)="next()">
+                    {{'NEXT' | translate}}
+                    <ion-icon name="arrow-next"></ion-icon>
+                </button>
+            </ion-list>
+        </ion-slide>
+
+        <ion-slide>
+            <h2> Vos informations personnelles </h2>
+            <ion-list no-lines>
+                <form [formGroup]="slideTreeForm">
+                    <!--SEXE-->
+                    <ion-item>
+                        <ion-row radio-group formControlName="sex"
+                                 [class.invalid]="!slideTreeForm.controls.sex.valid && (slideTreeForm.controls.sex.dirty || submitAttempt)">
+                            <ion-col col-4>
+                                <ion-item no-lines>
+                                    <!--<ion-label>Homme</ion-label>-->
+                                    <ion-radio value="0" checked>
+                                    </ion-radio>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-4>
+                                <ion-item no-lines>
+                                    <!--<ion-label>Femme</ion-label>-->
+                                    <ion-radio value="1">
+                                    </ion-radio>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-4>
+                                <ion-item no-lines>
+                                    <!--<ion-label>Autre</ion-label>-->
+                                    <ion-radio value="2">
+                                    </ion-radio>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </ion-item>
+
+                    <ion-item
+                            *ngIf="!slideTreeForm.controls.sex.valid  && (slideTreeForm.controls.sex.dirty || submitAttempt)">
+                        <p>Please select a sex.</p>
+                    </ion-item>
+
+                    <!--AGE-->
+                    <ion-item>
+                        <ion-label floating>{{"AGE" | translate}}</ion-label>
+                        <ion-input formControlName="age" type="number"
+                                   [class.invalid]="!slideTreeForm.controls.age.valid && (slideTreeForm.controls.age.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+
+                    <ion-item
+                            *ngIf="!slideTreeForm.controls.age.valid  && (slideTreeForm.controls.age.dirty || submitAttempt)">
+                        <p>Please enter a valid age.</p>
+                    </ion-item>
+
+                    <!--PHONE-->
+                    <ion-item>
+                        <ion-label floating>{{"PHONE" | translate}}</ion-label>
+                        <ion-input formControlName="phone" type="text"
+                                   [class.invalid]="!slideTreeForm.controls.phone.valid && (slideTreeForm.controls.phone.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
+
+                    <ion-item
+                            *ngIf="!slideTreeForm.controls.phone.valid  && (slideTreeForm.controls.phone.dirty || submitAttempt)">
+                        <p>Please enter a valid phone.</p>
+                    </ion-item>
+                </form>
+
+                <button ion-button icon-right (click)="next()">
+                    {{'NEXT' | translate}}
+                    <ion-icon name="arrow-next"></ion-icon>
+                </button>
+            </ion-list>
+        </ion-slide>
+
+        <ion-slide>
+            <h2>Votre photo de profil</h2>
+            <ion-list no-lines>
+                <form [formGroup]="slideFourForm">
+                    <ion-item>
+                        <ion-input type="file" formControlName="profilPicture"></ion-input>
+                    </ion-item>
+                    <ion-item
+                            *ngIf="!slideFourForm.controls.profilPicture.valid  && (slideFourForm.controls.profilPicture.dirty || submitAttempt)">
+                        <p>Please add a profil picture.</p>
+                    </ion-item>
+                </form>
+            </ion-list>
+
+            <button ion-button full color="primary" (click)="save()">Create Account!</button>
+        </ion-slide>
+
+    </ion-slides>
+
 </ion-content>

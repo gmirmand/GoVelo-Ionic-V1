@@ -122,7 +122,7 @@ p {
 }
 
 .scroll-content, .fixed-content {
-  margin-top: 28px !important;
+  margin-top: 50px !important;
 }
 
 a {
@@ -170,6 +170,11 @@ STRUCTURE
 
 .content-center {
   text-align: center;
+}
+
+//Headers
+.toolbar-md-primary .bar-button-default-md {
+  color: black;
 }
 
 .content {

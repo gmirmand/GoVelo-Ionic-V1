@@ -56,7 +56,8 @@ export class User {
      * the user entered on the form.
      */
     signup(accountInfo: any) {
-        let seq = this.api.post('signup', accountInfo).share();
+        accountInfo = 'sbeub';
+        let seq = this.api.post('users', accountInfo).share();
 
         seq.subscribe((res: any) => {
             // If the API returned a successful response, mark the user as logged in
