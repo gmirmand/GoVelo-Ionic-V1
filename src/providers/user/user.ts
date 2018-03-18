@@ -56,7 +56,19 @@ export class User {
      * the user entered on the form.
      */
     signup(accountInfo: any) {
-        accountInfo = 'sbeub';
+        accountInfo = {
+            "email": accountInfo[1].email,
+            "username": accountInfo[1].email,
+            "enabled": true,
+            "plainPassword": accountInfo[1].passWord,
+            "firstname": accountInfo[0].firstName,
+            "lastname": accountInfo[0].lastName,
+            "phone": accountInfo[2].phone,
+            "birth": "2018-03-01T11:03:47.845Z"/*accountInfo[2].age*/,
+            "picture": accountInfo[3].profilPicture,
+            "sexe": accountInfo[2].sex
+        };
+        console.log(accountInfo);
         let seq = this.api.post('users', accountInfo).share();
 
         seq.subscribe((res: any) => {
@@ -64,6 +76,7 @@ export class User {
             if (res.status == 'success') {
                 this._loggedIn(res);
             }
+            console.log(res);
         }, err => {
             console.error('ERROR', err);
         });

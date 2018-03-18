@@ -43,8 +43,8 @@ export class SignupPage {
         //Form
         //Slide1
         this.slideOneForm = formBuilder.group({
-            firstName: ['ToRemove', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-            lastName: ['ToRemove', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])]
+            firstName: ['ToRemove', Validators.compose([Validators.maxLength(30), Validators.pattern('^([áéíóúñÁÉÍÓÚÑäëïöüÄËÏÖÜçÇA-Za-z-]+)$'), Validators.required])],
+            lastName: ['ToRemove', Validators.compose([Validators.maxLength(30), Validators.pattern('^([áéíóúñÁÉÍÓÚÑäëïöüÄËÏÖÜçÇA-Za-z-]+)$'), Validators.required])]
         });
 
         //Slide2
