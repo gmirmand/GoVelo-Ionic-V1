@@ -1,232 +1,203 @@
-<!--
-  Generated template for the ProposePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-    <ion-navbar>
-        <ion-title>propose</ion-title>
+    <ion-navbar color="primary">
+        <ion-title>Proposes</ion-title>
+        <ion-buttons start class="start">
+            <button ion-button icon-left (click)="prev()">
+                <ion-icon name="arrow-back"></ion-icon>
+                Prev
+            </button>
+        </ion-buttons>
     </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
-
-    <form class="slides-form" (submit)="proposeForm()">
-        <ion-simple-wizard [(step)]="step" [showSteps]="true" [finishIcon]="'done-all'"
-                           [(stepCondition)]="stepCondition">
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2> Choisissez un vélo </h2>
-                    <div class="container-bike">
-                        <button type="button" class="button button-stable bike"> <!-- GO STEP 7 -->
-                            <img src="/img/bike.svg" alt="Votre vélo" class="header">
-                            <div class="h3">VTT</div>
-                            <div class="h5">Le Puy en velay</div>
-                            <div class="h4">10€ / jour</div>
-                            <div class="param"><img src="/img/icons/params.svg" alt="paramètres"></div>
-                        </button>
-                    </div>
-                    <!--<button type="button" (click)="proposeForm()">TEST</button>-->
-
-                    <div class="separator" (click)="proposeForm()">Ou</div>
-
-                    <button type="button" ion-button clear class="button button-block button-calm no-animation"
-                            (click)="toggle()">
-                        <!-- GO NEXT -->
-                        Créer un vélo
-                        <ion-icon ios="ion-ios7-arrow-forward"></ion-icon>
+    <ion-slides #proposeSlider>
+        <ion-slide>
+            <div class="slide-container">
+                <h2> Choisissez un vélo </h2>
+                <div class="container-bike">
+                    <button type="button" class="button button-stable bike"> <!-- GO STEP 7 -->
+                        <img src="/img/bike.svg" alt="Votre vélo" class="header">
+                        <div class="h3">VTT</div>
+                        <div class="h5">Le Puy en velay</div>
+                        <div class="h4">10€ / jour</div>
+                        <div class="param"><img src="/img/icons/params.svg" alt="paramètres"></div>
                     </button>
                 </div>
-            </ion-wizard-step>
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2> Titre et description de l'annonce </h2>
-                    <label class="item item-input item-stacked-label" name="title">
-                        <span class="input-label"> Titre de l'annonce</span>
-                        <ion-input (input)="step1($event)" type="text" name="title" [(ngModel)]="propose.title"
-                                   placeholder="Mon vélo" id="title"></ion-input>
-                    </label>
-                    <label class="item item-input item-stacked-label" name="description">
-                        <span class="input-label"> Description du vélo</span>
-                        <textarea (input)="step1($event)" name="description" value="" [(ngModel)]="propose.description"
-                                  id="description"
-                                  placeholder="Description de mon vélo (date d'acchat, état, roues...)">
-                        </textarea>
-                    </label>
-                </div>
-            </ion-wizard-step>
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2> Ajouter des photos de votre vélo </h2>
-                    <p>Les annonces avec photo sont bien plus susceptibles d'interesser de futurs locataires</p>
 
-                    <!--FOREACH-->
-                    <div class="picture picture-1">
-                        <ion-input type="file" name="picture" (change)="step2($event)"></ion-input>
-                        <div class="container-picture">
-                            <div class="picture">
+                <div class="separator">{{"OR" | translate}}</div>
+
+                <button ion-button clear icon-right (click)="next()"
+                        class="button button-block button-calm no-animation">
+                    Créer un vélo
+                </button>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <h2> Titre et description de l'annonce </h2>
+            <p *ngIf="submitAttempt" style="color: #ea6153;">Veuillez remplir tous les champs s'il vous plaît.</p>
+            <ion-list no-lines>
+                <form [formGroup]="slideOneForm">
+                    <!--TITLE-->
+                    <ion-item>
+                        <ion-label floating>Titre de l'annonce</ion-label>
+                        <ion-input formControlName="title" type="text"
+                                   [class.invalid]="!slideOneForm.controls.title.valid
+                                       && (slideOneForm.controls.title.dirty || submitAttempt)">
+                        </ion-input>
+                    </ion-item>
+
+                    <ion-item *ngIf="!slideOneForm.controls.title.valid
+                                && (slideOneForm.controls.title.dirty || submitAttempt)">
+                        <p>Veuillez entrer un titre valide. (entre 5 et 50 caractères)</p>
+                    </ion-item>
+
+                    <!--DESCRIPTION-->
+                    <ion-item>
+                        <ion-label floating>Description du vélo</ion-label>
+                        <ion-textarea formControlName="description"
+                                      [class.invalid]="!slideOneForm.controls.description.valid &&
+                                          (slideOneForm.controls.description.dirty || submitAttempt)">
+                        </ion-textarea>
+                    </ion-item>
+
+                    <ion-item *ngIf="!slideOneForm.controls.description.valid
+                        && (slideOneForm.controls.description.dirty || submitAttempt)">
+                        <p>Veuillez entrer une description valide.</p>
+                    </ion-item>
+                </form>
+
+                <button ion-button icon-right (click)="next()">
+                    {{'NEXT' | translate}}
+                    <ion-icon name="arrow-next"></ion-icon>
+                </button>
+            </ion-list>
+        </ion-slide>
+        <ion-slide>
+            <h2> Ajouter des photos de votre vélo </h2>
+            <p>Les annonces avec photo sont bien plus susceptibles d'interesser de futurs locataires</p>
+            <!--TOCHANGE-->
+            <ion-item>
+                <form class="form-group" [formGroup]="slideTwoForm">
+                    <div class="custom-file">
+                        <input type="file" multiple
+                               id="file"
+                               class="custom-file-input"
+                               name="file"
+                               [size]="size"
+                               [withMeta]="withMeta"
+                               [allowedExt]="allowedFileExt"
+                               [allowedTypes]="allowedFileTypes"
+                               [maxWidth]="maxWidth"
+                               [maxHeight]="maxHeight"
+                               [formControl]="slideTwoForm.get('file')">
+                        <label for="file" class="custom-file-label m0"> </label>
+                    </div>
+                </form>
+
+                <ion-item *ngFor="let file of fileList; let i = index">
+                    <div class="file-container">
+                        <div class="error-container">
+                            <div [ngClass]="{'text-danger': file.errors['fileType']}">
+                                Type de fichier non autorisé
+                            </div>
+                            <div [ngClass]="{'text-danger': file.errors['fileExt']}">
+                                Extension de fichier non autorisé
+                            </div>
+                            <div [ngClass]="{'text-danger': file.errors['fileSize']}">
+                                Le fichier est trop gros
+                            </div>
+                            <div [ngClass]="{'text-danger': file.errors['imageWidth']}">
+                                Image trop large
+                            </div>
+                            <div [ngClass]="{'text-danger': file.errors['imageHeight']}">
+                                Image trop haute
                             </div>
                         </div>
+                        <div class="file-contents">
+                            <img *ngIf="file.imgSrc" [src]="file.imgSrc"/>
+                            <p *ngIf="file.textContent" [innerHtml]="file.textContent"></p>
+                        </div>
+                        <div class="remove" (click)="removeFile(i)">
+                            <ion-icon name="trash"></ion-icon>
+                        </div>
                     </div>
-                    <!--ENDFOREACH-->
-                    <p>{{propose.picnb}} photos ajoutée(s).</p>
-                </div>
-            </ion-wizard-step>
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2> Quel type de vélo ? </h2>
-                    <ion-list (ionChange)="step3($event)" radio-group [(ngModel)]="propose.type" name="type">
+                </ion-item>
+            </ion-item>
+
+            <button ion-button icon-right (click)="next()">
+                {{'NEXT' | translate}}
+                <ion-icon name="arrow-next"></ion-icon>
+            </button>
+        </ion-slide>
+
+
+        <ion-slide>
+            <h2>Quel type de vélo ?</h2>
+            <form [formGroup]="slideThreeForm">
+                <ion-list no-lines>
+                    <!--TYPE-->
+                    <ion-row radio-group formControlName="type">
                         <ion-item>
                             <ion-label>VTT</ion-label>
-                            <ion-radio value="VTT"
-                                       id="VTT">
+                            <ion-radio value="VTT" id="VTT" checked>
                             </ion-radio>
                         </ion-item>
                         <ion-item>
                             <ion-label>BMX</ion-label>
-                            <ion-radio value="BMX"
-                                       id="BMX">
+                            <ion-radio value="BMX" id="BMX">
                             </ion-radio>
                         </ion-item>
                         <ion-item>
                             <ion-label>Route</ion-label>
-                            <ion-radio value="Route"
-                                       id="Route">
+                            <ion-radio value="Route" id="Route">
                             </ion-radio>
                         </ion-item>
                         <ion-item>
                             <ion-label>Pliant</ion-label>
-                            <ion-radio value="Pliant"
-                                       id="Pliant">
+                            <ion-radio value="Pliant" id="Pliant">
                             </ion-radio>
                         </ion-item>
                         <ion-item>
                             <ion-label>Electrique</ion-label>
-                            <ion-radio
-                                    value="Electrique"
-                                    id="Electrique">
+                            <ion-radio value="Electrique" id="Electrique">
                             </ion-radio>
                         </ion-item>
-                    </ion-list>
-                </div>
-            </ion-wizard-step>
+                    </ion-row>
+                </ion-list>
+            </form>
 
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2> Où louez-vous votre vélo ?</h2>
-                    <button type="button" class="btn-classic">Ma position
-                        <ion-icon class="ion-android-locate"></ion-icon>
-                    </button>
-
-                    <div class="separator">Ou</div>
-
-                    <label class="item item-input item-stacked-label" for="town">
-                        <span class="input-label">Ville</span>
-                        <ion-input (input)="step4($event)" type="text" name="town" [(ngModel)]="propose.town" id="town"
-                                   placeholder="Le Puy en Velay"></ion-input>
-                    </label>
-
-                    <label class="item item-input item-stacked-label" for="address">
-                        <span class="input-label">Adresse</span>
-                        <ion-input (input)="step4($event)" type="text" name="address" [(ngModel)]="propose.address"
-                                   id="address"
-                                   placeholder="12 rue de l'ours"></ion-input>
-                    </label>
-                </div>
-            </ion-wizard-step>
-
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2> Pour quel tarif ?</h2>
-                    <label class="item item-input item-stacked-label" for="price">
-                        <span class="input-label"> Prix</span>
-                        <ion-input (input)="step5($event)" type="number" min="0" max="999" name="price"
-                                   [(ngModel)]="propose.price" id="price"
-                                   placeholder="3"></ion-input>
-                    </label><span>€ à la journée</span>
-                </div>
-            </ion-wizard-step>
-
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2> Pour quelle(s) période(s) ?</h2>
-                    <ion-calendar name="calendar" (onChange)="step6($event)" [(ngModel)]="propose.dateRange"
-                                  [options]="optionsRange"
-                                  [type]="type"
-                                  [format]="'DD/MM/YYYY'">
-                    </ion-calendar>
-                    <ion-item *ngFor="let item of propose.dateRangeArray;let i = index">
-                        <ion-row id="{{index}}">
-                            <ion-col col-5>Du {{item.from | date:'dd/MM/yyyy'}}</ion-col>
-                            <ion-col col-5>au {{item.to | date:'dd/MM/yyyy'}}</ion-col>
-                            <ion-col col-2 (click)="delete(i)">
-                                <ion-icon name="close"></ion-icon>
-                            </ion-col>
-                        </ion-row>
-
+            <button ion-button icon-right (click)="next()">
+                {{'NEXT' | translate}}
+                <ion-icon name="arrow-next"></ion-icon>
+            </button>
+        </ion-slide>
+        <ion-slide>
+            <h2>Où louez-vous votre vélo ?</h2>
+            <ion-list no-lines>
+                <form [formGroup]="slideFourForm">
+                    <!--VILLE-->
+                    <ion-item>
+                        <ion-label floating>Ville</ion-label>
+                        <ion-input formControlName="town" type="text"
+                                   [class.invalid]="!slideFourForm.controls.town.valid
+                                       && (slideFourForm.controls.town.dirty || submitAttempt)">
+                        </ion-input>
                     </ion-item>
-                    <span>Appuyez 2 fois sur la même date pour sélectionner une seule journée.</span>
-                    <button type="button" [disabled]="disabled" ion-button clear class="button button-stable bike"
-                            (click)="addCalendar()"> Ajouter la
-                        période
-                    </button>
-                </div>
-            </ion-wizard-step>
 
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2> {{'PAIEMENT_TITLE' | translate}}</h2>
-                    <!--<button type="button" class="btn-classic">Paiement paypal
-                    </button>
+                    <ion-item *ngIf="!slideFourForm.controls.town.valid
+                                && (slideFourForm.controls.town.dirty || submitAttempt)">
+                        <p>Veuillez entrer une ville via les propositions</p>
+                    </ion-item>
+                </form>
 
-                    <div class="separator">Ou</div>
-
-                    <label class="item item-input item-stacked-label" for="bankname">
-                        <span class="input-label">Nom de la banque</span>
-                        <ion-input (input)="step6($event)" type="text" name="bankname" [(ngModel)]="propose.bankname"
-                                   id="bankname"></ion-input>
-                    </label>
-
-                    <label class="item item-input item-stacked-label" for="RIB">
-                        <span class="input-label">RIB du compte à créditer</span>
-                        <ion-input (input)="step6($event)" type="text" name="RIB" [(ngModel)]="propose.RIB" id="RIB"></ion-input>
-                    </label>-->
-
-                    <div class="locker">
-                        <div class="input">
-                            <span class="input-label">Code cadenas</span>
-                            <!--Remplacer par des input number x3-6-->
-                            <div class="lockInput">
-                                <ion-input type="number" maxlength="1" name="lock1"
-                                           [(ngModel)]="propose.lock1"
-                                           id="lock1"></ion-input>
-                                <ion-input type="number" maxlength="1" name="lock2"
-                                           [(ngModel)]="propose.lock2"
-                                           id="lock2"></ion-input>
-                                <ion-input type="number" maxlength="1" name="lock3"
-                                           [(ngModel)]="propose.lock3"
-                                           id="lock3"></ion-input>
-                                <ion-input type="number" maxlength="1" name="lock4"
-                                           [(ngModel)]="propose.lock4"
-                                           id="lock4"></ion-input>
-                            </div>
-                        </div>
-                        <div class="preview">
-                            <div>{{propose.lock1}}</div>
-                            <div>{{propose.lock2}}</div>
-                            <div>{{propose.lock3}}</div>
-                            <div>{{propose.lock4}}</div>
-                        </div>
-                        <button type="button" ion-button clear class="button button-stable bike"
-                                (click)="toggle()"> Ajouter la fiche ?
-                        </button>
-                    </div>
-                </div>
-            </ion-wizard-step>
-        </ion-simple-wizard>
-    </form>
+                <button ion-button icon-right (click)="next()">
+                    {{'NEXT' | translate}}
+                    <ion-icon name="arrow-next"></ion-icon>
+                </button>
+            </ion-list>
+        </ion-slide>
+    </ion-slides>
+</ion-content>
 

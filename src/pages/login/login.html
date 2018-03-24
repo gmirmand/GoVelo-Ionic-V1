@@ -9,8 +9,6 @@
 
 <ion-content id="login">
     <form (submit)="doLogin()">
-
-
         <h2 class="font-bleu">
             Connexion
         </h2>
@@ -24,21 +22,26 @@
                 <p>OU</p>
             </div>
             <ion-list>
-                <label class="champ">
-                    <span class="label">{{ 'EMAIL' | translate }}</span>
-                    <ion-input type="mail" [(ngModel)]="login.email" name="email"></ion-input>
-                </label>
-                <label class="champ">
-                    <span class="label">{{ 'PASSWORD' | translate }}</span>
-                    <ion-input type="password" [(ngModel)]="login.password" name="password"></ion-input>
-                </label>
+                <form [formGroup]="logForm">
+                    <ion-item>
+                        <ion-label floating>email</ion-label>
+                        <ion-input
+                                [class.invalid]="!logForm.controls.email.valid && (logForm.controls.email.dirty || submitAttempt)"
+                                formControlName="email" type="text"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>{{"PASSWORD" | translate}}</ion-label>
+                        <ion-input formControlName="passWord" type="password"
+                                   [class.invalid]="!logForm.controls.passWord.valid && (logForm.controls.passWord.dirty || submitAttempt)"></ion-input>
+                    </ion-item>
 
-                <div padding>
-                    <button ion-button clear class="button  button_inverse_bleu">{{ 'LOGIN_BUTTON' | translate }}
-                    </button>
-                </div>
-                <a button ion-button clear (click)="forget()">{{'FORGET_PASSWORD' | translate}}</a><br>
-                <a button ion-button clear (click)="signup()">{{'NO_ACCOUNT' | translate}}</a>
+                    <div padding>
+                        <button ion-button full color="primary" (click)="save()">{{ 'LOGIN_BUTTON' | translate }}</button>
+
+                    </div>
+                </form>
+                <a button ion-button clear >{{'FORGET_PASSWORD' | translate}}</a><br>
+                <a button ion-button clear >{{'NO_ACCOUNT' | translate}}</a>
             </ion-list>
         </div>
         <div class="">

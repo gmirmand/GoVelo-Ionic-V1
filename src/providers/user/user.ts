@@ -35,7 +35,11 @@ export class User {
      * the user entered on the form.
      */
     login(accountInfo: any) {
-        let seq = this.api.get('check_login', accountInfo).share();
+        accountInfo = {
+            "email": accountInfo.email,
+            "password": accountInfo.passWord
+        };
+        let seq = this.api.get('users', accountInfo).share();
 
         seq.subscribe((res: any) => {
             console.log(res);
@@ -66,9 +70,8 @@ export class User {
             "phone": accountInfo[2].phone,
             "birth": "2018-03-01T11:03:47.845Z"/*accountInfo[2].age*/,
             "picture": accountInfo[3].profilPicture,
-            "sexe": accountInfo[2].sex
+            "sexe": parseInt(accountInfo[2].sex)
         };
-        console.log(accountInfo);
         let seq = this.api.post('users', accountInfo).share();
 
         seq.subscribe((res: any) => {

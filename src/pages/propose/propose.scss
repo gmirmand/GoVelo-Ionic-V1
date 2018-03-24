@@ -1,3 +1,47 @@
 page-propose {
+  input[type=file]:disabled + .custom-file-label {
+    background-color: #d5d5d5;
+    border-color: #d5d5d5;
+  }
 
+  .file-contents {
+    height: 150px;
+    overflow: auto;
+  }
+
+  .file-container {
+    margin: 15px auto;
+    box-shadow: 1px 1px 5px 1px #d5d5d5;
+    padding: 3px;
+    max-height: 400px;
+  }
+
+  .error-container,
+  .info-container {
+    font-size: .9rem;
+  }
+  .error-container {
+    > div {
+      display: none;
+      &.text-danger {
+        color: red;
+        display: block;
+      }
+    }
+  }
+  .custom-file-label {
+    width: 300px;
+    height: 175px;
+    border: 3px solid rgba(cornflowerblue, .5);
+    display: block;
+    border-radius: 10px;
+  }
+  #file {
+    display: none;
+  }
+  .m0 {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+  }
 }
