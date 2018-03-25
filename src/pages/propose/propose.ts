@@ -4,6 +4,7 @@ import {CalendarComponentOptions} from 'ion2-calendar';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ICustomFile} from "file-input-accessor";
 import {AutocompletePage} from '../../components/autocomplete/autocomplete';
+import {NativeGeocoder, NativeGeocoderForwardResult} from '@ionic-native/native-geocoder';
 
 @IonicPage()
 @Component({
@@ -27,6 +28,8 @@ export class ProposePage {
 
     //AutoGeoComplete
     address;
+    lat: any = '';
+    long: any = '';
 
     //Slides forms
     slideOneForm: FormGroup;
@@ -52,7 +55,8 @@ export class ProposePage {
                 private modalCtrl: ModalController,
                 public navParams: NavParams,
                 public evts: Events,
-                public formBuilder: FormBuilder) {
+                public formBuilder: FormBuilder,
+                private nativeGeocoder: NativeGeocoder) {
         //AutoGeoComplete
         this.address = {
             place: ''
@@ -111,7 +115,17 @@ export class ProposePage {
     save() {
         this.submitAttempt = true;
         this.propose = this.propose.concat(this.slideOneForm.value).concat(this.slideTwoForm.value).concat(this.slideThreeForm.value);
-        console.log(this.propose, this.address);
+        this.nativeGeocoder.forwardGeocode(this.address)
+            .then((coordinates: NativeGeocoderForwardResult) => {
+                console.log('The coordinates are latitude=' + coordinates.latitude + ' and longitude=' + coordinates.longitude),
+                    this.lat = coordinates.latitude,
+                    this.long = coordinates.longitude
+            })
+            .catch((error: any) => {console.log(error),
+                this.lat = error,
+                this.long = error
+
+            });
     };
 
     proposeForm() {

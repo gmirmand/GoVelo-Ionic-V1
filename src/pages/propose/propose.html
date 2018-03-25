@@ -195,9 +195,12 @@
                 TEST
                 <ion-list>
                     <ion-item>
-                        <ion-input (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
+                        <ion-input (click)="showAddressModal()" [(ngModel)]="address.place" type="text"
+                                   placeholder="Pick an address"></ion-input>
                     </ion-item>
                 </ion-list>
+                <p>Lat :{{lat}}</p>
+                <p>Long :{{long}}</p>
 
                 <button ion-button icon-right (click)="save()">
                     {{'NEXT' | translate}}
