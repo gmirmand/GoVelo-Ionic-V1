@@ -1,15 +1,9 @@
 import {Component, ViewChild} from '@angular/core';
-import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Events, IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
 import {CalendarComponentOptions} from 'ion2-calendar';
-import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ICustomFile} from "file-input-accessor";
-
-/**
- * Generated class for the ProposePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {AutocompletePage} from '../../components/autocomplete/autocomplete';
 
 @IonicPage()
 @Component({
@@ -31,11 +25,12 @@ export class ProposePage {
     maxWidth = 1500;
     maxHeight = 1500;
 
-    checkbox: FormControl;
+    //AutoGeoComplete
+    address;
 
+    //Slides forms
     slideOneForm: FormGroup;
     slideTwoForm: FormGroup;
-    slideTwoFormCheckbox: FormControl;
     slideThreeForm: FormGroup;
     slideFourForm: FormGroup;
     slideFiveForm: FormGroup;
@@ -54,9 +49,15 @@ export class ProposePage {
     };
 
     constructor(public navCtrl: NavController,
+                private modalCtrl: ModalController,
                 public navParams: NavParams,
                 public evts: Events,
                 public formBuilder: FormBuilder) {
+        //AutoGeoComplete
+        this.address = {
+            place: ''
+        };
+
         //Form
         //Slide1
         this.slideOneForm = formBuilder.group({
@@ -91,6 +92,7 @@ export class ProposePage {
         this.proposeSlider.slidePrev();
     }
 
+    //add Calendar
     addCalendar() {
         if (this.propose.dateRange.from) {
             this.disabled = true;
@@ -104,10 +106,12 @@ export class ProposePage {
         this.propose.dateRangeArray.splice(index, 1);
     }
 
+
+    //Global form functions
     save() {
         this.submitAttempt = true;
         this.propose = this.propose.concat(this.slideOneForm.value).concat(this.slideTwoForm.value).concat(this.slideThreeForm.value);
-        console.log(this.propose);
+        console.log(this.propose, this.address);
     };
 
     proposeForm() {
@@ -120,7 +124,6 @@ export class ProposePage {
     }
 
     ngOnInit() {
-        this.checkbox = new FormControl(this.withMeta);
         this.slideTwoForm.get('file').valueChanges
             .subscribe((val) => {
                 console.log('%c-----FILE LIST CHANGED-----', 'background-color: #008351; color: #fff');
@@ -131,5 +134,15 @@ export class ProposePage {
 
     removeFile(index) {
         this.fileList.splice(index, 1);
+    }
+
+//    AutoGeoComplete
+    showAddressModal() {
+        let modal = this.modalCtrl.create(AutocompletePage);
+        modal.onDidDismiss(data => {
+            console.log(this.address);
+            this.address.place = data;
+        });
+        modal.present();
     }
 }

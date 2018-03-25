@@ -8,13 +8,13 @@ import {IonicStorageModule, Storage} from '@ionic/storage';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 
 import {Items} from '../mocks/providers/items';
-import {Settings} from '../providers/providers';
-import {User} from '../providers/providers';
-import {Api} from '../providers/providers';
+import {User, Api, Settings} from '../providers/providers';
 import {MyApp} from './app.component';
+
+import {AutocompletePage} from '../components/autocomplete/autocomplete'
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -39,7 +39,8 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
     declarations: [
-        MyApp
+        MyApp,
+        AutocompletePage
     ],
     imports: [
         BrowserModule,
@@ -57,7 +58,8 @@ export function provideSettings(storage: Storage) {
     ],
     bootstrap: [IonicApp],
     entryComponents: [
-        MyApp
+        MyApp,
+        AutocompletePage
     ],
     providers: [
         Api,

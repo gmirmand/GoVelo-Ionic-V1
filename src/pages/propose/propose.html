@@ -192,7 +192,14 @@
                     </ion-item>
                 </form>
 
-                <button ion-button icon-right (click)="next()">
+                TEST
+                <ion-list>
+                    <ion-item>
+                        <ion-input (click)="showAddressModal()" [(ngModel)]="address.place" type="text" placeholder="Pick an address"></ion-input>
+                    </ion-item>
+                </ion-list>
+
+                <button ion-button icon-right (click)="save()">
                     {{'NEXT' | translate}}
                     <ion-icon name="arrow-next"></ion-icon>
                 </button>
