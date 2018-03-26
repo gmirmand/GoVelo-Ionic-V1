@@ -176,23 +176,16 @@
         <ion-slide>
             <h2>Où louez-vous votre vélo ?</h2>
             <ion-list no-lines>
-                <form [formGroup]="slideFourForm">
-                    <!--VILLE-->
+                <ion-list>
                     <ion-item>
-                        <ion-label floating>Ville</ion-label>
-                        <ion-input formControlName="town" type="text"
-                                   [class.invalid]="!slideFourForm.controls.town.valid
-                                       && (slideFourForm.controls.town.dirty || submitAttempt)">
-                        </ion-input>
+                        <ion-input (focus)="showAddressModal()" [(ngModel)]="address.place" type="text"
+                                   placeholder="Pick an address"></ion-input>
                     </ion-item>
+                </ion-list>
+                <p>Lat :{{lat}}</p>
+                <p>Long :{{long}}</p>
 
-                    <ion-item *ngIf="!slideFourForm.controls.town.valid
-                                && (slideFourForm.controls.town.dirty || submitAttempt)">
-                        <p>Veuillez entrer une ville via les propositions</p>
-                    </ion-item>
-                </form>
-
-                <button ion-button icon-right (click)="next()">
+                <button ion-button icon-right (click)="save()">
                     {{'NEXT' | translate}}
                     <ion-icon name="arrow-next"></ion-icon>
                 </button>

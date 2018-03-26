@@ -1,4 +1,7 @@
 page-propose {
+  ion-modal{
+    z-index: 9999999999 !important;
+  }
   input[type=file]:disabled + .custom-file-label {
     background-color: #d5d5d5;
     border-color: #d5d5d5;
