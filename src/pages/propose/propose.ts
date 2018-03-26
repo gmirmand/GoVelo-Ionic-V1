@@ -117,13 +117,13 @@ export class ProposePage {
         this.propose = this.propose.concat(this.slideOneForm.value).concat(this.slideTwoForm.value).concat(this.slideThreeForm.value);
         this.nativeGeocoder.forwardGeocode(this.address)
             .then((coordinates: NativeGeocoderForwardResult) => {
-                console.log('The coordinates are latitude=' + coordinates.latitude + ' and longitude=' + coordinates.longitude),
-                    this.lat = coordinates.latitude,
-                    this.long = coordinates.longitude
+                this.lat = coordinates[0].latitude,
+                    this.long = coordinates[0].longitude
             })
-            .catch((error: any) => {console.log(error),
-                this.lat = error,
-                this.long = error
+            .catch((error: any) => {
+                console.log(error),
+                    this.lat = error,
+                    this.long = error
 
             });
     };
@@ -152,11 +152,10 @@ export class ProposePage {
 
 //    AutoGeoComplete
     showAddressModal() {
-        let modal = this.modalCtrl.create(AutocompletePage);
+        const modal = this.modalCtrl.create(AutocompletePage);
+        modal.present();
         modal.onDidDismiss(data => {
-            console.log(this.address);
             this.address.place = data;
         });
-        modal.present();
     }
 }

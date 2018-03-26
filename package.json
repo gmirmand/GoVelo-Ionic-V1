@@ -22,7 +22,7 @@
     "@angular/platform-browser": "5.0.3",
     "@angular/platform-browser-dynamic": "5.0.3",
     "@ionic-native/camera": "4.3.3",
-    "@ionic-native/core": "4.4.0",
+    "@ionic-native/core": "^4.4.0",
     "@ionic-native/google-maps": "^4.6.0",
     "@ionic-native/native-geocoder": "^4.6.0",
     "@ionic-native/splash-screen": "4.4.0",
@@ -32,6 +32,7 @@
     "@ngx-translate/core": "8.0.0",
     "@ngx-translate/http-loader": "^2.0.0",
     "@types/googlemaps": "^3.30.8",
+    "cordova-android": "^7.0.0",
     "cordova-browser": "~5.0.3",
     "cordova-plugin-device": "^2.0.1",
     "cordova-plugin-googlemaps": "^2.2.8",
@@ -78,7 +79,8 @@
       }
     },
     "platforms": [
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }
