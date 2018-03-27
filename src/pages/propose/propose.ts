@@ -83,7 +83,10 @@ export class ProposePage {
         });
         //Slide4
         this.slideFourForm = formBuilder.group({
-            town: ['']
+            town: [{
+                lat: '',
+                long: ''
+            }, Validators.required]
         });
     }
 
@@ -129,7 +132,6 @@ export class ProposePage {
     };
 
     proposeForm() {
-        console.log('test');
         this.navCtrl.parent.select(3);
     }
 

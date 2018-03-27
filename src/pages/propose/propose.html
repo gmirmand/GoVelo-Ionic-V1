@@ -175,17 +175,48 @@
         </ion-slide>
         <ion-slide>
             <h2>Où louez-vous votre vélo ?</h2>
-            <ion-list no-lines>
-                <ion-list>
+            <p>Ecrivez votre addresse et votre ville.</p>
+            <form [formGroup]="slideFourForm">
+                <ion-list no-lines>
                     <ion-item>
                         <ion-input (focus)="showAddressModal()" [(ngModel)]="address.place" type="text"
-                                   placeholder="Pick an address"></ion-input>
+                                   placeholder="Pick an address" formControlName="town"
+                                   [class.invalid]="!slideFourForm.controls.town.valid &&
+                                          (slideFourForm.controls.town.dirty || submitAttempt)"></ion-input>
                     </ion-item>
-                </ion-list>
-                <p>Lat :{{lat}}</p>
-                <p>Long :{{long}}</p>
+                    <ion-item *ngIf="!slideFourForm.controls.town.valid
+                        && (slideFourForm.controls.town.dirty || submitAttempt)">
+                        <p>Veuillez une address.</p>
+                    </ion-item>
 
-                <button ion-button icon-right (click)="save()">
+                    <button ion-button icon-right (click)="save()">
+                        {{'NEXT' | translate}}
+                        <ion-icon name="arrow-next"></ion-icon>
+                    </button>
+                </ion-list>
+            </form>
+        </ion-slide>
+        <ion-slide>
+            <h2> Titre et description de l'annonce </h2>
+            <p *ngIf="submitAttempt" style="color: #ea6153;">Veuillez remplir tous les champs s'il vous plaît.</p>
+            <ion-list no-lines>
+                <form [formGroup]="slideFiveForm">
+                    <!--TITLE-->
+                    <ion-item>
+                        <ion-label floating>Titre de l'annonce</ion-label>
+                        <ion-input formControlName="title" type="text"
+                                   [class.invalid]="!slideFiveForm.controls.title.valid
+                                       && (slideFiveForm.controls.title.dirty || submitAttempt)">
+                        </ion-input>
+                    </ion-item>
+
+                    <ion-item *ngIf="!slideFiveForm.controls.title.valid
+                                && (slideFiveForm.controls.title.dirty || submitAttempt)">
+                        <p>Veuillez entrer un titre valide. (entre 5 et 50 caractères)</p>
+                    </ion-item>
+                </form>
+
+                <button ion-button icon-right (click)="next()">
                     {{'NEXT' | translate}}
                     <ion-icon name="arrow-next"></ion-icon>
                 </button>
