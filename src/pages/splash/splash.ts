@@ -26,7 +26,7 @@ export class SplashPage {
             setTimeout(() => {
                 this.navCtrl.setRoot('TutorialPage');
             }, 2000)
-        }, 3000)
+        }, 2500)
     }
 
 }
