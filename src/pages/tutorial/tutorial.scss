@@ -2,6 +2,9 @@ page-tutorial {
   .swiper-container-horizontal > .swiper-pagination-bullets{
     bottom: 50px;
   }
+  h2{
+    padding: 5px 0;
+  }
   .swiper-pagination-bullet{
     border:2px solid $blanc;
     opacity:1;
@@ -36,7 +39,7 @@ page-tutorial {
   .slide-image {
     max-height: 40%;
     max-width: 60%;
-    margin: 36px 0;
+    margin: 36px 0 10px;
   }
 
   b {
