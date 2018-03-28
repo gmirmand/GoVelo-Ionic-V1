@@ -1,0 +1,176 @@
+page-splash {
+  $color-green: #85be4c;
+  $color-blue: #009ab7;
+  .container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    svg {
+      stroke: black;
+    }
+    .btn-test {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 30px;
+      color: white;
+      font-weight: bold;
+      z-index: 9999;
+      background-color: $color-blue;
+      background-image: linear-gradient(rgba(255, 255, 255, 0), $color-blue, rgba(255, 255, 255, 0));
+      transition: .2s;
+      border-radius: 7px;
+      &:hover {
+        background-color: $color-green;
+        cursor: pointer;
+        background-image: linear-gradient(rgba(255, 255, 255, 0), $color-green, rgba(255, 255, 255, 0));
+        transition: .2s;
+      }
+    }
+    .anim-container {
+      width: 200px;
+      height: 200px;
+    }
+    .not-load, .load {
+      position: absolute;
+      opacity: 1;
+      transition: .5s;
+      margin-left: 22px;
+    }
+    .not-load {
+      transform: translate(0, 0);
+      .cls-1 {
+        transform-origin: center center;
+        animation: turn .8s linear infinite;
+        &-recovery {
+          transition: 1s;
+        }
+        &-progress {
+          stroke: url(#a);
+          stroke-width: 60px;
+          stroke-linejoin: round;
+          stroke-linecap: round;
+          stroke-dasharray: 1000;
+          stroke-dashoffset: 1000;
+          fill: none;
+          animation: dash 6s ease infinite;
+          animation-delay: 1s;
+          transition: 3s;
+          &-recovery {
+            fill: none;
+            stroke: url(#a);
+            stroke-width: 25px;
+            stroke-dasharray: 280;
+            stroke-dashoffset: 560;
+          }
+        }
+      }
+    }
+    .load {
+      .lns {
+        z-index: -1;
+        fill: none;
+        stroke: url(#a);
+        stroke-width: 60px;
+        stroke-dasharray: 280;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        &.lns-1 {
+          stroke-dashoffset: 500;
+        }
+        &.lns-2 {
+          stroke-dashoffset: 280;
+        }
+      }
+      .cls {
+        transition: 1s;
+        z-index: 1;
+        fill: none;
+        stroke: url(#a);
+        stroke-width: 60px;
+        stroke-dashoffset: 1000;
+        stroke-dasharray: 1000;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+    }
+    .o0 {
+      opacity: 0;
+    }
+  }
+
+  .anim {
+    //animation-delay: 2s;
+    animation: pushLeft 1s forwards;
+    &.not-load {
+      transform: translate(-126.5px, -41px);
+    }
+    .lns-1, .lns-2 {
+      //animation-delay: 2s;
+      animation: lnsG .8s ease forwards;
+    }
+    .lns-1 {
+      //animation-delay: 0.5s;
+    }
+    .cls {
+      //animation-delay: 2s;
+      &-2 {
+        animation: lnsG2 .8s ease forwards;
+      }
+      &-3 {
+        animation: lnsG3 .8s ease forwards;
+      }
+    }
+  }
+
+  @keyframes dash {
+    60% {
+      stroke-dasharray: 1700;
+
+    }
+    100% {
+      stroke-dasharray: 1000;
+    }
+  }
+
+  @keyframes turn {
+    from {
+      transform: rotate(0)
+    }
+    to {
+      transform: rotate(360deg)
+    }
+  }
+
+  @keyframes lnsG {
+    100% {
+      stroke-dashoffset: 560;
+    }
+  }
+
+  @keyframes lnsG2 {
+    100% {
+      stroke-dasharray: 1570;
+    }
+  }
+
+  @keyframes lnsG3 {
+    100% {
+      stroke-dasharray: 1700;
+    }
+  }
+
+  @keyframes pushLeft {
+    100% {
+      transform: translateX(-30px);
+    }
+  }
+}

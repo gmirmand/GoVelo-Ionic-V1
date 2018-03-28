@@ -158,6 +158,10 @@ STRUCTURE
   height: 90vh;
 }
 
+.row{
+  align-items: center;
+}
+
 .header {
   text-align: center;
 
@@ -496,4 +500,30 @@ PROPOSE FORM
   > div {
     width: 45%;
   }
+}
+
+//Slides
+.bar-buttons-md.start {
+  order: 1;
+}
+
+.swiper-slide {
+  display: block;
+}
+
+ion-label, .select-text {
+  margin-left: 10px;
+}
+
+ion-input, ion-select, ion-textarea {
+  background-color: #f2f2f2;
+  padding: 5px 10px;
+}
+
+.invalid {
+  border: 1px solid #ea6153;
+}
+
+ion-slide {
+  overflow-y: auto;
 }

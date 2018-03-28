@@ -16,16 +16,13 @@ import {MainPage} from '../pages';
     templateUrl: 'signup.html'
 })
 export class SignupPage {
-    // The account fields for the login form.
-    // If you're using the username field with or without email, make
-    // sure to add it to the type
     @ViewChild('signupSlider') signupSlider: any;
 
-    account: any;
+    account: any = [];
 
     slideOneForm: FormGroup;
     slideTwoForm: FormGroup;
-    slideTreeForm: FormGroup;
+    slideThreeForm: FormGroup;
     slideFourForm: FormGroup;
 
     submitAttempt: boolean = false;
@@ -43,21 +40,45 @@ export class SignupPage {
         //Form
         //Slide1
         this.slideOneForm = formBuilder.group({
-            firstName: ['ToRemove', Validators.compose([Validators.maxLength(30), Validators.pattern('^([áéíóúñÁÉÍÓÚÑäëïöüÄËÏÖÜçÇA-Za-z-]+)$'), Validators.required])],
-            lastName: ['ToRemove', Validators.compose([Validators.maxLength(30), Validators.pattern('^([áéíóúñÁÉÍÓÚÑäëïöüÄËÏÖÜçÇA-Za-z-]+)$'), Validators.required])]
+            firstName: ['ToRemove',
+                Validators.compose([
+                    Validators.maxLength(30),
+                    Validators.pattern('^([áéíóúñÁÉÍÓÚÑäëïöüÄËÏÖÜçÇA-Za-z-]+)$'),
+                    Validators.required]
+                )],
+            lastName: ['ToRemove',
+                Validators.compose([
+                    Validators.maxLength(30),
+                    Validators.pattern('^([áéíóúñÁÉÍÓÚÑäëïöüÄËÏÖÜçÇA-Za-z-]+)$'),
+                    Validators.required]
+                )]
         });
 
         //Slide2
         this.slideTwoForm = formBuilder.group({
-            email: ['ToRemove@ToRemove.ToRemove', Validators.compose([Validators.required, Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')]), EmailValidator.checkEmail],
-            passWord: ['ToRemove00*', Validators.compose([Validators.minLength(8), Validators.maxLength(50), Validators.required, Validators.pattern('^(?=.*[\\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\\w!@#$%^&*]{8,}$')])]
+            email: ['ToRemove@ToRemove.ToRemove',
+                Validators.compose([
+                    Validators.required,
+                    Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')]),
+                EmailValidator.checkEmail],
+            passWord: ['ToRemove00*',
+                Validators.compose([
+                    Validators.minLength(8),
+                    Validators.maxLength(50),
+                    Validators.required,
+                    Validators.pattern('^(?=.*[\\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\\w!@#$%^&*]{8,}$')]
+                )]
         });
 
         //Slide3
-        this.slideTreeForm = formBuilder.group({
-            sex:[0, Validators.required],
+        this.slideThreeForm = formBuilder.group({
+            sex: [0, Validators.required],
             age: [20, AgeValidator.isValid],
-            phone: ['0404040404', Validators.compose([Validators.required, Validators.pattern('(\\+\\d+(\\s|-))?0\\d(\\s|-)?(\\d{2}(\\s|-)?){4}')])]
+            phone: ['0404040404',
+                Validators.compose([
+                    Validators.required,
+                    Validators.pattern('(\\+\\d+(\\s|-))?0\\d(\\s|-)?(\\d{2}(\\s|-)?){4}')]
+                )]
         });
 
         //Slide4
@@ -72,7 +93,6 @@ export class SignupPage {
 
 
     //Steps slider signup
-
     next() {
         this.signupSlider.slideNext();
     }
@@ -90,7 +110,7 @@ export class SignupPage {
         else if (!this.slideTwoForm.valid) {
             this.signupSlider.slideTo(2);
         }
-        else if (!this.slideTreeForm.valid) {
+        else if (!this.slideThreeForm.valid) {
             this.signupSlider.slideTo(3);
         }
         else if (!this.slideFourForm.valid) {
@@ -98,8 +118,7 @@ export class SignupPage {
         }
         else {
             console.log("success!");
-            this.account = [];
-            this.account = this.account.concat(this.slideOneForm.value).concat(this.slideTwoForm.value).concat(this.slideTreeForm.value).concat(this.slideFourForm.value);
+            this.account = this.account.concat(this.slideOneForm.value).concat(this.slideTwoForm.value).concat(this.slideThreeForm.value).concat(this.slideFourForm.value);
             console.log(this.account);
             this.doSignup();
         }

@@ -11,12 +11,11 @@
 </ion-header>
 
 <ion-content class="bg-grey">
-
     <ion-slides #signupSlider pager class="container-7" >
         <ion-slide>
             <h1 class="title_page font-bleu">Connexion</h1>
 
-            <button type="button" ion-button clear class="button button_inverse_blanc signup signup-RS">
+            <button type="button" ion-button clear class="button button-block button-calm signup signup-RS">
                 {{'GOOGLE_SIGNUP' | translate}}
             </button>
             <button type="button" ion-button clear class="button button_inverse_blanc signup signup-RS">
@@ -35,9 +34,9 @@
 
         <ion-slide>
             <h2> {{"WHATS_YOUR_NAME" | translate}} </h2>
-            <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
-            <ion-list no-lines>
-                <form [formGroup]="slideOneForm">
+            <p *ngIf="submitAttempt" style="color: #ea6153;">Veuillez remplir tous les champs s'il vous plaît.</p>
+            <form [formGroup]="slideOneForm">
+                <ion-list no-lines>
                     <!--FIRSTNAME-->
                     <ion-item>
                         <ion-label floating>{{"FIRSTNAME" | translate}}</ion-label>
@@ -47,7 +46,7 @@
 
                     <ion-item
                             *ngIf="!slideOneForm.controls.firstName.valid  && (slideOneForm.controls.firstName.dirty || submitAttempt)">
-                        <p>Please enter a valid name.</p>
+                        <p>Veuillez entrer un prénom valide.</p>
                     </ion-item>
 
                     <!--LASTNAME-->
@@ -59,21 +58,21 @@
 
                     <ion-item
                             *ngIf="!slideOneForm.controls.lastName.valid  && (slideOneForm.controls.lastName.dirty || submitAttempt)">
-                        <p>Please enter a valid name.</p>
+                        <p>Veuillez entrer un nom valide.</p>
                     </ion-item>
-                </form>
+                </ion-list>
+            </form>
 
-                <button ion-button icon-right (click)="next()">
-                    {{'NEXT' | translate}}
-                    <ion-icon name="arrow-next"></ion-icon>
-                </button>
-            </ion-list>
+            <button ion-button icon-right (click)="next()">
+                {{'NEXT' | translate}}
+                <ion-icon name="arrow-next"></ion-icon>
+            </button>
         </ion-slide>
 
         <ion-slide>
             <h2> {{"YOUR_MAIL_AND_PASSWORD" | translate}} </h2>
-            <ion-list no-lines>
-                <form [formGroup]="slideTwoForm">
+            <form [formGroup]="slideTwoForm">
+                <ion-list no-lines>
                     <!--EMAIL-->
                     <ion-item>
                         <ion-label floating>email</ion-label>
@@ -83,12 +82,12 @@
                     </ion-item>
 
                     <ion-item *ngIf="slideTwoForm.controls.email.pending">
-                        <p>Checking email...</p>
+                        <p>Vérification du mail...</p>
                     </ion-item>
 
                     <ion-item
                             *ngIf="!slideTwoForm.controls.email.valid && !slideTwoForm.controls.email.pending && (slideTwoForm.controls.email.dirty || submitAttempt)">
-                        <p>Sorry, that email can not be used!</p>
+                        <p>Désolé mais ce mail ne peut pas être utilisé.</p>
                     </ion-item>
 
                     <!--MOT DE PASSE-->
@@ -103,23 +102,22 @@
                         <p>Please enter a valid password (at least 1 lowercase, 1 uppercase, 1 numeric, one special
                             character & must be eight characters or longer)</p>
                     </ion-item>
-                </form>
+                </ion-list>
+            </form>
 
-                <button ion-button icon-right (click)="next()">
-                    {{'NEXT' | translate}}
-                    <ion-icon name="arrow-next"></ion-icon>
-                </button>
-            </ion-list>
+            <button ion-button icon-right (click)="next()">
+                {{'NEXT' | translate}}
+                <ion-icon name="arrow-next"></ion-icon>
+            </button>
         </ion-slide>
 
         <ion-slide>
             <h2> Vos informations personnelles </h2>
-            <ion-list no-lines>
-                <form [formGroup]="slideTreeForm">
+            <form [formGroup]="slideThreeForm">
+                <ion-list no-lines>
                     <!--SEXE-->
                     <ion-item>
-                        <ion-row radio-group formControlName="sex"
-                                 [class.invalid]="!slideTreeForm.controls.sex.valid && (slideTreeForm.controls.sex.dirty || submitAttempt)">
+                        <ion-row radio-group formControlName="sex">
                             <ion-col col-4>
                                 <ion-item no-lines>
                                     <!--<ion-label>Homme</ion-label>-->
@@ -144,47 +142,43 @@
                         </ion-row>
                     </ion-item>
 
-                    <ion-item
-                            *ngIf="!slideTreeForm.controls.sex.valid  && (slideTreeForm.controls.sex.dirty || submitAttempt)">
-                        <p>Please select a sex.</p>
-                    </ion-item>
-
                     <!--AGE-->
                     <ion-item>
                         <ion-label floating>{{"AGE" | translate}}</ion-label>
                         <ion-input formControlName="age" type="number"
-                                   [class.invalid]="!slideTreeForm.controls.age.valid && (slideTreeForm.controls.age.dirty || submitAttempt)"></ion-input>
+                                   [class.invalid]="!slideThreeForm.controls.age.valid && (slideThreeForm.controls.age.dirty || submitAttempt)"></ion-input>
                     </ion-item>
 
                     <ion-item
-                            *ngIf="!slideTreeForm.controls.age.valid  && (slideTreeForm.controls.age.dirty || submitAttempt)">
-                        <p>Please enter a valid age.</p>
+                            *ngIf="!slideThreeForm.controls.age.valid  && (slideThreeForm.controls.age.dirty || submitAttempt)">
+                        <p>Veuillez entrer un age valide.</p>
                     </ion-item>
 
                     <!--PHONE-->
                     <ion-item>
                         <ion-label floating>{{"PHONE" | translate}}</ion-label>
                         <ion-input formControlName="phone" type="text"
-                                   [class.invalid]="!slideTreeForm.controls.phone.valid && (slideTreeForm.controls.phone.dirty || submitAttempt)"></ion-input>
+                                   [class.invalid]="!slideThreeForm.controls.phone.valid && (slideThreeForm.controls.phone.dirty || submitAttempt)"></ion-input>
                     </ion-item>
 
                     <ion-item
-                            *ngIf="!slideTreeForm.controls.phone.valid  && (slideTreeForm.controls.phone.dirty || submitAttempt)">
-                        <p>Please enter a valid phone.</p>
+                            *ngIf="!slideThreeForm.controls.phone.valid
+                            && (slideThreeForm.controls.phone.dirty || submitAttempt)">
+                        <p>Veuillez entrez un numéro de téléphone valide</p>
                     </ion-item>
-                </form>
+                </ion-list>
+            </form>
 
-                <button ion-button icon-right (click)="next()">
-                    {{'NEXT' | translate}}
-                    <ion-icon name="arrow-next"></ion-icon>
-                </button>
-            </ion-list>
+            <button ion-button icon-right (click)="next()">
+                {{'NEXT' | translate}}
+                <ion-icon name="arrow-next"></ion-icon>
+            </button>
         </ion-slide>
 
         <ion-slide>
             <h2>Votre photo de profil</h2>
-            <ion-list no-lines>
-                <form [formGroup]="slideFourForm">
+            <form [formGroup]="slideFourForm">
+                <ion-list no-lines>
                     <ion-item>
                         <ion-input type="file" formControlName="profilPicture"></ion-input>
                     </ion-item>
@@ -192,8 +186,8 @@
                             *ngIf="!slideFourForm.controls.profilPicture.valid  && (slideFourForm.controls.profilPicture.dirty || submitAttempt)">
                         <p>Please add a profil picture.</p>
                     </ion-item>
-                </form>
-            </ion-list>
+                </ion-list>
+            </form>
 
             <button ion-button full color="primary" (click)="save()">Create Account!</button>
         </ion-slide>

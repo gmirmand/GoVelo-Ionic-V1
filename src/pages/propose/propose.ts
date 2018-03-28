@@ -1,14 +1,11 @@
-import {Component} from '@angular/core';
-import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
-
+import {Component, ViewChild} from '@angular/core';
+import {Events, IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
 import {CalendarComponentOptions} from 'ion2-calendar';
-
-/**
- * Generated class for the ProposePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ICustomFile} from "file-input-accessor";
+import {AutocompletePage} from '../../components/autocomplete/autocomplete';
+import {NativeGeocoder, NativeGeocoderForwardResult} from '@ionic-native/native-geocoder';
+import {AnnouncementDetailsPage} from "../pages";
 
 @IonicPage()
 @Component({
@@ -16,143 +13,233 @@ import {CalendarComponentOptions} from 'ion2-calendar';
     templateUrl: 'propose.html',
 })
 export class ProposePage {
-    step: any;
-    stepCondition: any;
-    stepDefaultCondition: any;
-    currentStep: any;
-    disabled: boolean = true;
-    propose: {
-        title: string,
-        description: string,
-        img: FileList,
-        picnb: number,
-        type: boolean,
-        town: string,
-        address: string,
-        price: number,
-        started: string,
-        ended: string,
-        bankname: string,
-        RIB: string,
-        lock1: number,
-        lock2: number,
-        lock3: number,
-        lock4: number,
+    @ViewChild('proposeSlider') proposeSlider: any;
+
+    propose: any = [];
+
+    //PP file imgfileList;
+    fileList: ICustomFile[] = [];
+
+    allowedFileTypes = '(gif|jpe?g|jpeg|tiff|png)';
+    allowedFileExt = '(.(gif|jpe?g|jpeg|tiff|png)$)';
+    withMeta = true;
+    size = 1000000;
+
+    //AutoGeoComplete
+    address;
+    lat;
+    long;
+
+    //Calendar
+    calendar: {
+        dateRangeArray: any[],
         dateRange: {
             from: string,
             to: string
-        },
-        dateRangeArray: any[]
+        }
     } = {
-        title: '',
-        description: '',
-        img: undefined,
-        picnb: 0,
-        type: false,
-        town: '',
-        address: '',
-        price: null,
-        started: '',
-        ended: '',
-        bankname: '',
-        RIB: '',
-        lock1: null,
-        lock2: null,
-        lock3: null,
-        lock4: null,
         dateRange: undefined,
         dateRangeArray: []
     };
+
+    //Slides forms
+    slideOneForm: FormGroup;
+    slideTwoForm: FormGroup;
+    slideThreeForm: FormGroup;
+    slideFourForm: FormGroup;
+    slideFiveForm: FormGroup;
+    slideSixForm: FormGroup;
+    slideSevenForm: FormGroup;
+
+    submitAttempt: boolean = false;
+
+    disabled: boolean = true;
     type: 'js-date'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
     optionsRange: CalendarComponentOptions = {
         pickMode: 'range'
     };
 
     constructor(public navCtrl: NavController,
+                private modalCtrl: ModalController,
                 public navParams: NavParams,
-                public evts: Events) {
-        /**
-         * Step Wizard Settings
-         */
-        this.step = 1;//The value of the first step, always 1
-        this.stepCondition = false;//Set to true if you don't need condition in every step
-        this.stepDefaultCondition = this.stepCondition;//Save the default condition for every step
-        this.evts.subscribe('step:changed', step => {
-            //Handle the current step if you need
-            this.currentStep = step[0];
-            //Set the step condition to the default value
-            this.stepCondition = this.stepDefaultCondition;
+                public evts: Events,
+                public formBuilder: FormBuilder,
+                private nativeGeocoder: NativeGeocoder) {
+        //AutoGeoComplete
+        this.address = {
+            place: ''
+        };
+
+        //Form
+        //Slide1
+        this.slideOneForm = formBuilder.group({
+            title: ['ToRemove',
+                Validators.compose([
+                    Validators.minLength(5),
+                    Validators.maxLength(50),
+                    Validators.required]
+                )],
+            description: ['ToRemove', Validators.required]
         });
-        this.evts.subscribe('step:next', () => {
-            //Do something if next
-            console.log('Next pressed: ', this.currentStep);
+        //Slide2
+        this.slideTwoForm = formBuilder.group({
+            file: ['']
         });
-        this.evts.subscribe('step:back', () => {
-            //Do something if back
-            console.log('Back pressed: ', this.currentStep);
+        //Slide3
+        this.slideThreeForm = formBuilder.group({
+            type: ['VTT']
+        });
+        //Slide4
+        this.slideFourForm = formBuilder.group({
+            town: ['', Validators.required]
+        });
+        //Slide5
+        this.slideFiveForm = formBuilder.group({
+            price: [5, Validators.compose([
+                Validators.required,
+                Validators.min(3),
+                Validators.max(25),
+            ])]
+        });
+        //Slide6
+        this.slideSixForm = formBuilder.group({
+            calendar: ['', Validators.required]
+        });
+        //Slide7
+        this.slideSevenForm = formBuilder.group({
+            lock1: [undefined],
+            lock2: [undefined],
+            lock3: [undefined],
+            lock4: [undefined]
         });
     }
 
-    //Wizard
-    toggle() {
-        this.stepCondition = !this.stepCondition;
+    //Steps slider signup
+    next() {
+        this.proposeSlider.slideNext();
     }
 
-    //Steps
-    step1(e) {
-        this.stepCondition = !!(this.propose.title && this.propose.title.trim() !== ''
-            && this.propose.description && this.propose.description.trim() !== '');
+    prev() {
+        this.proposeSlider.slidePrev();
     }
 
-    step2(e) {
-        this.propose.img = e.target.files;
-        this.propose.picnb = this.propose.img.length;
-        this.stepCondition = (this.propose.picnb > 0);
+    //Global form functions
+    save() {
+        this.submitAttempt = true;
+        // this.propose = this.propose.concat(this.slideOneForm.value).concat(this.slideTwoForm.value).concat(this.slideThreeForm.value);
+
+
+        if (!this.slideOneForm.valid) {
+            this.proposeSlider.slideTo(1);
+        }
+        else if (!this.slideTwoForm.valid) {
+            this.proposeSlider.slideTo(2);
+        }
+        else if (!this.slideThreeForm.valid) {
+            this.proposeSlider.slideTo(3);
+        }
+        else if (!this.slideFourForm.valid) {
+            this.proposeSlider.slideTo(4);
+        }
+        else if (!this.slideFiveForm.valid) {
+            this.proposeSlider.slideTo(5);
+        }
+        else if (this.calendar.dateRangeArray.length === 0) {
+            this.proposeSlider.slideTo(6);
+        }
+        else if (!this.slideSevenForm.valid) {
+            this.proposeSlider.slideTo(7);
+        }
+        else {
+            this.nativeGeocoder.forwardGeocode(this.address)
+                .then((coordinates: NativeGeocoderForwardResult) => {
+                    this.lat = coordinates[0].latitude,
+                        this.long = coordinates[0].longitude
+                })
+                .catch((error: any) => {
+                    console.log(error),
+                        this.lat = '45.039932',
+                        this.long = '3.880841'
+                });
+            this.sendData();
+            this.navCtrl.setRoot(AnnouncementDetailsPage);
+        }
+    };
+
+    sendData() {
+        //    Check input needed
+        //    Slide 1 :
+        console.log(this.slideOneForm.value);
+        //    Slide 2 :
+        console.log(this.slideTwoForm.value);
+        //    Slide 3 :
+        console.log(this.slideThreeForm.value);
+        //    Slide 4 :
+        console.log(this.slideFourForm.value, this.lat, this.long);
+        //    Slide 5 :
+        console.log(this.slideFiveForm.value);
+        //    Slide 6 :
+        console.log(this.calendar.dateRangeArray);
+        //    Slide 7 :
+        console.log(this.slideSevenForm.value);
     }
 
-    step3(e) {
-        this.stepCondition = (this.propose.type);
-    }
-
-    step4(e) {
-        this.stepCondition = !!(this.propose.town && this.propose.town.trim() !== ''
-            && this.propose.address && this.propose.address.trim() !== '');
-    }
-
-    step5(e) {
-        this.stepCondition = (this.propose.price && this.propose.price < 50);
-    }
-
-    step6(e) {
+    //Calendar
+    onCalendarChange(e) {
         this.disabled = false;
-        this.stepCondition = (this.propose.dateRangeArray.length > 0);
-    }
-
-    step7(e) {
-        // this.stepCondition = (this.propose.bankname && this.propose.bankname.trim() !== '' && this.propose.RIB && this.propose.RIB.trim() !== '');
     }
 
     addCalendar() {
-        if (this.propose.dateRange.from) {
+        console.log(this.calendar);
+        if (this.calendar.dateRange.from) {
             this.disabled = true;
-            if (!this.propose.dateRange.to)
-                this.propose.dateRange.to = this.propose.dateRange.from;
-            this.propose.dateRangeArray.push(this.propose.dateRange);
+            if (!this.calendar.dateRange.to)
+                this.calendar.dateRange.to = this.calendar.dateRange.from;
+            this.calendar.dateRangeArray.push(this.calendar.dateRange);
         }
-        this.step6(this.evts);
     }
 
     delete(index) {
-        this.propose.dateRangeArray.splice(index, 1);
+        this.calendar.dateRangeArray.splice(index, 1);
     }
 
+    //Form global
     proposeForm() {
-        console.log('test');
         this.navCtrl.parent.select(3);
     }
 
+    //View global
     ionViewDidLoad() {
         console.log('ionViewDidLoad ProposePage');
-        this.toggle();
+    }
+
+    ngOnInit() {
+        this.FileUploadWatcher();
+    }
+
+    //File
+    FileUploadWatcher() {
+        this.slideTwoForm.get('file').valueChanges
+            .subscribe((val) => {
+                console.log('%c-----FILE LIST CHANGED-----', 'background-color: #008351; color: #fff');
+                let errors = Object.keys(val[0].errors);
+                if (errors.length === 0) {
+                    this.fileList = this.fileList ? this.fileList.concat(val[0]) : [];
+                    console.log(this.fileList);
+                }
+            });
+    }
+
+    removeFile(index) {
+        this.fileList.splice(index, 1);
+    }
+
+// AutoGeoComplete
+    showAddressModal() {
+        const modal = this.modalCtrl.create(AutocompletePage);
+        modal.present();
+        modal.onDidDismiss(data => {
+            this.address.place = data;
+        });
     }
 }
