@@ -10,22 +10,24 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="bg-grey">
 
-    <ion-slides #signupSlider pager>
+    <ion-slides #signupSlider pager class="container-7" >
         <ion-slide>
+            <h1 class="title_page font-bleu">Connexion</h1>
 
-
-            <button type="button" ion-button clear class="button button-block button-calm signup signup-RS">
+            <button type="button" ion-button clear class="button button_inverse_blanc signup signup-RS">
                 {{'GOOGLE_SIGNUP' | translate}}
             </button>
-            <button type="button" ion-button clear class="button button-block button-calm signup signup-RS">
+            <button type="button" ion-button clear class="button button_inverse_blanc signup signup-RS">
                 {{'FACEBOOK_SIGNUP' | translate}}
             </button>
 
-            <div class="separator">{{"OR" | translate}}</div>
+            <div class="line-under">
+                <p>{{"OR" | translate}}</p>
+            </div>
 
-            <button ion-button icon-right (click)="next()">
+            <button ion-button icon-right class="button button_inverse_bleu" (click)="next()">
                 {{'MAIL_SIGNUP' | translate}}
             </button>
             <a ng-href="#/tab/auth/login">{{'ALREADY_HAVE_ACCOUNT' | translate}}</a>

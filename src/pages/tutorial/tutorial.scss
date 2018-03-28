@@ -1,15 +1,36 @@
 page-tutorial {
+  .swiper-container-horizontal > .swiper-pagination-bullets{
+    bottom: 50px;
+  }
+  .swiper-pagination-bullet{
+    border:2px solid $blanc;
+    opacity:1;
+    background:transparent;
+    width: 15px;
+    height: 15px;
+
+  }
+  .swiper-pagination-bullet-active{
+    background:$blanc;
+    opacity:1;
+  }
   .toolbar-background {
     background: transparent;
     border-color: transparent;
   }
 
   .slide-zoom {
-    height: 100%;
+    background: linear-gradient(135deg,$bleu,$vert);
+    height: 90%;
+    width:80%;
+    color:$blanc;
+    border-radius:10px;
+    box-shadow: 5px 5px 25px 0 rgba(0, 0, 0, 0.2);
   }
 
   .slide-title {
-    margin-top: 2.8rem;
+    margin-top: 1.5rem;
+    font-weight: 900;
   }
 
   .slide-image {
@@ -26,11 +47,13 @@ page-tutorial {
     padding: 0 40px;
     font-size: 14px;
     line-height: 1.5;
-    color: #60646B;
 
     b {
-      color: #000000;
+      color: $blanc;
+      font-weight:900;
     }
   }
-
+  .button-clear-md{
+    color:$blanc;
+  }
 }

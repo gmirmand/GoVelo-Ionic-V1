@@ -37,6 +37,7 @@
   align-items: center;
 }
 
+
 //  Enable media queries by default (to disable it, you have to override it to false after including this mixin
 $enable-media-queries: true;
 
@@ -91,9 +92,9 @@ $enable-media-queries: true;
 }
 
 //Global
-ion-app, ion-app.ios {
+ion-cotent {
   background-color: $blanc;
-  font-family: $font-text;
+  font-family: $font-regular;
   font-weight: 300;
   @include fontSize(18px);
   @include respond-to(s) {
@@ -101,7 +102,7 @@ ion-app, ion-app.ios {
   }
   h1 {
     font-size: 35px;
-    margin: 5px 0 5px 0;
+    font-size: 28px;
   }
   h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
@@ -131,10 +132,16 @@ a {
     cursor: pointer;
   }
 }
-
+.title_page{
+  margin: 25px 0 25px 0;
+}
 /*************
 STRUCTURE
 *************/
+.container-7 {
+  width: 70%;
+  margin: 0 auto;
+}
 .container-8 {
   width: 80%;
   margin: 0 auto;
@@ -217,7 +224,25 @@ h2 {
     text-align: center;
   }
 }
+.line-under {
+  height: 2px;
+  padding: 0;
+  background: $color-grey;
+  overflow: visible;
+  position: relative;
+  margin: 25px auto 25px auto;
+  text-align:center;
+}
 
+.line-under p {
+  color: $color-grey;
+  background-color: $color-lightgrey;
+  top: -10px;
+  margin-left: -40px;
+  padding: 5px 25px;
+  display: inline;
+  position: absolute;
+}
 .separator {
   height: 3px;
   background-color: $bleu;
@@ -418,33 +443,13 @@ ion-header.header {
 /**********
 PROPOSE FORM
 **********/
-#propose-form {
-  .line-under {
-    height: 2px;
-    padding: 0;
-    background: $noir;
-    overflow: visible;
-    position: relative;
-    margin: 5vh auto 5vh auto;
-    text-align: center;
-  }
 
-  .line-under p {
-    color: $noir;
-    background-color: $blanc;
-    top: -10px;
-    margin-left: -40px;
-    padding: 5px 25px;
-    display: inline;
-    position: absolute;
-  }
-}
 
 //Buttons
 .button {
   border-radius: 50px;
   width: 100%;
-  margin-bottom: 45px;
+  margin-bottom: 25px;
   padding: 20px 0;
   font-weight: bold;
   font-size: 14px;
@@ -478,8 +483,6 @@ PROPOSE FORM
       background-color: $bleu;
       color: $blanc;
     }
-  }
-  &_static {
     &_blanc {
       background-color: $blanc;
       color: $bleu;

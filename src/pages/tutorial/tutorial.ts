@@ -26,7 +26,7 @@ export class TutorialPage {
       "TUTORIAL_SLIDE2_TITLE",
       "TUTORIAL_SLIDE2_DESCRIPTION",
       "TUTORIAL_SLIDE3_TITLE",
-      "TUTORIAL_SLIDE3_DESCRIPTION",
+        "TUTORIAL_SLIDE3_DESCRIPTION",
     ]).subscribe(
       (values) => {
         console.log('Loaded values', values);
@@ -34,17 +34,17 @@ export class TutorialPage {
           {
             title: values.TUTORIAL_SLIDE1_TITLE,
             description: values.TUTORIAL_SLIDE1_DESCRIPTION,
-            image: 'assets/img/ica-slidebox-img-1.png',
+            image: 'assets/img/logo/logo-sim-blanc.png',
           },
           {
             title: values.TUTORIAL_SLIDE2_TITLE,
             description: values.TUTORIAL_SLIDE2_DESCRIPTION,
-            image: 'assets/img/ica-slidebox-img-2.png',
+            image: 'assets/img/icons/velo-blanc.png',
           },
           {
             title: values.TUTORIAL_SLIDE3_TITLE,
             description: values.TUTORIAL_SLIDE3_DESCRIPTION,
-            image: 'assets/img/ica-slidebox-img-3.png',
+            image: 'assets/img/icons/loupe-blanc.png',
           }
         ];
       });

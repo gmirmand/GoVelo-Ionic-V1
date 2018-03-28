@@ -31,16 +31,17 @@ $colors: (
 );
 
 /*TYPO*/
-$font-text: 'Source Sans Pro', "Arial", "Open Sans", sans-serif;
-$font-titre: 'source sans';
+$font-regular: 'Source Sans Pro', sans-serif;
+$font-bold: 'Source Sans Pro Bold', sans-serif;
 
 /*COLOR*/
-$color-lightgrey: #f2f2f2;
+
 $bleu: #0B9CB3;
 $bleu-clair: #BCE0FD;
 $vert: #80C262;
-$color-grey: #605e61;
-$noir: #414042;
+$color-lightgrey: #f2f2f2;
+$color-grey: #727272;
+$noir: #404040;
 $blanc: #fff;
 
 //  Breakpoints
@@ -87,3 +88,4 @@ $breakpoint-fullHD: 1920px;
 
 @import "roboto";
 @import "noto-sans";
+//@import "source-sans-pro";

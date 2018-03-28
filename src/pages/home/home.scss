@@ -43,10 +43,9 @@ page-home {
       }
     }
     .proposer_right, .trouver_left {
-      width: 40%;
-      text-align: center;
+      width: 50%;
       img {
-        width: 80%;
+        width: 100%;
       }
     }
   }
@@ -59,6 +58,10 @@ page-home {
     }
     .proposer_left {
       margin-left: 50px;
+      margin-right:20px;
+      p{
+        text-align: justify;
+      }
     }
   }
   .trouver {
@@ -70,6 +73,10 @@ page-home {
     }
     .trouver_right {
       margin-right: 50px;
+      margin-left:20px;
+      p{
+        text-align: justify;
+      }
     }
   }
 }
