@@ -2,11 +2,18 @@ page-propose {
   ion-modal {
     z-index: 9999999999 !important;
   }
+
+  .container-bike {
+    ion-slide {
+      width: 50% !important;
+    }
+  }
+
   ion-slide {
     overflow-y: auto;
     overflow-x: hidden;
   }
-  .swiper-slide{
+  .swiper-slide {
     align-items: flex-start;
   }
   .input-cover {
