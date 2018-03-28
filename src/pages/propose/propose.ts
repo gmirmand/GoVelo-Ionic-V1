@@ -237,9 +237,9 @@ export class ProposePage {
 // AutoGeoComplete
     showAddressModal() {
         const modal = this.modalCtrl.create(AutocompletePage);
-        modal.present();
         modal.onDidDismiss(data => {
             this.address.place = data;
         });
+        modal.present();
     }
 }

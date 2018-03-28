@@ -1,6 +1,16 @@
 page-propose {
-  ion-modal{
+  ion-modal {
     z-index: 9999999999 !important;
+  }
+  ion-slide {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .swiper-slide{
+    align-items: flex-start;
+  }
+  .input-cover {
+    display: none;
   }
   input[type=file]:disabled + .custom-file-label {
     background-color: #d5d5d5;

@@ -8,7 +8,9 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+    priority: 'high'
+})
 @Component({
     selector: 'page-splash',
     templateUrl: 'splash.html',
@@ -24,9 +26,14 @@ export class SplashPage {
         setTimeout(() => {
             this.load = 1;
             setTimeout(() => {
-                this.navCtrl.setRoot('TutorialPage');
-            }, 2000)
-        }, 2500)
+                this.navCtrl.setRoot('TutorialPage', {}, {
+                    animate: true,
+                    direction: 'forward'
+                });
+            }, 500)
+            /*2000*/
+        }, 500)
+        /*8000*/
     }
 
 }

@@ -173,7 +173,7 @@
             <form [formGroup]="slideFourForm">
                 <ion-list no-lines>
                     <ion-item>
-                        <ion-input (focus)="showAddressModal()" [(ngModel)]="address.place" type="text"
+                        <ion-input tappable (ionFocus)="showAddressModal()" [(ngModel)]="address.place" type="text"
                                    placeholder="Choisissez l'addresse exacte" formControlName="town"
                                    [class.invalid]="!slideFourForm.controls.town.valid &&
                                           (slideFourForm.controls.town.dirty || submitAttempt)"></ion-input>
@@ -227,15 +227,13 @@
                                   [format]="'DD/MM/YYYY'">
                     </ion-calendar>
                 </ion-item>
+                <p>Appuyez 2 fois sur la même date pour sélectionner une seule journée.</p>
+                <button [disabled]="disabled" ion-button clear class="button button-stable bike"
+                        (click)="addCalendar()"> Ajouter la période
+                </button>
                 <ion-item>
                     <!--Calendars-->
                     <ion-list>
-                        <ion-item>
-                            <p>Appuyez 2 fois sur la même date pour sélectionner une seule journée.</p>
-                            <button [disabled]="disabled" ion-button clear class="button button-stable bike"
-                                    (click)="addCalendar()"> Ajouter la période
-                            </button>
-                        </ion-item>
                         <ion-item *ngFor="let item of calendar.dateRangeArray;let i = index">
                             <ion-row id="{{i}}">
                                 <ion-col col-5>Du {{item.from | date:'dd/MM/yyyy'}}</ion-col>
@@ -260,34 +258,42 @@
             <ion-list no-lines>
                 <form [formGroup]="slideSevenForm">
                     <!--Locker-->
-                    <div class="locker">
-                        <div class="input">
-                            <span class="input-label">Code cadenas</span>
-                            <div class="lockInput">
+                    <span class="input-label">Code cadenas</span>
+                    <div class="lockInput">
+                        <ion-row>
+                            <ion-col col-3>
                                 <ion-input type="number" maxlength="1" name="lock1"
                                            [(ngModel)]="propose.lock1"
                                            formControlName="lock1"
                                            id="lock1"></ion-input>
+                            </ion-col>
+                            <ion-col col-3>
                                 <ion-input type="number" maxlength="1" name="lock2"
                                            [(ngModel)]="propose.lock2"
                                            formControlName="lock2"
                                            id="lock2"></ion-input>
+                            </ion-col>
+                            <ion-col col-3>
                                 <ion-input type="number" maxlength="1" name="lock3"
                                            [(ngModel)]="propose.lock3"
                                            formControlName="lock3"
                                            id="lock3"></ion-input>
+                            </ion-col>
+                            <ion-col col-3>
                                 <ion-input type="number" maxlength="1" name="lock4"
                                            [(ngModel)]="propose.lock4"
                                            formControlName="lock4"
                                            id="lock4"></ion-input>
-                            </div>
-                        </div>
-                        <div class="preview">
-                            <div>{{propose.lock1}}</div>
-                            <div>{{propose.lock2}}</div>
-                            <div>{{propose.lock3}}</div>
-                            <div>{{propose.lock4}}</div>
-                        </div>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                    <div class="preview">
+                        <ion-row>
+                            <ion-col col-3>{{propose.lock1}}</ion-col>
+                            <ion-col col-3>{{propose.lock2}}</ion-col>
+                            <ion-col col-3>{{propose.lock3}}</ion-col>
+                            <ion-col col-3>{{propose.lock4}}</ion-col>
+                        </ion-row>
                     </div>
                 </form>
 

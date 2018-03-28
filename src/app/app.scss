@@ -37,7 +37,6 @@
   align-items: center;
 }
 
-
 //  Enable media queries by default (to disable it, you have to override it to false after including this mixin
 $enable-media-queries: true;
 
@@ -92,7 +91,7 @@ $enable-media-queries: true;
 }
 
 //Global
-ion-cotent {
+ion-content {
   background-color: $blanc;
   font-family: $font-regular;
   font-weight: 300;
@@ -126,15 +125,22 @@ p {
   margin-top: 50px !important;
 }
 
+.scroll-content {
+  margin-bottom: 0 !important;
+  padding-bottom: 30px !important;
+}
+
 a {
   text-decoration: none;
   &:hover {
     cursor: pointer;
   }
 }
-.title_page{
+
+.title_page {
   margin: 25px 0 25px 0;
 }
+
 /*************
 STRUCTURE
 *************/
@@ -142,6 +148,7 @@ STRUCTURE
   width: 70%;
   margin: 0 auto;
 }
+
 .container-8 {
   width: 80%;
   margin: 0 auto;
@@ -158,7 +165,7 @@ STRUCTURE
   height: 90vh;
 }
 
-.row{
+.row {
   align-items: center;
 }
 
@@ -228,6 +235,7 @@ h2 {
     text-align: center;
   }
 }
+
 .line-under {
   height: 2px;
   padding: 0;
@@ -235,7 +243,7 @@ h2 {
   overflow: visible;
   position: relative;
   margin: 25px auto 25px auto;
-  text-align:center;
+  text-align: center;
 }
 
 .line-under p {
@@ -247,6 +255,7 @@ h2 {
   display: inline;
   position: absolute;
 }
+
 .separator {
   height: 3px;
   background-color: $bleu;
@@ -447,7 +456,6 @@ ion-header.header {
 /**********
 PROPOSE FORM
 **********/
-
 
 //Buttons
 .button {
