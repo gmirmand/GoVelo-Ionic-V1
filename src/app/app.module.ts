@@ -12,7 +12,7 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {Items} from '../mocks/providers/items';
-import {User, Api, Settings} from '../providers/providers';
+import {User, Api, Settings, Announcements, Calendar, Style} from '../providers/providers';
 import {MyApp} from './app.component';
 
 import {AutocompletePage} from '../components/autocomplete/autocomplete';
@@ -68,6 +68,9 @@ export function provideSettings(storage: Storage) {
         Api,
         Items,
         User,
+        Announcements,
+        Calendar,
+        Style,
         Camera,
         SplashScreen,
         StatusBar,

@@ -153,29 +153,9 @@
                 <ion-list no-lines>
                     <!--TYPE-->
                     <ion-row radio-group formControlName="type">
-                        <ion-item>
-                            <ion-label>VTT</ion-label>
-                            <ion-radio value="VTT" id="VTT" checked>
-                            </ion-radio>
-                        </ion-item>
-                        <ion-item>
-                            <ion-label>BMX</ion-label>
-                            <ion-radio value="BMX" id="BMX">
-                            </ion-radio>
-                        </ion-item>
-                        <ion-item>
-                            <ion-label>Route</ion-label>
-                            <ion-radio value="Route" id="Route">
-                            </ion-radio>
-                        </ion-item>
-                        <ion-item>
-                            <ion-label>Pliant</ion-label>
-                            <ion-radio value="Pliant" id="Pliant">
-                            </ion-radio>
-                        </ion-item>
-                        <ion-item>
-                            <ion-label>Electrique</ion-label>
-                            <ion-radio value="Electrique" id="Electrique">
+                        <ion-item *ngFor="let style of styles">
+                            <ion-label>{{style.style}}</ion-label>
+                            <ion-radio value="{{style.id}}" id="{{style.style}}" checked>
                             </ion-radio>
                         </ion-item>
                     </ion-row>

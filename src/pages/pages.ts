@@ -11,5 +11,5 @@ export const AnnouncementDetailsPage = 'AnnouncementDetailsPage';
 export const tabProposeRoot = 'ProposePage';
 export const tabFindRoot = 'FindPage';
 export const tabHomeRoot = 'HomePage';
-export const tabMessageRoot = 'SettingsPage';
+export const tabMessageRoot = 'ListMasterPage';
 export const tabProfilRoot = 'ProfilPage';
