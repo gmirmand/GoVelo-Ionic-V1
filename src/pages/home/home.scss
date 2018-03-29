@@ -36,16 +36,23 @@ page-home {
       }
     }
     .proposer_left, .trouver_right {
+
       .title {
         font-size: 24px;
         font-weight: bold;
         margin: 0 0 10px;
       }
     }
+    .proposer_left{
+      width:50%;
+    }
+    .trouver_right{
+      width: 60%;
+    }
     .proposer_right, .trouver_left {
-      width: 50%;
       img {
-        width: 100%;
+        width: 6em;
+        height:auto;
       }
     }
   }

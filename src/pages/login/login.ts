@@ -37,8 +37,8 @@ export class LoginPage {
         });
 
         this.logForm = formBuilder.group({
-            email: ['ToRemove@ToRemove.ToRemove', Validators.compose([Validators.required, Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')]), EmailValidator.checkEmail],
-            passWord: ['ToRemove00*', Validators.required]
+            email: ['', Validators.compose([Validators.required, Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')]), EmailValidator.checkEmail],
+            passWord: ['', Validators.required]
         });
     }
 
