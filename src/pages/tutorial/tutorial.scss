@@ -37,8 +37,8 @@ page-tutorial {
   }
 
   .slide-image {
-    max-height: 40%;
-    max-width: 60%;
+    height: 20%;
+    width: auto;
     margin: 36px 0 10px;
   }
 
@@ -56,7 +56,7 @@ page-tutorial {
       font-weight:900;
     }
   }
-  .button-clear-md{
+  .button-clear-md, .button-ios{
     color:$blanc;
   }
 }

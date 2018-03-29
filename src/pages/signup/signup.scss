@@ -1,2 +1,103 @@
 page-signup {
+  h1{
+    text-align:center;
+  }
+
+  /*profile picture*/
+  .profil-picture{
+    .list-md .item-input:last-child, .list-ios .item-input:last-child{
+      border: 2px solid $bleu-clair;
+      border-bottom-color: $bleu-clair !important;
+      border-radius:50%;
+      width:200px;
+      height:200px;
+      margin:0 auto;
+      background-image: url('/assets/img/icons/profil.png');
+      background-size: contain;
+    }
+    ion-input, ion-select, ion-textarea {
+      background-color: transparent;
+    }
+  }
+
+  /*bouton radio*/
+  .personnal-information{
+    .radio-list.item, .item-ios.item{
+      .item-inner{
+        padding-right:0;
+        .label-md, .label-ios {
+          margin: 3px 0 3px 0;
+        }
+      }
+      .item-radio, .item-ios{
+        .radio-md, .radio-ios{
+          margin:5px 10px;
+          width:100%;
+          .radio-icon{
+            position:relative;
+            border:2px solid $bleu-clair;
+            background-color:$blanc;
+            border-radius: 50px;
+            width: 100%;
+            margin-bottom: 0;
+            padding: 20px 0;
+            font-weight: bold;
+            font-size: 14px;
+            &:after{
+              color:$bleu;
+              position:absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
+        }
+
+      }
+      .homme.item-radio{
+        .radio-icon{
+          &:after{
+            content:"Homme";
+          }
+        }
+      }
+      .femme.item-radio{
+        .radio-icon{
+          &:after{
+            content:"Femme";
+          }
+        }
+      }
+      .autre.item-radio{
+        .radio-icon{
+          &:after{
+            content:"Autre";
+          }
+        }
+
+      }
+    }
+
+  }
+
+
+
+  /*bulles bottom*/
+  .swiper-pagination-bullet{
+    border:2px solid $bleu;
+    opacity:1;
+    background:transparent;
+    width: 15px;
+    height: 15px;
+
+  }
+  .swiper-pagination-bullet-active{
+    background:$bleu;
+    opacity:1;
+  }
+  /*fleche retour*/
+  .toolbar-ios-primary .bar-button-default-ios, .toolbar-md-primary .bar-button-default-md{
+    color: $bleu;
+  }
+
 }

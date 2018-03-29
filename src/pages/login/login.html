@@ -7,11 +7,11 @@
 </ion-header>
 
 
-<ion-content id="login">
+<ion-content class="bg-grey">
     <form (submit)="doLogin()">
-        <h2 class="font-bleu">
+        <h1 class="title_page font-bleu">
             Connexion
-        </h2>
+        </h1>
 
         <div class="container-8 ">
             <div class="list-connect">
@@ -23,30 +23,26 @@
             </div>
             <ion-list>
                 <form [formGroup]="logForm">
-                    <ion-item>
-                        <ion-label floating>email</ion-label>
+                    <ion-item class="input-form">
+                        <ion-label floating>Adresse e-mail</ion-label>
                         <ion-input
                                 [class.invalid]="!logForm.controls.email.valid && (logForm.controls.email.dirty || submitAttempt)"
                                 formControlName="email" type="text"></ion-input>
                     </ion-item>
-                    <ion-item>
+                    <ion-item class="input-form">
                         <ion-label floating>{{"PASSWORD" | translate}}</ion-label>
                         <ion-input formControlName="passWord" type="password"
                                    [class.invalid]="!logForm.controls.passWord.valid && (logForm.controls.passWord.dirty || submitAttempt)"></ion-input>
                     </ion-item>
 
                     <div padding>
-                        <button ion-button full color="primary" (click)="save()">{{ 'LOGIN_BUTTON' | translate }}</button>
+                        <button ion-button full class="button_inverse_bleu no-margin" (click)="save()">{{ 'LOGIN_BUTTON' | translate }}</button>
 
                     </div>
                 </form>
-                <a button ion-button clear >{{'FORGET_PASSWORD' | translate}}</a><br>
-                <a button ion-button clear >{{'NO_ACCOUNT' | translate}}</a>
+                <a button ion-button clear class="forgot">{{'FORGET_PASSWORD' | translate}}</a><br>
+                <a button ion-button clear class="created">{{'NO_ACCOUNT' | translate}}</a>
             </ion-list>
-        </div>
-        <div class="">
-            <p class="font-grey-light">Mot de passe oublié ?</p>
-            <p class="font-black">Vous n'avez pas de compte ?</p>
         </div>
     </form>
 </ion-content>
