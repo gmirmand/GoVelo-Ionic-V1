@@ -12,15 +12,13 @@ export class Calendar {
 
     add(infos: any) {
         infos = {
-            "picture": infos[0].picture,
+            "start": infos.from.format('YYYY-MM-DD'),
+            "end": infos.to.format('YYYY-MM-DD')
         };
-        let seq = this.api.post('calendar', infos).share();
+        let seq = this.api.post('calendars', infos).share();
 
         seq.subscribe((res: any) => {
-            // If the API returned a successful response, mark the user as logged in
-            if (res.status == 'success') {
-                console.log('OK');
-            }
+            // If the API returned a successful response, calendar have been create
             console.log(res);
         }, err => {
             console.error('ERROR', err);

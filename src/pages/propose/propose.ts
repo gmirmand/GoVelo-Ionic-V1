@@ -5,11 +5,12 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ICustomFile} from "file-input-accessor";
 import {AutocompletePage} from '../../components/autocomplete/autocomplete';
 import {NativeGeocoder, NativeGeocoderForwardResult} from '@ionic-native/native-geocoder';
-import {AnnouncementDetailsPage} from "../pages";
+import {AnnouncementDetailsPage, MainPage} from "../pages";
 
 //Api providers
 import {Announcements} from '../../providers/providers';
 import {Style} from '../../providers/providers';
+import {Calendar} from '../../providers/providers';
 
 
 @IonicPage()
@@ -77,8 +78,9 @@ export class ProposePage {
                 public formBuilder: FormBuilder,
                 private nativeGeocoder: NativeGeocoder,
                 public toastCtrl: ToastController,
-                public announcement: Announcements,
-                public style: Style) {
+                public announcementProvider: Announcements,
+                public styleProvider: Style,
+                public calendarProvider: Calendar) {
         //AutoGeoComplete
         this
             .address = {
@@ -140,7 +142,7 @@ export class ProposePage {
 //    Get Styles
     getStyles() {
         // Attempt to create in through our Style service
-        this.style.get().subscribe((resp) => {
+        this.styleProvider.get().subscribe((resp) => {
             this.styles = resp['hydra:member'];
             console.log(this.styles);
         }, (err) => {
@@ -176,6 +178,28 @@ export class ProposePage {
                 this.calendar.dateRange.to = this.calendar.dateRange.from;
             this.calendar.dateRangeArray.push(this.calendar.dateRange);
         }
+    }
+
+    createCalendar() {
+        // Attempt to create a calendar item in through our User service
+        let self = this;
+        this.propose[5].calendar.forEach(function (slot) {
+            self.createUniqueSlot(slot);
+        });
+    }
+
+    createUniqueSlot(slot) {
+        this.calendarProvider.add(slot).subscribe((resp) => {
+            console.log(resp);
+        }, (err) => {
+            // Unable to sign up
+            let toast = this.toastCtrl.create({
+                message: 'Error Calendar',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+        });
     }
 
     delete(index) {
@@ -259,6 +283,7 @@ export class ProposePage {
                         this.long = '3.880841'
                 }).then(() => {
                 this.mergeData();
+                this.createCalendar();
                 this.pushAnnouncement();
             });
         }
@@ -269,7 +294,7 @@ export class ProposePage {
 //Signup
     pushAnnouncement() {
         // Attempt to create in through our Items service
-        this.announcement.add(this.propose).subscribe((resp) => {
+        this.announcementProvider.add(this.propose).subscribe((resp) => {
             this.navCtrl.push(AnnouncementDetailsPage);
         }, (err) => {
             this.navCtrl.push(AnnouncementDetailsPage);
