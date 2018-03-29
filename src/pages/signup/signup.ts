@@ -40,13 +40,13 @@ export class SignupPage {
         //Form
         //Slide1
         this.slideOneForm = formBuilder.group({
-            firstName: ['ToRemove',
+            firstName: ['',
                 Validators.compose([
                     Validators.maxLength(30),
                     Validators.pattern('^([áéíóúñÁÉÍÓÚÑäëïöüÄËÏÖÜçÇA-Za-z-]+)$'),
                     Validators.required]
                 )],
-            lastName: ['ToRemove',
+            lastName: ['',
                 Validators.compose([
                     Validators.maxLength(30),
                     Validators.pattern('^([áéíóúñÁÉÍÓÚÑäëïöüÄËÏÖÜçÇA-Za-z-]+)$'),
@@ -56,12 +56,12 @@ export class SignupPage {
 
         //Slide2
         this.slideTwoForm = formBuilder.group({
-            email: ['ToRemove@ToRemove.ToRemove',
+            email: ['',
                 Validators.compose([
                     Validators.required,
                     Validators.pattern('^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$')]),
                 EmailValidator.checkEmail],
-            passWord: ['ToRemove00*',
+            passWord: ['',
                 Validators.compose([
                     Validators.minLength(8),
                     Validators.maxLength(50),
@@ -73,8 +73,8 @@ export class SignupPage {
         //Slide3
         this.slideThreeForm = formBuilder.group({
             sex: [0, Validators.required],
-            age: [20, AgeValidator.isValid],
-            phone: ['0404040404',
+            age: ['', AgeValidator.isValid],
+            phone: ['',
                 Validators.compose([
                     Validators.required,
                     Validators.pattern('(\\+\\d+(\\s|-))?0\\d(\\s|-)?(\\d{2}(\\s|-)?){4}')]
