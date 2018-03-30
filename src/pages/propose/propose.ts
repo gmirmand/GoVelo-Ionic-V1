@@ -142,7 +142,6 @@ export class ProposePage {
         // Attempt to create in through our Style service
         this.styleProvider.get().subscribe((resp) => {
             this.styles = resp['hydra:member'];
-            console.log(this.styles);
         }, (err) => {
             // Unable to sign up
             let toast = this.toastCtrl.create({
@@ -202,11 +201,9 @@ export class ProposePage {
     FileUploadWatcher() {
         this.slideTwoForm.get('file').valueChanges
             .subscribe((val) => {
-                console.log('%c-----FILE LIST CHANGED-----', 'background-color: #008351; color: #fff');
                 let errors = Object.keys(val[0].errors);
                 if (errors.length === 0) {
                     this.fileList = this.fileList ? this.fileList.concat(val[0]) : [];
-                    console.log(this.fileList);
                 }
             });
     }
@@ -273,12 +270,15 @@ export class ProposePage {
         this.propose.calendars.calendar.forEach(function (slot) {
             self.createUniqueSlot(slot);
         });
-        this.pushAnnouncement(this.pushedCalendars);
     }
 
     createUniqueSlot(slot) {
         this.calendarProvider.add(slot).subscribe((resp) => {
+            console.log(resp['id']);
             this.pushedCalendars.push(resp['id']);
+            if (this.pushedCalendars.length === this.propose.calendars.calendar.length) {
+                this.pushAnnouncement(this.pushedCalendars);
+            }
         }, (err) => {
             // Unable to sign up
             let toast = this.toastCtrl.create({
@@ -294,7 +294,8 @@ export class ProposePage {
 //Signup
     pushAnnouncement(calendarsId) {
         // Attempt to create in through our Items service
-        this.propose = Object.assign(this.propose, {'calendarsId': calendarsId})
+        this.propose = Object.assign(this.propose, {'calendarsId': calendarsId});
+        console.log(this.propose);
         this.announcementProvider.add(this.propose).subscribe((resp) => {
             // this.navCtrl.push(AnnouncementDetailsPage);
             let toast = this.toastCtrl.create({
@@ -346,13 +347,12 @@ export class ProposePage {
 
         this.propose = {
             "infos": this.slideOneForm.value,
-            "pictures": this.slideTwoForm.value,
+            "pictures": this.fileList,
             "type": this.slideThreeForm.value,
             "address": this.slideFiveData,
-            "price": parseInt(this.slideFiveForm.value),
+            "price": this.slideFiveForm.value,
             "calendars": this.slideSixData,
             "security": this.slideSevenForm.value
         };
-        console.log(this.propose);
     }
 }
