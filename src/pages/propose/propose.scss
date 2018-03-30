@@ -4,17 +4,68 @@ page-propose {
   }
 
   .container-bike {
+
     ion-slide {
-      width: 50% !important;
+      width: 100% !important;
+      padding:0 20px;
+      margin: 0 auto;
+      .h3,.h5,.h4{
+        color:$blanc;
+      }
+      .list-bike{
+        background: linear-gradient(-132deg, $bleu,$vert);
+        border-radius:20px;
+        position:relative;
+
+        img.header{
+          border-radius: 50%;
+          width: 70%;
+          margin-bottom:10px;
+          border:2px solid $bleu;
+        }
+        .h3{
+          font-size:20px;
+          font-weight:600;
+        }
+        .h5{
+          font-size:15px;
+          font-weight:100;
+        }
+        .h4{
+          margin-top:20px;
+          font-size:30px;
+        }
+        .param {
+          //position: absolute;
+          //bottom: 0px;
+          //right: 0px;
+          margin-top:20px;
+          img {
+            width: 30px;
+            height: auto;
+          }
+        }
+
+      }
+      button{
+        background:transparent;
+        padding:10px 0;
+      }
     }
   }
 
-  ion-slide {
-    overflow-y: auto;
-    overflow-x: hidden;
+  ion-slides{
+    height:inherit;
+    ion-slide{
+      padding:0 20px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      width:100%;
+    }
   }
   .swiper-slide {
     align-items: flex-start;
+    width:100%;
   }
   .input-cover {
     display: none;

@@ -11,28 +11,30 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="bg-grey">
     <ion-slides #proposeSlider ngClass="swiper-no-swiping">
         <ion-slide>
             <div class="slide-container">
-                <h2> Choisissez un vélo </h2>
+                <h2 class="title_page font-bleu" > Choisissez un vélo </h2>
                 <ion-slides class="container-bike">
                     <ion-slide>
-                        <button type="button" class="button button-stable bike"> <!-- GO STEP 7 -->
-                            <img src="/img/bike.svg" alt="Votre vélo" class="header">
-                            <div class="h3">VTT</div>
-                            <div class="h5">Le Puy en velay</div>
-                            <div class="h4">10€ / jour</div>
-                            <div class="param"><img src="/img/icons/params.svg" alt="paramètres"></div>
-                        </button>
+                        <div class="list-bike">
+                            <button type="button" class="button button-stable bike"> <!-- GO STEP 7 -->
+                                <img src="assets/img/bikes/bike.jpeg" alt="Votre vélo" class="header bike-img">
+                                <div class="h3">VTT</div>
+                                <div class="h5">Le Puy en velay</div>
+                                <div class="h4">10€ / jour</div>
+                                <div class="param"><img src="assets/img/icons/settings-bleu-contour.png" alt="paramètres"></div>
+                            </button>
+                        </div>
                     </ion-slide>
-                    <ion-slide>
+                    <ion-slide class="list-bike">
                         <button type="button" class="button button-stable bike"> <!-- GO STEP 7 -->
-                            <img src="/img/bike.svg" alt="Votre vélo" class="header">
+                            <img src="assets/img/bikes/bike_2.jpeg" alt="Votre vélo" class="header">
                             <div class="h3">VTT</div>
                             <div class="h5">Le Puy en velay</div>
                             <div class="h4">10€ / jour</div>
-                            <div class="param"><img src="/img/icons/params.svg" alt="paramètres"></div>
+                            <div class="param"><img src="assets/img/icons/settings-bleu-contour.png" alt="paramètres"></div>
                         </button>
                     </ion-slide>
                     <ion-slide>
@@ -46,11 +48,13 @@
                     </ion-slide>
                 </ion-slides>
 
-                <div class="separator">{{"OR" | translate}}</div>
+                <div class="line-under">
+                    <p>{{"OR" | translate}}</p>
+                </div>
 
                 <button ion-button clear icon-right (click)="next()"
-                        class="button button-block button-calm no-animation">
-                    Créer un vélo
+                        class="button button button_inverse_bleu no-animation">
+                    Créer un nouveau vélo
                 </button>
             </div>
         </ion-slide>
@@ -59,7 +63,7 @@
             <ion-list no-lines>
                 <form [formGroup]="slideOneForm">
                     <!--TITLE-->
-                    <ion-item>
+                    <ion-item class="input-form">
                         <ion-label floating>Titre de l'annonce</ion-label>
                         <ion-input formControlName="title" type="text"
                                    [class.invalid]="!slideOneForm.controls.title.valid
@@ -73,7 +77,7 @@
                     </ion-item>
 
                     <!--DESCRIPTION-->
-                    <ion-item>
+                    <ion-item class="input-form">
                         <ion-label floating>Description du vélo</ion-label>
                         <ion-textarea formControlName="description"
                                       [class.invalid]="!slideOneForm.controls.description.valid &&
@@ -87,9 +91,9 @@
                     </ion-item>
                 </form>
 
-                <button ion-button icon-right (click)="next()">
+                <button ion-button icon-right class="button_inverse_bleu" (click)="next()">
                     {{'NEXT' | translate}}
-                    <ion-icon name="arrow-next"></ion-icon>
+                    <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
                 </button>
             </ion-list>
         </ion-slide>
