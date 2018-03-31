@@ -14,7 +14,7 @@
 <ion-content padding class="bg-grey">
     <ion-slides #proposeSlider ngClass="swiper-no-swiping">
         <ion-slide>
-            <div class="slide-container swiper-swiping">
+            <div class="slide-container swiper-swiping container-9">
                 <h2 class="title_page font-bleu" > Choisissez un vélo </h2>
                 <ion-slides class="container-bike">
                     <ion-slide>
@@ -57,13 +57,13 @@
                 </div>
 
                 <button ion-button clear icon-right (click)="next()"
-                        class="button button button_inverse_bleu no-animation">
+                        class="button button_inverse_bleu">
                     Créer un nouveau vélo
                 </button>
             </div>
         </ion-slide>
-        <ion-slide class="">
-            <div class="container-9 center-verti">
+        <ion-slide>
+            <div class=" container-9 center-verti">
                 <h2> Titre et description de l'annonce </h2>
                 <ion-list no-lines>
                     <form [formGroup]="slideOneForm">
@@ -95,7 +95,7 @@
                             <p>Veuillez entrer une description valide.</p>
                         </ion-item>
                     </form>
-                    <button ion-button icon-right class="button_inverse_bleu" (click)="next()">
+                    <button ion-button icon-right class="button button_inverse_bleu" (click)="next()">
                         {{'NEXT' | translate}}
                         <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
                     </button>
@@ -152,7 +152,7 @@
                     </ion-item>
                 </ion-item>
 
-                <button ion-button icon-right (click)="next()" class="button_inverse_bleu">
+                <button ion-button icon-right (click)="next()" class="button button_inverse_bleu">
                     {{'NEXT' | translate}}
                     <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
                 </button>
@@ -161,7 +161,7 @@
 
 
         <ion-slide class="list-type">
-            <div class="container-9 center-verti">
+            <div class="container-9">
                 <h2>Quel type de vélo ?</h2>
                 <form [formGroup]="slideThreeForm">
                     <ion-list no-lines>
@@ -176,36 +176,46 @@
                     </ion-list>
                 </form>
 
-                <button ion-button icon-right (click)="next()" class="button_inverse_bleu">
+                <button ion-button icon-right (click)="next()" class="button button_inverse_bleu">
                     {{'NEXT' | translate}}
                     <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
                 </button>
             </div>
         </ion-slide>
         <ion-slide>
-            <h2>Où louez-vous votre vélo ?</h2>
-            <p>Ecrivez l'addresse exacte où le vélo sera transmis au locataire.</p>
-            <form [formGroup]="slideFourForm">
-                <ion-list no-lines>
-                    <ion-item>
-                        <ion-input tappable (ionFocus)="showAddressModal()" [(ngModel)]="address.place" type="text"
-                                   placeholder="Choisissez l'addresse exacte" formControlName="town"
-                                   [class.invalid]="!slideFourForm.controls.town.valid &&
+            <div class="container-9 center-verti">
+                <h2>Où louez-vous votre vélo ?</h2>
+                <p class="text-info">La fonctionnalité de géolocalisation sera disponible prochainement !</p>
+                <button ion-button icon-right (click)="next()" class="button button_inverse_blanc button-nonused">
+                    {{'Ma position' | translate}}
+                    <ion-icon ios="ios-disc" md="md-disc"></ion-icon>
+                </button>
+                <div class="line-under">
+                    <p>{{"OR" | translate}}</p>
+                </div>
+                <p class="text-info">Ecrivez l'addresse exacte où le vélo sera transmis au locataire.</p>
+                <form [formGroup]="slideFourForm">
+                    <ion-list no-lines>
+                        <ion-item class="input-form">
+                            <ion-input tappable (ionFocus)="showAddressModal()" [(ngModel)]="address.place" type="text"
+                                       placeholder="Choisissez l'addresse exacte" formControlName="town"
+                                       [class.invalid]="!slideFourForm.controls.town.valid &&
                                           (slideFourForm.controls.town.dirty || submitAttempt)"></ion-input>
-                    </ion-item>
-                    <ion-item *ngIf="!slideFourForm.controls.town.valid
+                        </ion-item>
+                        <ion-item *ngIf="!slideFourForm.controls.town.valid
                         && (slideFourForm.controls.town.dirty || submitAttempt)">
-                        <p>Veuillez entrer une addresse.</p>
-                    </ion-item>
+                            <p>Veuillez entrer une addresse.</p>
+                        </ion-item>
 
-                    <button ion-button icon-right (click)="next()" class="button_inverse_bleu">
-                        {{'NEXT' | translate}}
-                        <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
-                    </button>
-                </ion-list>
-            </form>
+                        <button ion-button icon-right (click)="next()" class="button button_inverse_bleu">
+                            {{'NEXT' | translate}}
+                            <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+                        </button>
+                    </ion-list>
+                </form>
+            </div>
         </ion-slide>
-        <ion-slide class="choice-price">
+        <ion-slide class="choice-price ">
             <div class="container-9 center-verti">
                 <h2> Pour quel tarif ?</h2>
                 <ion-list no-lines>
@@ -225,7 +235,7 @@
                         </ion-row>
                     </form>
 
-                    <button ion-button icon-right (click)="next()" class="button_inverse_bleu">
+                    <button ion-button icon-right (click)="next()" class="button button_inverse_bleu">
                         {{'NEXT' | translate}}
                         <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
                     </button>
@@ -234,89 +244,98 @@
 
         </ion-slide>
         <ion-slide>
-            <h2> Pour quelle(s) période(s) ?</h2>
-            <ion-list no-lines>
-                <ion-item>
-                    <ion-calendar (onChange)="onCalendarChange($event)" name="calendar" [(ngModel)]="calendar.dateRange"
-                                  [options]="optionsRange"
-                                  [type]="type"
-                                  [format]="'DD/MM/YYYY'">
-                    </ion-calendar>
-                </ion-item>
-                <p class="text-info">Appuyez 2 fois sur la même date pour sélectionner une seule journée.</p>
-                <button [disabled]="disabled" ion-button clear class="button button-stable bike"
-                        (click)="addCalendar()"> Ajouter la période
-                </button>
-                <ion-item>
-                    <!--Calendars-->
-                    <ion-list>
-                        <ion-item *ngFor="let item of calendar.dateRangeArray;let i = index">
-                            <ion-row id="{{i}}">
-                                <ion-col col-5>Du {{item.from | date:'dd/MM/yyyy'}}</ion-col>
-                                <ion-col col-5>au {{item.to | date:'dd/MM/yyyy'}}</ion-col>
-                                <ion-col col-2 (click)="delete(i)">
-                                    <ion-icon name="close"></ion-icon>
+            <div class="container-9">
+                <h2> Pour quelle(s) période(s) ?</h2>
+                <ion-list no-lines>
+                    <ion-item>
+                        <ion-calendar (onChange)="onCalendarChange($event)" name="calendar" [(ngModel)]="calendar.dateRange"
+                                      [options]="optionsRange"
+                                      [type]="type"
+                                      [format]="'DD/MM/YYYY'">
+                        </ion-calendar>
+                    </ion-item>
+                    <p class="text-info">Appuyez 2 fois sur la même date pour sélectionner une seule journée.</p>
+                    <button [disabled]="disabled" ion-button clear class="button button_inverse_bleu bike"
+                            (click)="addCalendar()"> Ajouter la période
+                    </button>
+                    <ion-item>
+                        <!--Calendars-->
+                        <ion-list>
+                            <ion-item *ngFor="let item of calendar.dateRangeArray;let i = index">
+                                <ion-row id="{{i}}">
+                                    <ion-col col-5>Du {{item.from | date:'dd/MM/yyyy'}}</ion-col>
+                                    <ion-col col-5>au {{item.to | date:'dd/MM/yyyy'}}</ion-col>
+                                    <ion-col col-2 (click)="delete(i)">
+                                        <ion-icon name="close"></ion-icon>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-item>
+                        </ion-list>
+                    </ion-item>
+
+                    <button ion-button icon-right (click)="next()" class="button button_inverse_bleu">
+                        {{'NEXT' | translate}}
+                        <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+                    </button>
+                </ion-list>
+            </div>
+        </ion-slide>
+        <ion-slide class="paiement">
+            <div class="container-9  center-verti">
+                <h2> {{'PAIEMENT_TITLE' | translate}}</h2>
+                <ion-list class="info-box">
+                    <p>La possibilité de paiement via notre application est actuellement en cours de préparation.
+                        En attendant nous vous proposons un paiement en loquide directement avec le locataire.</p>
+                </ion-list>
+                <p *ngIf="submitAttempt" style="color: #ea6153;">Veuillez vérifier les champs s'il vous plaît.</p>
+                <ion-list no-lines>
+                    <form [formGroup]="slideSevenForm">
+                        <!--Locker-->
+                        <h2>Code cadena <ion-icon ios="ios-unlock" md="md-unlock"></ion-icon></h2>
+                        <p class="text-info">L'utilisation du cadena est fortement conseillé</p>
+                        <div class="lockInput">
+                            <ion-row>
+                                <ion-col col-3>
+                                    <ion-input type="number" maxlength="1" name="lock1"
+                                               [(ngModel)]="propose.lock1"
+                                               formControlName="lock1"
+                                               id="lock1"></ion-input>
+                                </ion-col>
+                                <ion-col col-3>
+                                    <ion-input type="number" maxlength="1" name="lock2"
+                                               [(ngModel)]="propose.lock2"
+                                               formControlName="lock2"
+                                               id="lock2"></ion-input>
+                                </ion-col>
+                                <ion-col col-3>
+                                    <ion-input type="number" maxlength="1" name="lock3"
+                                               [(ngModel)]="propose.lock3"
+                                               formControlName="lock3"
+                                               id="lock3"></ion-input>
+                                </ion-col>
+                                <ion-col col-3>
+                                    <ion-input type="number" maxlength="1" name="lock4"
+                                               [(ngModel)]="propose.lock4"
+                                               formControlName="lock4"
+                                               id="lock4"></ion-input>
                                 </ion-col>
                             </ion-row>
-                        </ion-item>
-                    </ion-list>
-                </ion-item>
+                        </div>
+                        <div class="preview">
+                            <ion-row>
+                                <ion-col col-3>{{propose.lock1}}</ion-col>
+                                <ion-col col-3>{{propose.lock2}}</ion-col>
+                                <ion-col col-3>{{propose.lock3}}</ion-col>
+                                <ion-col col-3>{{propose.lock4}}</ion-col>
+                            </ion-row>
+                        </div>
+                    </form>
 
-                <button ion-button icon-right (click)="next()" class="button_inverse_bleu">
-                    {{'NEXT' | translate}}
-                    <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
-                </button>
-            </ion-list>
-        </ion-slide>
-        <ion-slide>
-            <h2> {{'PAIEMENT_TITLE' | translate}}</h2>
-            <p *ngIf="submitAttempt" style="color: #ea6153;">Veuillez vérifier les champs s'il vous plaît.</p>
-            <ion-list no-lines>
-                <form [formGroup]="slideSevenForm">
-                    <!--Locker-->
-                    <span class="input-label">Code cadenas</span>
-                    <div class="lockInput">
-                        <ion-row>
-                            <ion-col col-3>
-                                <ion-input type="number" maxlength="1" name="lock1"
-                                           [(ngModel)]="propose.lock1"
-                                           formControlName="lock1"
-                                           id="lock1"></ion-input>
-                            </ion-col>
-                            <ion-col col-3>
-                                <ion-input type="number" maxlength="1" name="lock2"
-                                           [(ngModel)]="propose.lock2"
-                                           formControlName="lock2"
-                                           id="lock2"></ion-input>
-                            </ion-col>
-                            <ion-col col-3>
-                                <ion-input type="number" maxlength="1" name="lock3"
-                                           [(ngModel)]="propose.lock3"
-                                           formControlName="lock3"
-                                           id="lock3"></ion-input>
-                            </ion-col>
-                            <ion-col col-3>
-                                <ion-input type="number" maxlength="1" name="lock4"
-                                           [(ngModel)]="propose.lock4"
-                                           formControlName="lock4"
-                                           id="lock4"></ion-input>
-                            </ion-col>
-                        </ion-row>
-                    </div>
-                    <div class="preview">
-                        <ion-row>
-                            <ion-col col-3>{{propose.lock1}}</ion-col>
-                            <ion-col col-3>{{propose.lock2}}</ion-col>
-                            <ion-col col-3>{{propose.lock3}}</ion-col>
-                            <ion-col col-3>{{propose.lock4}}</ion-col>
-                        </ion-row>
-                    </div>
-                </form>
-
-                <button ion-button icon-right (click)="save()" class="button_inverse_blanc">
-                    Créer l'annonce
-                </button>
-            </ion-list>
+                    <button ion-button icon-right (click)="save()" class=" button button_inverse_blanc">
+                        Créer l'annonce
+                    </button>
+                </ion-list>
+            </div>
         </ion-slide>
     </ion-slides>
 </ion-content>
