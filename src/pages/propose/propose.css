@@ -2,17 +2,17 @@
 Error: Undefined variable: "$blanc".
         on line 12 of propose.scss
 
-7:     ion-slide {
-8:       width: 100% !important;
-9:       padding:0 20px;
-10:       margin: 0 auto;
+7:   .container-bike {
+8:     ion-slide {
+9:       width: 50% !important;
+10:       padding-bottom:20px;
 11:       .h3,.h5,.h4{
 12:         color:$blanc;
 13:       }
 14:       .list-bike{
-15:         background: linear-gradient(-132deg, $bleu,$vert);
-16:         border-radius:20px;
-17:         position:relative;
+15:         position:relative;
+16:         margin: 0 5px;
+17: 
 
 Backtrace:
 propose.scss:12
@@ -100,4 +100,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$blanc\".\A         on line 12 of propose.scss\A \A 7:     ion-slide {\A 8:       width: 100% !important;\A 9:       padding:0 20px;\A 10:       margin: 0 auto;\A 11:       .h3,.h5,.h4{\A 12:         color:$blanc;\A 13:       }\A 14:       .list-bike{\A 15:         background: linear-gradient(-132deg, $bleu,$vert);\A 16:         border-radius:20px;\A 17:         position:relative;"; }
+  content: "Error: Undefined variable: \"$blanc\".\A         on line 12 of propose.scss\A \A 7:   .container-bike {\A 8:     ion-slide {\A 9:       width: 50% !important;\A 10:       padding-bottom:20px;\A 11:       .h3,.h5,.h4{\A 12:         color:$blanc;\A 13:       }\A 14:       .list-bike{\A 15:         position:relative;\A 16:         margin: 0 5px;\A 17: "; }
