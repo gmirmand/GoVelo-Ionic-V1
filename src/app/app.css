@@ -6,9 +6,9 @@ Error: Undefined variable: "$blanc".
 91: }
 92: 
 93: //Global
-94: ion-app, ion-app.ios {
+94: ion-content {
 95:   background-color: $blanc;
-96:   font-family: $font-text;
+96:   font-family: $font-regular;
 97:   font-weight: 300;
 98:   @include fontSize(18px);
 99:   @include respond-to(s) {
@@ -67,4 +67,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$blanc\".\A         on line 95 of app.scss\A \A 90:   }\A 91: }\A 92: \A 93: //Global\A 94: ion-app, ion-app.ios {\A 95:   background-color: $blanc;\A 96:   font-family: $font-text;\A 97:   font-weight: 300;\A 98:   @include fontSize(18px);\A 99:   @include respond-to(s) {\A 100:     font-size: inherit;"; }
+  content: "Error: Undefined variable: \"$blanc\".\A         on line 95 of app.scss\A \A 90:   }\A 91: }\A 92: \A 93: //Global\A 94: ion-content {\A 95:   background-color: $blanc;\A 96:   font-family: $font-regular;\A 97:   font-weight: 300;\A 98:   @include fontSize(18px);\A 99:   @include respond-to(s) {\A 100:     font-size: inherit;"; }

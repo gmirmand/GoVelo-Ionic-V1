@@ -5,8 +5,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ICustomFile} from "file-input-accessor";
 import {AutocompletePage} from '../../components/autocomplete/autocomplete';
 import {NativeGeocoder, NativeGeocoderForwardResult} from '@ionic-native/native-geocoder';
-import {AnnouncementDetailsPage, MainPage} from "../pages";
-
 //Api providers
 import {Announcements} from '../../providers/providers';
 import {Style} from '../../providers/providers';
@@ -21,7 +19,7 @@ import {Calendar} from '../../providers/providers';
 export class ProposePage {
     @ViewChild('proposeSlider') proposeSlider: any;
 
-    propose: any = [];
+    propose: any = {};
     styles: any;
 
     //PP file imgfileList;
@@ -48,6 +46,7 @@ export class ProposePage {
         dateRange: undefined,
         dateRangeArray: []
     };
+    pushedCalendars = [];
 
     //Slides forms
     slideOneForm: FormGroup;
@@ -136,7 +135,6 @@ export class ProposePage {
             lock3: [undefined],
             lock4: [undefined]
         });
-        this.getStyles();
     }
 
 //    Get Styles
@@ -144,16 +142,16 @@ export class ProposePage {
         // Attempt to create in through our Style service
         this.styleProvider.get().subscribe((resp) => {
             this.styles = resp['hydra:member'];
-            console.log(this.styles);
         }, (err) => {
             // Unable to sign up
             let toast = this.toastCtrl.create({
-                message: 'error',
+                message: 'Fail to get styles',
                 duration: 3000,
                 position: 'top'
             });
             toast.present();
-            return 'error';
+            this.navCtrl.parent.select(2);
+            return 'Fail to get styles';
         });
     }
 
@@ -180,28 +178,6 @@ export class ProposePage {
         }
     }
 
-    createCalendar() {
-        // Attempt to create a calendar item in through our User service
-        let self = this;
-        this.propose[5].calendar.forEach(function (slot) {
-            self.createUniqueSlot(slot);
-        });
-    }
-
-    createUniqueSlot(slot) {
-        this.calendarProvider.add(slot).subscribe((resp) => {
-            console.log(resp);
-        }, (err) => {
-            // Unable to sign up
-            let toast = this.toastCtrl.create({
-                message: 'Error Calendar',
-                duration: 3000,
-                position: 'top'
-            });
-            toast.present();
-        });
-    }
-
     delete(index) {
         this.calendar.dateRangeArray.splice(index, 1);
     }
@@ -216,7 +192,8 @@ export class ProposePage {
         console.log('ionViewDidLoad ProposePage');
     }
 
-    ngOnInit() {
+    ionViewDidEnter() {
+        this.getStyles();
         this.FileUploadWatcher();
     }
 
@@ -224,11 +201,9 @@ export class ProposePage {
     FileUploadWatcher() {
         this.slideTwoForm.get('file').valueChanges
             .subscribe((val) => {
-                console.log('%c-----FILE LIST CHANGED-----', 'background-color: #008351; color: #fff');
                 let errors = Object.keys(val[0].errors);
                 if (errors.length === 0) {
                     this.fileList = this.fileList ? this.fileList.concat(val[0]) : [];
-                    console.log(this.fileList);
                 }
             });
     }
@@ -284,20 +259,53 @@ export class ProposePage {
                 }).then(() => {
                 this.mergeData();
                 this.createCalendar();
-                this.pushAnnouncement();
             });
         }
+    };
+
+//    Calendar push
+    createCalendar() {
+        // Attempt to create a calendar item in through our User service
+        let self = this;
+        this.propose.calendars.calendar.forEach(function (slot) {
+            self.createUniqueSlot(slot);
+        });
     }
-    ;
+
+    createUniqueSlot(slot) {
+        this.calendarProvider.add(slot).subscribe((resp) => {
+            console.log(resp['id']);
+            this.pushedCalendars.push(resp['id']);
+            if (this.pushedCalendars.length === this.propose.calendars.calendar.length) {
+                this.pushAnnouncement(this.pushedCalendars);
+            }
+        }, (err) => {
+            // Unable to sign up
+            let toast = this.toastCtrl.create({
+                message: 'Error Calendar',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+        });
+    }
 
 
 //Signup
-    pushAnnouncement() {
+    pushAnnouncement(calendarsId) {
         // Attempt to create in through our Items service
+        this.propose = Object.assign(this.propose, {'calendarsId': calendarsId});
+        console.log(this.propose);
         this.announcementProvider.add(this.propose).subscribe((resp) => {
-            this.navCtrl.push(AnnouncementDetailsPage);
+            // this.navCtrl.push(AnnouncementDetailsPage);
+            let toast = this.toastCtrl.create({
+                message: 'Annonce créé !',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
         }, (err) => {
-            this.navCtrl.push(AnnouncementDetailsPage);
+            // this.navCtrl.push(AnnouncementDetailsPage);
 
             // Unable to sign up
             let toast = this.toastCtrl.create({
@@ -313,34 +321,38 @@ export class ProposePage {
         //    Check input needed
         //    Slide 1 :
         // console.log(this.slideOneForm.value);
+
         //    Slide 2 :
         // console.log(this.slideTwoForm.value);
+
         //    Slide 3 :
         // console.log(this.slideThreeForm.value);
+
         //    Slide 4 :
         let lat = {lat: this.lat};
         let long = {long: this.long};
         this.slideFiveData = Object.assign(this.slideFourForm.value, lat, long);
         // console.log(this.slideFiveData);
+
         //    Slide 5 :
         // console.log(this.slideFiveForm.value);
+
         //    Slide 6 :
         let calendar = {calendar: this.calendar.dateRangeArray};
         this.slideSixData = Object.assign(calendar);
         // console.log(this.slideSixData);
+
         //    Slide 7 :
         // console.log(this.slideSevenForm.value);
 
-        this.propose = this.propose.concat(
-            this.slideOneForm.value,
-            this.slideTwoForm.value,
-            this.slideThreeForm.value,
-            this.slideFiveData,
-            this.slideFiveForm.value,
-            this.slideSixData,
-            this.slideSevenForm.value
-        )
-        console.log(this.propose);
-        // console.log(this.propose[5].calendar[0].from.format('YYYY-MM-DD'));
+        this.propose = {
+            "infos": this.slideOneForm.value,
+            "pictures": this.fileList,
+            "type": this.slideThreeForm.value,
+            "address": this.slideFiveData,
+            "price": this.slideFiveForm.value,
+            "calendars": this.slideSixData,
+            "security": this.slideSevenForm.value
+        };
     }
 }
