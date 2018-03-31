@@ -1,10 +1,13 @@
 import {NgModule} from '@angular/core';
 import {AutocompletePage} from './autocomplete/autocomplete';
+import {HitsComponent} from './hits/hits';
 
 @NgModule({
-    declarations: [AutocompletePage],
+    declarations: [AutocompletePage,
+        HitsComponent],
     imports: [],
-    exports: [AutocompletePage]
+    exports: [AutocompletePage,
+        HitsComponent]
 })
 export class ComponentsModule {
 }

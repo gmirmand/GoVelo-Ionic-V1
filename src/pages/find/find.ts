@@ -13,13 +13,6 @@ import {NativeGeocoder, NativeGeocoderForwardResult} from "@ionic-native/native-
 import {Style} from "../../providers/providers";
 import {AutocompletePage} from "../../components/autocomplete/autocomplete";
 
-/**
- * Generated class for the FindPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
     selector: 'page-find',
