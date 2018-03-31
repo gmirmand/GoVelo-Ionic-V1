@@ -64,11 +64,6 @@ page-propose {
       .item-textarea{
         margin-bottom:20px;
       }
-      .text-info{
-        text-align:left;
-        color:$bleu;
-
-      }
     }
   }
 
@@ -129,10 +124,6 @@ page-propose {
       border-bottom:2px solid $bleu-clair;
 
     }
-  }
-  .center-verti{
-    margin-top: 40vh;
-    transform: translateY(-50%);
   }
   .swiper-slide {
     align-items: flex-start;

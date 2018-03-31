@@ -376,11 +376,17 @@ ion-header.header {
 .label-md, .label-ios{
   margin:13px 0;
 }
-page-login, page-signup, page-propose{
+page-login, page-signup, page-propose, page-find{
   h2{
     text-align:left;
     color:$bleu;
     font-weight:bold;
+  }
+
+  .text-info{
+    text-align:left;
+    color:$bleu;
+
   }
   .item-md, .item-ios, .list-ios > .item-block:last-child {
     padding-left: 0;
@@ -399,6 +405,7 @@ page-login, page-signup, page-propose{
           font-size:16px;
         }
       }
+
     &.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
     &.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
     &.item-input.item-input-has-focus:last-child,
@@ -460,6 +467,15 @@ page-login, page-signup, page-propose{
     }
   }
 }
+.picker-wrapper{
+  .picker-ios .picker-toolbar-cancel {
+    text-align: start;
+    font-weight: 400;
+  }
+  .picker-toolbar{
+    justify-content: space-between;
+  }
+}
 
 
 .button_end {
@@ -490,7 +506,7 @@ ion-toast, .toast-ios {
   border-color:$vert;
   color:$vert;
 }
-.info-box{
+.info-box, .info-box:hover{
   border:2px solid $vert;
   background-color:$blanc;
   color:$vert;

@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar color="primary">
+    <ion-navbar>
         <ion-title>Proposes</ion-title>
         <ion-buttons start class="start">
             <button ion-button icon-left (click)="prev()">
@@ -63,7 +63,7 @@
             </div>
         </ion-slide>
         <ion-slide>
-            <div class=" container-9 center-verti">
+            <div class=" container-9">
                 <h2> Titre et description de l'annonce </h2>
                 <ion-list no-lines>
                     <form [formGroup]="slideOneForm">
@@ -105,7 +105,7 @@
 
         </ion-slide>
         <ion-slide class="picture-bike">
-            <div class="container-9 center-verti">
+            <div class="container-9">
                 <h2> Ajouter des photos de votre vélo </h2>
                 <p class="text-info">Les annonces avec photo sont bien plus susceptibles d'interesser de futurs locataires</p>
                 <!--Fichier-->
@@ -183,7 +183,7 @@
             </div>
         </ion-slide>
         <ion-slide>
-            <div class="container-9 center-verti">
+            <div class="container-9">
                 <h2>Où louez-vous votre vélo ?</h2>
                 <p class="text-info">La fonctionnalité de géolocalisation sera disponible prochainement !</p>
                 <button ion-button icon-right (click)="next()" class="button button_inverse_blanc button-nonused">
@@ -216,7 +216,7 @@
             </div>
         </ion-slide>
         <ion-slide class="choice-price ">
-            <div class="container-9 center-verti">
+            <div class="container-9">
                 <h2> Pour quel tarif ?</h2>
                 <ion-list no-lines>
                     <form [formGroup]="slideFiveForm" class="form-price">
@@ -281,7 +281,7 @@
             </div>
         </ion-slide>
         <ion-slide class="paiement">
-            <div class="container-9  center-verti">
+            <div class="container-9 ">
                 <h2> {{'PAIEMENT_TITLE' | translate}}</h2>
                 <ion-list class="info-box">
                     <p>La possibilité de paiement via notre application est actuellement en cours de préparation.
