@@ -16,6 +16,7 @@ import {User, Api, Settings, Announcements, Calendar, Style} from '../providers/
 import {MyApp} from './app.component';
 
 import {AutocompletePage} from '../components/autocomplete/autocomplete';
+import {HitsComponent} from '../components/hits/hits';
 import {InstantsearchProvider} from '../providers/instantsearch/instantsearch';
 
 // The translate loader needs to know where to load i18n files
@@ -38,6 +39,7 @@ export function provideSettings(storage: Storage) {
         option4: 'Hello'
     });
 }
+
 
 @NgModule({
     declarations: [

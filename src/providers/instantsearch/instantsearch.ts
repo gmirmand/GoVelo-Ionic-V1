@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import instantsearch from 'instantsearch.js/es';
 
 /*
@@ -17,8 +17,8 @@ export class InstantsearchProvider {
         urlSync: true
     });
 
-  constructor(public http: HttpClient) {
-    console.log('Hello InstantsearchProvider Provider');
-  }
+    constructor(public http: HttpClient) {
+        console.log('Hello InstantsearchProvider');
+    }
 
 }
