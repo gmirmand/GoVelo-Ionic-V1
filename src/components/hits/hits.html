@@ -1,0 +1,14 @@
+<!-- Generated template for the HitsComponent component -->
+<ion-list>
+    <ion-item *ngFor="let hit of state.hits">
+        <ion-row>
+            <ion-col col-2>
+                <p>{{ hit.price }}/heure</p>
+                <p>{{ hit.address }}</p>
+                <p>{{ hit.style[0].nomStyle }}</p>
+            </ion-col>
+            <ion-col col-4></ion-col>
+            <ion-col col-4></ion-col>
+        </ion-row>
+    </ion-item>
+</ion-list>

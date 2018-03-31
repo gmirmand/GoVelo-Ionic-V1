@@ -39,9 +39,13 @@ export class AutocompletePage {
         }, function (predictions, status) {
             me.autocompleteItems = [];
             me.zone.run(function () {
-                predictions.forEach(function (prediction) {
-                    me.autocompleteItems.push(prediction.description);
-                });
+                if (!predictions) {
+                    me.autocompleteItems.push('Addresse introuvable');
+                } else {
+                    predictions.forEach(function (prediction) {
+                        me.autocompleteItems.push(prediction.description);
+                    });
+                }
             });
         });
     }

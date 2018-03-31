@@ -1,18 +1,19 @@
 import {NgModule} from '@angular/core';
+import {TranslateModule} from '@ngx-translate/core';
 import {IonicPageModule} from 'ionic-angular';
 import {FindPage} from './find';
-
-import {IonSimpleWizard} from "../../components/ion-simple-wizard-find/ion-simple-wizard.component";
-import {IonSimpleWizardStep} from "../../components/ion-simple-wizard-find/ion-simple-wizard.step.component";
+import {FileInputAccessorModule} from "file-input-accessor";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
     declarations: [
-        FindPage,
-        IonSimpleWizard,
-        IonSimpleWizardStep
+        FindPage
     ],
     imports: [
         IonicPageModule.forChild(FindPage),
+        TranslateModule.forChild(),
+        FileInputAccessorModule,
+        CommonModule
     ],
 })
 export class FindPageModule {

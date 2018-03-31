@@ -11,7 +11,7 @@ export class Announcements {
     }
 
     add(announcement: any) {
-        let lock = "";
+        let lock, picture = "";
         let calendar = [];
         if (announcement.security.lock1 && announcement.security.lock2
             && announcement.security.lock3 && announcement.security.lock4) {
@@ -20,16 +20,19 @@ export class Announcements {
                 announcement.security.lock3.toString() +
                 announcement.security.lock4.toString();
         }
-        for (const id of announcement.calendarsId) {
+        announcement.calendarsId.forEach(function (id) {
             calendar.push({
                 "@id": "/api/calendars/" + id + "",
                 "id": id
             })
-        }
+        });
 
-        console.log(announcement);
+        announcement.pictures.forEach(function (img) {
+            picture += img.imgSrc += '&';
+        });
+
         announcement = {
-            "picture": announcement.pictures,
+            "picture": picture,
             "description": announcement.infos.description,
             "title": announcement.infos.title,
             "priceD": parseInt(announcement.price.price),

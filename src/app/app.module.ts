@@ -16,6 +16,8 @@ import {User, Api, Settings, Announcements, Calendar, Style} from '../providers/
 import {MyApp} from './app.component';
 
 import {AutocompletePage} from '../components/autocomplete/autocomplete';
+import {HitsComponent} from '../components/hits/hits';
+import {InstantsearchProvider} from '../providers/instantsearch/instantsearch';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -37,6 +39,7 @@ export function provideSettings(storage: Storage) {
         option4: 'Hello'
     });
 }
+
 
 @NgModule({
     declarations: [
@@ -77,7 +80,8 @@ export function provideSettings(storage: Storage) {
         {provide: Settings, useFactory: provideSettings, deps: [Storage]},
         // Keep this to enable Ionic's runtime error handling during development
         {provide: ErrorHandler, useClass: IonicErrorHandler},
-        NativeGeocoder
+        NativeGeocoder,
+        InstantsearchProvider
     ]
 })
 export class AppModule {

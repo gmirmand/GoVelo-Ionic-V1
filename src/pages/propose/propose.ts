@@ -1,5 +1,13 @@
 import {Component, ViewChild} from '@angular/core';
-import {Events, IonicPage, NavController, NavParams, ModalController, ToastController} from 'ionic-angular';
+import {
+    Events,
+    IonicPage,
+    NavController,
+    NavParams,
+    ModalController,
+    ToastController,
+    LoadingController
+} from 'ionic-angular';
 import {CalendarComponentOptions} from 'ion2-calendar';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ICustomFile} from "file-input-accessor";
@@ -17,10 +25,12 @@ import {Calendar} from '../../providers/providers';
     templateUrl: 'propose.html',
 })
 export class ProposePage {
-    @ViewChild('proposeSlider') proposeSlider: any;
+    @ViewChild('proposeSlider')
+    proposeSlider: any;
 
     propose: any = {};
     styles: any;
+    loader = this.loadSpinner();
 
     //PP file imgfileList;
     fileList: ICustomFile[] = [];
@@ -56,8 +66,8 @@ export class ProposePage {
     slideFiveForm: FormGroup;
     slideFiveData: object;
     slideSixForm: FormGroup;
-    slideSevenForm: FormGroup;
     slideSixData: object;
+    slideSevenForm: FormGroup;
 
     submitAttempt: boolean = false;
 
@@ -79,17 +89,16 @@ export class ProposePage {
                 public toastCtrl: ToastController,
                 public announcementProvider: Announcements,
                 public styleProvider: Style,
-                public calendarProvider: Calendar) {
+                public calendarProvider: Calendar,
+                public loadingCtrl: LoadingController) {
         //AutoGeoComplete
-        this
-            .address = {
+        this.address = {
             place: ''
         };
 
         //Form
         //Slide1
-        this
-            .slideOneForm = formBuilder.group({
+        this.slideOneForm = formBuilder.group({
             title: ['ToRemove',
                 Validators.compose([
                     Validators.minLength(5),
@@ -99,23 +108,19 @@ export class ProposePage {
             description: ['ToRemove', Validators.required]
         });
         //Slide2
-        this
-            .slideTwoForm = formBuilder.group({
+        this.slideTwoForm = formBuilder.group({
             file: ['']
         });
         //Slide3
-        this
-            .slideThreeForm = formBuilder.group({
+        this.slideThreeForm = formBuilder.group({
             type: ['VTT']
         });
         //Slide4
-        this
-            .slideFourForm = formBuilder.group({
+        this.slideFourForm = formBuilder.group({
             town: ['', Validators.required]
         });
         //Slide5
-        this
-            .slideFiveForm = formBuilder.group({
+        this.slideFiveForm = formBuilder.group({
             price: [5, Validators.compose([
                 Validators.required,
                 Validators.min(3),
@@ -123,17 +128,16 @@ export class ProposePage {
             ])]
         });
         //Slide6
-        this
-            .slideSixForm = formBuilder.group({
+        this.slideSixForm = formBuilder.group({
             calendar: ['', Validators.required]
         });
         //Slide7
         this
             .slideSevenForm = formBuilder.group({
-            lock1: [undefined],
-            lock2: [undefined],
-            lock3: [undefined],
-            lock4: [undefined]
+            lock1: undefined,
+            lock2: undefined,
+            lock3: undefined,
+            lock4: undefined
         });
     }
 
@@ -182,17 +186,13 @@ export class ProposePage {
         this.calendar.dateRangeArray.splice(index, 1);
     }
 
-//Form global
-    proposeForm() {
-        this.navCtrl.parent.select(3);
-    }
-
 //View global
     ionViewDidLoad() {
         console.log('ionViewDidLoad ProposePage');
     }
 
     ionViewDidEnter() {
+        //Slides forms
         this.getStyles();
         this.FileUploadWatcher();
     }
@@ -224,7 +224,6 @@ export class ProposePage {
 //Global form functions
     save() {
         this.submitAttempt = true;
-
         if (!this.slideOneForm.valid) {
             this.proposeSlider.slideTo(1);
         }
@@ -247,6 +246,7 @@ export class ProposePage {
             this.proposeSlider.slideTo(7);
         }
         else {
+            this.loader.present();
             this.nativeGeocoder.forwardGeocode(this.address)
                 .then((coordinates: NativeGeocoderForwardResult) => {
                     this.lat = coordinates[0].latitude,
@@ -295,8 +295,8 @@ export class ProposePage {
     pushAnnouncement(calendarsId) {
         // Attempt to create in through our Items service
         this.propose = Object.assign(this.propose, {'calendarsId': calendarsId});
-        console.log(this.propose);
         this.announcementProvider.add(this.propose).subscribe((resp) => {
+            this.loader.dismiss();
             // this.navCtrl.push(AnnouncementDetailsPage);
             let toast = this.toastCtrl.create({
                 message: 'Annonce créé !',
@@ -305,6 +305,7 @@ export class ProposePage {
             });
             toast.present();
         }, (err) => {
+            this.loader.dismiss();
             // this.navCtrl.push(AnnouncementDetailsPage);
 
             // Unable to sign up
@@ -318,32 +319,12 @@ export class ProposePage {
     }
 
     mergeData() {
-        //    Check input needed
-        //    Slide 1 :
-        // console.log(this.slideOneForm.value);
-
-        //    Slide 2 :
-        // console.log(this.slideTwoForm.value);
-
-        //    Slide 3 :
-        // console.log(this.slideThreeForm.value);
-
-        //    Slide 4 :
         let lat = {lat: this.lat};
         let long = {long: this.long};
         this.slideFiveData = Object.assign(this.slideFourForm.value, lat, long);
-        // console.log(this.slideFiveData);
 
-        //    Slide 5 :
-        // console.log(this.slideFiveForm.value);
-
-        //    Slide 6 :
         let calendar = {calendar: this.calendar.dateRangeArray};
         this.slideSixData = Object.assign(calendar);
-        // console.log(this.slideSixData);
-
-        //    Slide 7 :
-        // console.log(this.slideSevenForm.value);
 
         this.propose = {
             "infos": this.slideOneForm.value,
@@ -354,5 +335,15 @@ export class ProposePage {
             "calendars": this.slideSixData,
             "security": this.slideSevenForm.value
         };
+    }
+
+//    Loading controller
+    loadSpinner() {
+        return this.loadingCtrl.create({
+            spinner: 'hide',
+            content: `
+                <img src="assets/icon/spinner.gif"/>
+            `
+        });
     }
 }
