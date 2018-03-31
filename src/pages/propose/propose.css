@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$blanc".
-        on line 13 of propose.scss
+        on line 12 of propose.scss
 
-8:     ion-slide {
-9:       width: 100% !important;
-10:       padding:0 20px;
-11:       margin: 0 auto;
-12:       .h3,.h5,.h4{
-13:         color:$blanc;
-14:       }
-15:       .list-bike{
-16:         background: linear-gradient(-132deg, $bleu,$vert);
-17:         border-radius:20px;
-18:         position:relative;
+7:     ion-slide {
+8:       width: 100% !important;
+9:       padding:0 20px;
+10:       margin: 0 auto;
+11:       .h3,.h5,.h4{
+12:         color:$blanc;
+13:       }
+14:       .list-bike{
+15:         background: linear-gradient(-132deg, $bleu,$vert);
+16:         border-radius:20px;
+17:         position:relative;
 
 Backtrace:
-propose.scss:13
+propose.scss:12
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/node.rb:58:in `perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
@@ -100,4 +100,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$blanc\".\A         on line 13 of propose.scss\A \A 8:     ion-slide {\A 9:       width: 100% !important;\A 10:       padding:0 20px;\A 11:       margin: 0 auto;\A 12:       .h3,.h5,.h4{\A 13:         color:$blanc;\A 14:       }\A 15:       .list-bike{\A 16:         background: linear-gradient(-132deg, $bleu,$vert);\A 17:         border-radius:20px;\A 18:         position:relative;"; }
+  content: "Error: Undefined variable: \"$blanc\".\A         on line 12 of propose.scss\A \A 7:     ion-slide {\A 8:       width: 100% !important;\A 9:       padding:0 20px;\A 10:       margin: 0 auto;\A 11:       .h3,.h5,.h4{\A 12:         color:$blanc;\A 13:       }\A 14:       .list-bike{\A 15:         background: linear-gradient(-132deg, $bleu,$vert);\A 16:         border-radius:20px;\A 17:         position:relative;"; }

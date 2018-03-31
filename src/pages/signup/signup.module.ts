@@ -4,14 +4,9 @@ import {IonicPageModule} from 'ionic-angular';
 
 import {SignupPage} from './signup';
 
-import {IonSimpleWizard} from "../../components/ion-simple-wizard-signup/ion-simple-wizard.component";
-import {IonSimpleWizardStep} from "../../components/ion-simple-wizard-signup/ion-simple-wizard.step.component";
-
 @NgModule({
     declarations: [
-        SignupPage,
-        IonSimpleWizard,
-        IonSimpleWizardStep,
+        SignupPage
     ],
     imports: [
         IonicPageModule.forChild(SignupPage),

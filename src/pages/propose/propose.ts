@@ -25,7 +25,8 @@ import {Calendar} from '../../providers/providers';
     templateUrl: 'propose.html',
 })
 export class ProposePage {
-    @ViewChild('proposeSlider') proposeSlider: any;
+    @ViewChild('proposeSlider')
+    proposeSlider: any;
 
     propose: any = {};
     styles: any;
@@ -91,15 +92,13 @@ export class ProposePage {
                 public calendarProvider: Calendar,
                 public loadingCtrl: LoadingController) {
         //AutoGeoComplete
-        this
-            .address = {
+        this.address = {
             place: ''
         };
 
         //Form
         //Slide1
-        this
-            .slideOneForm = formBuilder.group({
+        this.slideOneForm = formBuilder.group({
             title: ['ToRemove',
                 Validators.compose([
                     Validators.minLength(5),
@@ -109,23 +108,19 @@ export class ProposePage {
             description: ['ToRemove', Validators.required]
         });
         //Slide2
-        this
-            .slideTwoForm = formBuilder.group({
+        this.slideTwoForm = formBuilder.group({
             file: ['']
         });
         //Slide3
-        this
-            .slideThreeForm = formBuilder.group({
+        this.slideThreeForm = formBuilder.group({
             type: ['VTT']
         });
         //Slide4
-        this
-            .slideFourForm = formBuilder.group({
+        this.slideFourForm = formBuilder.group({
             town: ['', Validators.required]
         });
         //Slide5
-        this
-            .slideFiveForm = formBuilder.group({
+        this.slideFiveForm = formBuilder.group({
             price: [5, Validators.compose([
                 Validators.required,
                 Validators.min(3),
@@ -133,8 +128,7 @@ export class ProposePage {
             ])]
         });
         //Slide6
-        this
-            .slideSixForm = formBuilder.group({
+        this.slideSixForm = formBuilder.group({
             calendar: ['', Validators.required]
         });
         //Slide7
@@ -201,7 +195,6 @@ export class ProposePage {
         //Slides forms
         this.getStyles();
         this.FileUploadWatcher();
-        // this.navCtrl.setRoot(this.navCtrl.getActive().component);
     }
 
 //File
@@ -349,7 +342,7 @@ export class ProposePage {
         return this.loadingCtrl.create({
             spinner: 'hide',
             content: `
-                <img src="https://www.meowclass.com/wp-content/uploads/2018/02/lg.blue-longcat-spinner.gif"/>
+                <img src="assets/icon/spinner.gif"/>
             `
         });
     }
