@@ -19,8 +19,11 @@ page-find {
         border-color:$bleu !important;
         color:$blanc !important;
       }
-      ion-radio{
-        display:none;
+      ion-radio.radio-md{
+        margin:0;
+        .radio-icon{
+          display:none;
+        }
       }
     }
   }
