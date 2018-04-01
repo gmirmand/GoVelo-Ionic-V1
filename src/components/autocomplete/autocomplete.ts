@@ -43,7 +43,7 @@ export class AutocompletePage {
                     me.autocompleteItems.push('Addresse introuvable');
                 } else {
                     predictions.forEach(function (prediction) {
-                        me.autocompleteItems.push(prediction.description);
+                        me.autocompleteItems.push(prediction);
                     });
                 }
             });

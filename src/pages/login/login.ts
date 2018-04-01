@@ -46,10 +46,8 @@ export class LoginPage {
         this.submitAttempt = true;
 
         if (this.logForm.valid) {
-            console.log("success!");
             this.account = [];
             this.account = this.logForm.value;
-            console.log(this.account);
             this.doLogin();
         }
     }

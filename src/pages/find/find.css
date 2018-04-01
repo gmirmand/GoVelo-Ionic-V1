@@ -1,35 +1,28 @@
 /*
-Error: Undefined variable: "$blanc".
-        on line 13 of find.scss
+Error: Undefined variable: "$bleu-clair".
+        on line 8 of find.scss
 
-8:     ion-slide {
-9:       width: 100% !important;
-10:       padding:0 20px;
-11:       margin: 0 auto;
-12:       .h3,.h5,.h4{
-13:         color:$blanc;
-14:       }
-15:       .list-bike{
-16:         background: linear-gradient(-132deg, $bleu,$vert);
-17:         border-radius:20px;
-18:         position:relative;
+3:   ion-modal {
+4:     z-index: 9999999999 !important;
+5:   }
+6:   .list-type{
+7:     .item-radio{
+8:       border: 4px solid $bleu-clair !important;
+9:       color: $bleu;
+10:       background-color: $blanc;
+11:       margin-bottom: 4vh;
+12:       font-weight: bold;
+13:       border-radius: 50px;
 
 Backtrace:
-find.scss:13
+find.scss:8
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/node.rb:58:in `perform'
+C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/list_literal.rb:63:in `block in _perform'
+C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/list_literal.rb:63:in `map'
+C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/list_literal.rb:63:in `_perform'
+C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/node.rb:58:in `perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
-C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
-C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:79:in `block in with_base'
-C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:115:in `with_frame'
-C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:79:in `with_base'
-C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:160:in `visit'
-C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:433:in `block (2 levels) in visit_rule'
-C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:433:in `map'
-C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:433:in `block in visit_rule'
-C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
-C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:431:in `visit_rule'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/base.rb:36:in `visit'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/stack.rb:79:in `block in with_base'
@@ -100,4 +93,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$blanc\".\A         on line 13 of find.scss\A \A 8:     ion-slide {\A 9:       width: 100% !important;\A 10:       padding:0 20px;\A 11:       margin: 0 auto;\A 12:       .h3,.h5,.h4{\A 13:         color:$blanc;\A 14:       }\A 15:       .list-bike{\A 16:         background: linear-gradient(-132deg, $bleu,$vert);\A 17:         border-radius:20px;\A 18:         position:relative;"; }
+  content: "Error: Undefined variable: \"$bleu-clair\".\A         on line 8 of find.scss\A \A 3:   ion-modal {\A 4:     z-index: 9999999999 !important;\A 5:   }\A 6:   .list-type{\A 7:     .item-radio{\A 8:       border: 4px solid $bleu-clair !important;\A 9:       color: $bleu;\A 10:       background-color: $blanc;\A 11:       margin-bottom: 4vh;\A 12:       font-weight: bold;\A 13:       border-radius: 50px;"; }

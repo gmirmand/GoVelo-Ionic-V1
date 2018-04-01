@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AACE,MAAE;EACA,WAAW,EAAE,MAAM",
+"sources": ["hits.scss"],
 "names": [],
 "file": "hits.css"
 }

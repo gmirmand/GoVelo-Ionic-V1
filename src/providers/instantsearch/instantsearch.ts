@@ -17,8 +17,6 @@ export class InstantsearchProvider {
         urlSync: true
     });
 
-    constructor(public http: HttpClient) {
-        console.log('Hello InstantsearchProvider');
-    }
+    constructor(public http: HttpClient) {}
 
 }

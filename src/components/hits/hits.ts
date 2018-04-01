@@ -16,9 +16,7 @@ export class HitsComponent {
 
     state: { hits: {}[] } = {hits: []};
 
-    constructor(private instantSearchService: InstantsearchProvider) {
-        console.log('Hello HitsComponent Component');
-    }
+    constructor(private instantSearchService: InstantsearchProvider) {}
 
     ngOnInit() {
         // Create a widget which will call `this.updateState` whenever
@@ -37,6 +35,7 @@ export class HitsComponent {
                 this.state = state;
             });
         }
+
 
         this.state = state;
     }

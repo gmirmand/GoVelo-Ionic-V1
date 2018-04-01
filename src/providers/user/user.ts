@@ -42,7 +42,6 @@ export class User {
         let seq = this.api.get('users', accountInfo).share();
 
         seq.subscribe((res: any) => {
-            console.log(res);
             // If the API returned a successful response, mark the user as logged in
             if (res.status == 'success') {
                 this._loggedIn(res);
@@ -79,9 +78,8 @@ export class User {
             if (res.status == 'success') {
                 this._loggedIn(res);
             }
-            console.log(res);
         }, err => {
-            console.error('ERROR', err);
+            console.error('ERROR user.ts', err);
         });
 
         return seq;

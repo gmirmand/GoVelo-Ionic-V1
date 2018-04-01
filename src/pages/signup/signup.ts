@@ -117,9 +117,7 @@ export class SignupPage {
             this.signupSlider.slideTo(4);
         }
         else {
-            console.log("success!");
             this.account = this.account.concat(this.slideOneForm.value).concat(this.slideTwoForm.value).concat(this.slideThreeForm.value).concat(this.slideFourForm.value);
-            console.log(this.account);
             this.doSignup();
         }
     }

@@ -26,7 +26,6 @@ export class FindPage {
     find: any = {};
 
     styles: any;
-    loader = this.loadSpinner();
 
     //Slides forms
     slideOneForm: FormGroup;
@@ -80,12 +79,12 @@ export class FindPage {
         };
         //Slide1
         this.slideOneForm = formBuilder.group({
-            town: ['', Validators.required],
+            town: [''],
             range: [200]
         });
         //Slide2
         this.slideTwoForm = formBuilder.group({
-            type: ['VTT']
+            type: ['']
         });
         //Slide3
         this.slideThreeForm = formBuilder.group({
@@ -101,19 +100,21 @@ export class FindPage {
 //    Get Styles
     getStyles() {
         // Attempt to create in through our Style service
-        this.styleProvider.get().subscribe((resp) => {
+        let loader = this.loadSpinner();
+        loader.present().then(() => this.styleProvider.get().subscribe((resp) => {
             this.styles = resp['hydra:member'];
+            loader.dismiss();
         }, (err) => {
-            // Unable to sign up
             let toast = this.toastCtrl.create({
-                message: 'Fail to get styles',
+                message: 'Oops, an error occured.. contact the support (g#tSt#l#s)',
                 duration: 3000,
                 position: 'top'
             });
             toast.present();
             this.navCtrl.parent.select(2);
+            loader.dismiss();
             return 'Fail to get styles';
-        });
+        }));
     }
 
 //Steps slider signup
@@ -135,18 +136,24 @@ export class FindPage {
     showAddressModal() {
         const modal = this.modalCtrl.create(AutocompletePage);
         modal.onDidDismiss(data => {
-            this.address.place = data;
+            if (data) {
+                this.address.place = data.description;
+            }
         });
         modal.present();
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad FindPage');
+    }
+
+    ionViewDidEnter() {
         this.getStyles();
     }
 
 //    Save
     save() {
+        let loader = this.loadSpinner();
         this.submitAttempt = true;
         if (!this.slideOneForm.valid) {
             this.findSlider.slideTo(0);
@@ -157,20 +164,21 @@ export class FindPage {
         } else if (!this.slideFourForm.valid) {
             this.findSlider.slideTo(3);
         } else {
-            this.loader.present();
-            this.nativeGeocoder.forwardGeocode(this.address)
+            loader.present().then(() => this.nativeGeocoder.forwardGeocode(this.address)
                 .then((coordinates: NativeGeocoderForwardResult) => {
-                    this.lat = coordinates[0].latitude,
-                        this.long = coordinates[0].longitude
+                    this.lat = coordinates[0].latitude;
+                    this.long = coordinates[0].longitude;
+                    loader.dismiss();
                 })
                 .catch((error: any) => {
-                    console.log(error),
-                        this.lat = '45.039932',
-                        this.long = '3.880841'
+                    console.log(error);
+                    this.lat = '45.039932';
+                    this.long = '3.880841';
+                    loader.dismiss();
                 }).then(() => {
-                this.mergeData();
-                console.log(this.find);
-            });
+                    this.mergeData();
+                    this.navCtrl.push('AnnouncementPage');
+                }));
         }
     }
 

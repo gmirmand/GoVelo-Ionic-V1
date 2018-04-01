@@ -3,12 +3,21 @@
     <ion-item *ngFor="let hit of state.hits">
         <ion-row>
             <ion-col col-2>
-                <p>{{ hit.price }}/heure</p>
-                <p>{{ hit.address }}</p>
-                <p>{{ hit.style[0].nomStyle }}</p>
             </ion-col>
-            <ion-col col-4></ion-col>
-            <ion-col col-4></ion-col>
+            <ion-col col-4>
+                <ion-row>
+                    <ion-col>{{ hit.priceD }}€ / jours</ion-col>
+                    <ion-col>{{ hit.style[0].nomStyle }}</ion-col>
+                </ion-row>
+                <p>{{ hit.city }}</p>
+                <p>{{ hit.author.firstnameAuthor }} {{ hit.author.lastnameAuthor|limit:1 }}.</p>
+            </ion-col>
+            <ion-col col-4>
+                <ion-item *ngFor="let calendar of hit.calendar">
+                    <p>du {{calendar.startCalendar.date | date:'dd MMMM yyyy':'':'fr-FR'}}</p>
+                    <p>au {{calendar.endCalendar.date | date:'dd MMMM yyyy':'':'fr-FR'}}</p>
+                </ion-item>
+            </ion-col>
         </ion-row>
     </ion-item>
 </ion-list>

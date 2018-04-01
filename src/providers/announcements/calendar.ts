@@ -19,9 +19,8 @@ export class Calendar {
 
         seq.subscribe((res: any) => {
             // If the API returned a successful response, calendar have been create
-            console.log(res);
         }, err => {
-            console.error('ERROR', err);
+            console.error('ERROR calendar.ts', err);
         });
 
         return seq;
