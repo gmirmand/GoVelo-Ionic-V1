@@ -96,6 +96,7 @@ page-announcement-details {
           border: 10px solid;
           margin:0 auto;
           position:relative;
+          color:$bleu;
           img{
             width: 25px;
             position: absolute;
@@ -105,8 +106,8 @@ page-announcement-details {
           }
           .level-user{
             border-radius: 50%;
-            border: 2px solid #BCE0FD;
-            background-color: #fff;
+            border: 2px solid $bleu-clair;
+            background-color: $blanc;
             width: 40px;
             height: 40px;
             position: absolute;

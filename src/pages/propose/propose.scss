@@ -23,16 +23,17 @@ page-propose {
           border:2px solid $bleu;
         }
         .h3{
-          font-size:20px;
+          font-size:15px;
           font-weight:600;
         }
         .h5{
-          font-size:15px;
+          font-size:12px;
           font-weight:100;
+          text-transform:none;
         }
         .h4{
           margin-top:20px;
-          font-size:30px;
+          font-size:20px;
         }
         .param {
           position: absolute;
@@ -63,20 +64,35 @@ page-propose {
       .item-textarea{
         margin-bottom:20px;
       }
-      .text-info{
-        text-align:left;
-        color:$bleu;
-
-      }
     }
   }
 
   .picture-bike{
-    .item-md.item-block .item-inner{
+    .item-md.item-block .item-inner,.item-ios.item-block .item-inner{
       border-bottom:none;
+      padding-right:0;
     }
   }
   .list-type{
+    .item-radio{
+          border: 4px solid $bleu-clair !important;
+          color: $bleu;
+          background-color: $blanc;
+          margin-bottom: 4vh;
+          font-weight: bold;
+          border-radius: 50px;
+          padding: 5px 5px;
+      .input-wrapper{
+        text-align:center;
+      }
+      &-checked{
+        border-color:$bleu !important;
+        color:$blanc !important;
+      }
+      ion-radio{
+        display:none;
+      }
+    }
   }
   .choice-price{
     .form-price{
@@ -103,9 +119,11 @@ page-propose {
 
     }
   }
-  .center-verti{
-    margin-top: 40vh;
-    transform: translateY(-50%);
+  .paiement{
+    ion-input{
+      border-bottom:2px solid $bleu-clair;
+
+    }
   }
   .swiper-slide {
     align-items: flex-start;

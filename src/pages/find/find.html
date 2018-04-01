@@ -10,15 +10,23 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="bg-grey">
     <ion-slides #findSlider ngClass="swiper-no-swiping">
         <ion-slide>
             <h2>Où cherchez-vous votre vélo ?</h2>
-            <p>Entrez l'addresse la plus exacte possible</p>
+            <p class="text-info">La fonctionnalité de géolocalisation sera disponible prochainement !</p>
+            <button ion-button icon-right (click)="next()" class="button button_inverse_blanc button-nonused">
+                {{'Ma position' | translate}}
+                <ion-icon ios="ios-disc" md="md-disc"></ion-icon>
+            </button>
+            <div class="line-under">
+                <p>{{"OR" | translate}}</p>
+            </div>
+            <p class="text-info">Entrez l'addresse la plus exacte possible</p>
             <p *ngIf="submitAttempt" style="color: #ea6153;">Veuillez vérifier les champs s'il vous plaît.</p>
             <form [formGroup]="slideOneForm">
                 <ion-list no-lines>
-                    <ion-item>
+                    <ion-item class="input-form search">
                         <ion-input tappable (ionFocus)="showAddressModal()"
                                    [(ngModel)]="address.place"
                                    type="text"
@@ -49,14 +57,14 @@
                         </ion-select>
                     </ion-item>
 
-                    <button ion-button icon-right (click)="next()">
+                    <button ion-button icon-right (click)="next()" class="button button_inverse_bleu">
                         {{'NEXT' | translate}}
-                        <ion-icon name="arrow-next"></ion-icon>
+                        <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
                     </button>
                 </ion-list>
             </form>
         </ion-slide>
-        <ion-slide>
+        <ion-slide class="list-type">
             <h2>Quel type de vélo ?</h2>
             <p *ngIf="submitAttempt" style="color: #ea6153;">Veuillez vérifier les champs s'il vous plaît.</p>
             <form [formGroup]="slideTwoForm">
@@ -71,9 +79,9 @@
                     </ion-row>
                 </ion-list>
             </form>
-            <button ion-button icon-right (click)="next()">
+            <button ion-button icon-right (click)="next()" class="button button_inverse_bleu">
                 {{'NEXT' | translate}}
-                <ion-icon name="arrow-next"></ion-icon>
+                <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
             </button>
         </ion-slide>
         <ion-slide>
@@ -102,7 +110,7 @@
                         </ion-datetime>
                     </ion-item>
                 </form>
-                <button ion-button icon-right class="button_inverse_bleu" (click)="next()">
+                <button ion-button icon-right class="button button_inverse_bleu" (click)="next()">
                     {{'NEXT' | translate}}
                     <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
                 </button>
@@ -125,9 +133,9 @@
                     </ion-item>
                 </form>
 
-                <button ion-button icon-right class="button_inverse_bleu" (click)="save()">
+                <button ion-button icon-right class="button button_inverse_blanc" (click)="save()">
                     Rechercher
-                    <ion-icon name="search"></ion-icon>
+                    <ion-icon ios="ios-search" md="md-search"></ion-icon>
                 </button>
             </ion-list>
         </ion-slide>

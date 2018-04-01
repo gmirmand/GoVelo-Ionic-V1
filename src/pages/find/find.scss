@@ -3,56 +3,28 @@ page-find {
   ion-modal {
     z-index: 9999999999 !important;
   }
-
-  .container-bike {
-    ion-slide {
-      width: 100% !important;
-      padding:0 20px;
-      margin: 0 auto;
-      .h3,.h5,.h4{
-        color:$blanc;
+  .list-type{
+    .item-radio{
+      border: 4px solid $bleu-clair !important;
+      color: $bleu;
+      background-color: $blanc;
+      margin-bottom: 4vh;
+      font-weight: bold;
+      border-radius: 50px;
+      padding: 5px 5px;
+      .input-wrapper{
+        text-align:center;
       }
-      .list-bike{
-        background: linear-gradient(-132deg, $bleu,$vert);
-        border-radius:20px;
-        position:relative;
-
-        img.header{
-          border-radius: 50%;
-          width: 70%;
-          margin-bottom:10px;
-          border:2px solid $bleu;
-        }
-        .h3{
-          font-size:20px;
-          font-weight:600;
-        }
-        .h5{
-          font-size:15px;
-          font-weight:100;
-        }
-        .h4{
-          margin-top:20px;
-          font-size:30px;
-        }
-        .param {
-          //position: absolute;
-          //bottom: 0px;
-          //right: 0px;
-          margin-top:20px;
-          img {
-            width: 30px;
-            height: auto;
-          }
-        }
-
+      &-checked{
+        border-color:$bleu !important;
+        color:$blanc !important;
       }
-      button{
-        background:transparent;
-        padding:10px 0;
+      ion-radio{
+        display:none;
       }
     }
   }
+
 
   ion-slides{
     height:inherit;
@@ -61,6 +33,15 @@ page-find {
       overflow-y: auto;
       overflow-x: hidden;
       width:100%;
+      .search{
+        margin-bottom:15px;
+      }
+      .label-range{
+        color:$bleu;
+        font-size:20px;
+        font-weight:600;
+      }
+
     }
   }
   .swiper-slide {
@@ -108,4 +89,5 @@ page-find {
     display: block;
     text-align: center;
   }
+
 }

@@ -220,11 +220,13 @@ export class ProposePage {
     showAddressModal() {
         const modal = this.modalCtrl.create(AutocompletePage);
         modal.onDidDismiss(data => {
-            this.address.place = data.description;
-            if (data.terms.length > 2) {
-                this.address.town = data.terms[data.terms.length - 2].value += ',' + data.terms[data.terms.length - 3].value;
-            } else {
-                this.address.town = data.terms[data.terms.length - 2].value;
+            if (data) {
+                this.address.place = data.description;
+                if (data.terms.length > 2) {
+                    this.address.town = data.terms[data.terms.length - 2].value += ',' + data.terms[data.terms.length - 3].value;
+                } else {
+                    this.address.town = data.terms[data.terms.length - 2].value;
+                }
             }
         });
         modal.present();

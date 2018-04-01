@@ -136,7 +136,9 @@ export class FindPage {
     showAddressModal() {
         const modal = this.modalCtrl.create(AutocompletePage);
         modal.onDidDismiss(data => {
-            this.address.place = data.description;
+            if (data) {
+                this.address.place = data.description;
+            }
         });
         modal.present();
     }

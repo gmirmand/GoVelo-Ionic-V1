@@ -30,10 +30,7 @@ export class SplashPage {
                     animate: true,
                     direction: 'forward'
                 });
-            }, 500)
-            /*2000*/
-        }, 500)
-        /*8000*/
+            }, 2000)
+        }, 8000)
     }
-
 }

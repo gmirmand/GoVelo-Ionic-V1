@@ -13,19 +13,17 @@
 </ion-header>
 
 
-<ion-content padding id="tab-user">
+<ion-content padding>
     <div class="container-9">
-        <h2 class="font-bleu">
-            Profil
-        </h2>
-        <div class="account-infos row">
-            <div class="infos col-50">
+        <ion-row class="account-infos">
+            <ion-col col-7 class="infos info-user">
                 <h1 class="name font-bleu">
                     Clark
-                    <ion-img src="assets/img/icons/ok-bleu-contour-clair.png" alt="Paramètres"></ion-img>
+                    <ion-img src="assets/img/icons/ok-bleu-contour-clair.png" alt="Profil certifié"></ion-img>
                 </h1>
-                <p><a href="#/tab/user/profil" class="font-bleu">Voir votre profil public <i
-                        class="ion-chevron-right"></i></a></p>
+                <p><a href="#/tab/user/profil" class="font-bleu">Voir votre profil public
+                    <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+                </a></p>
                 <div class="badges">
                     <a href="#/tab/user/medal">
                         <div class="list-badges">
@@ -36,26 +34,21 @@
                         </div>
                     </a>
                 </div>
-            </div>
-            <div class="infos info-user col-50">
-                <div class="info-img">
-                    <a href="#/tab/user/profil">
-                        <ion-img class="profilImg" src="assets/img/adam.jpg" alt="Photo profil {{user}}"></ion-img>
-                    </a>
-                </div>
-                <div class="param">
-                    <a>
-                        <ion-img src="/assets/img/icons/settings-bleu-contour.png" alt="paramètres"></ion-img>
-                    </a>
-                </div>
-                <div class="level-user">
-                    <span class="level">3</span>
-                </div>
-            </div>
-        </div>
+            </ion-col>
+            <ion-col col-5 class="infos img-user">
+                <a (click)="profil()">
+                    <div class="info-img" [style.backgroundImage]="'url(assets/img/marty-avatar.png)'">
+                        <img src="assets/img/icons/ok-bleu-contour-clair.png" alt="certified" class="certified">
+                        <div class="level-user">
+                            <span class="level">3</span>
+                        </div>
+                    </div>
+                </a>
+            </ion-col>
+        </ion-row>
         <div class="account-own ">
             <a class="booking reserv">
-                <h4 class="font-bleu">Mes réservations</h4>
+                <h4  class="font-bleu ">Mes réservations</h4>
                 <ion-img src="assets/img/icons/shopping-cart-degrade.png" alt="Booking img"></ion-img>
             </a>
             <a class="booking">
@@ -63,37 +56,49 @@
                 <ion-img src="assets/img/icons/bicycle-degrade.png" alt="Bike img"></ion-img>
             </a>
         </div>
-        <div class="params-list">
-            <a class="certified param-item">
-                <h4 class="font-bleu">Profil Certifié</h4>
-                <div class="img-icon">
-                    <ion-img src="assets/img/icons/ok-bleu-contour.png" alt="Ok img"></ion-img>
-                </div>
-            </a>
-            <a class="payment param-item">
-                <h4 class="font-bleu">Préférences de paiement</h4>
-                <div class="img-icon">
-                    <ion-img src="assets/img/icons/credit-card-degrade.png" alt="Payement img"></ion-img>
-                </div>
-            </a>
-            <a class="about param-item">
-                <h4 class="font-bleu">A propos</h4>
-                <div class="img-icon">
-                    <ion-img src="assets/img/icons/information-degrade.png" alt="friends img"></ion-img>
-                </div>
-            </a>
-            <a class="help param-item">
-                <h4 class="font-bleu">Besoin d'aide</h4>
-                <div class="img-icon">
-                    <ion-img src="assets/img/icons/help-degrade.png" alt="help img"></ion-img>
-                </div>
-            </a>
-            <a class="params param-item">
-                <h4 class="font-bleu">Paramètres</h4>
-                <div class="img-icon">
-                    <ion-img src="assets/img/icons/settings-degrade.png" alt="params img"></ion-img>
-                </div>
-            </a>
-        </div>
+        <ion-list class="params-list">
+            <ion-item>
+                <a class="certified">
+                    <p class="h4">Profil Certifié</p>
+                    <div class="img-icon">
+                        <ion-img src="assets/img/icons/ok-bleu-contour.png" alt="Ok img"></ion-img>
+                    </div>
+
+                </a>
+            </ion-item>
+            <ion-item>
+                <a class="payment">
+                    <p class="h4">Préférences de paiement</p>
+                    <div class="img-icon">
+                        <ion-img src="assets/img/icons/credit-card-degrade.png" alt="Payement img"></ion-img>
+                    </div>
+                </a>
+            </ion-item>
+            <ion-item>
+                <a class="about">
+                    <p class="h4">A propos</p>
+                    <div class="img-icon">
+                        <ion-img src="assets/img/icons/information-degrade.png" alt="friends img"></ion-img>
+                    </div>
+                </a>
+            </ion-item>
+            <ion-item>
+                <a class="help">
+                    <p class="h4">Besoin d'aide</p>
+                    <div class="img-icon">
+                        <ion-img src="assets/img/icons/help-degrade.png" alt="help img"></ion-img>
+                    </div>
+                </a>
+            </ion-item>
+            <ion-item>
+                <a class="params">
+                    <p class="h4">Paramètres</p>
+                    <div class="img-icon">
+                        <ion-img src="assets/img/icons/settings-degrade.png" alt="params img"></ion-img>
+                    </div>
+                </a>
+            </ion-item>
+
+        </ion-list>
     </div>
 </ion-content>
