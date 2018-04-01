@@ -38,7 +38,7 @@ page-message {
       font-size:14px;
       text-align:right;
     }
-    .item-block.item-block:first-child, .item-ios.item-block:first-child,item-block.item-block, .item-ios.item-block{
+    .item-block.item-block:first-child, .item-ios.item-block:first-child,.item-block.item-block, .item-ios.item-block{
       border-top:2px solid $bleu;
       border-bottom:none;
 
