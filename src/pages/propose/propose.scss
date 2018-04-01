@@ -89,14 +89,17 @@ page-propose {
         border-color:$bleu !important;
         color:$blanc !important;
       }
-      ion-radio.radio-md{
-         margin:0;
-         .radio-icon{
-           display:none;
-         }
-       }
+
+      .radio-md{
+        margin:0;
+        .radio-icon {
+          display: none;
+        }
+      }
     }
   }
+
+
   .choice-price{
     .form-price{
       padding-bottom:20px;
@@ -180,4 +183,11 @@ page-propose {
     display: block;
     text-align: center;
   }
+
+}
+.item-ios .radio-ios {
+  margin:0;
+}
+.radio-ios .radio-icon {
+  display: none !important;
 }
