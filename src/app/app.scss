@@ -138,9 +138,9 @@ a {
 
 .title_page {
 
-  text-align:center;
+  text-align: center;
   margin: 25px 0 25px 0;
-  font-weight:bold;
+  font-weight: bold;
 }
 
 /*************
@@ -372,29 +372,29 @@ ion-header.header {
 
 //Forms
 
-page-login, page-signup, page-propose{
-  h2{
-    text-align:left;
-    color:$bleu;
-    font-weight:bold;
+page-login, page-signup, page-propose {
+  h2 {
+    text-align: left;
+    color: $bleu;
+    font-weight: bold;
   }
   .item-md, .item-ios, .list-ios > .item-block:last-child {
     padding-left: 0;
     font-size: 1.6rem;
     background-color: transparent;
   }
-  .input-form{
-      .item-inner, .item-ios{
-        padding-right:0 !important;
-        border-bottom-color: $bleu !important;
-        border-bottom-width: 2px !important;
-        box-shadow: none !important;
-        .label-md,.label-ios[floating]{
-          color:$bleu;
-          margin: 3px 0 3px 0;
-          font-size:16px;
-        }
+  .input-form {
+    .item-inner, .item-ios {
+      padding-right: 0 !important;
+      border-bottom-color: $bleu !important;
+      border-bottom-width: 2px !important;
+      box-shadow: none !important;
+      .label-md, .label-ios[floating] {
+        color: $bleu;
+        margin: 3px 0 3px 0;
+        font-size: 16px;
       }
+    }
 
     &.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
     &.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
@@ -402,13 +402,14 @@ page-login, page-signup, page-propose{
     &.item-input.item-input-has-focus:last-child,
     &.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus):last-child,
     &.item-input:last-child,
-    &.list-ios > .item-block:last-child{
+    &.list-ios > .item-block:last-child {
       border-bottom-color: $bleu !important;
       border-bottom-width: 2px !important;
       box-shadow: none !important;
     }
   }
 }
+
 //.slides-form {
 //  height: 100%;
 //}
@@ -565,9 +566,28 @@ ion-input, ion-select, ion-textarea {
   border: 1px solid #ea6153;
 }
 
-ion-toast, .toast-ios {
-  .toast-wrapper {
-    background: linear-gradient(to right, map-get($colors, primary), map-get($colors, secondary));
-    font-size: 14px;
+ion-toast.toast-md .toast-wrapper {
+  background: linear-gradient(to right, map-get($colors, primary), map-get($colors, secondary));
+  font-size: 14px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.loading-md .loading-wrapper {
+  background: transparent;
+  box-shadow: none;
+  width: 150px;
+  .loading-content {
+    animation: rotate 5s linear infinite;
+    transform-origin: center center;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }

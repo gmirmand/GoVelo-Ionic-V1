@@ -189,12 +189,12 @@
                 <ion-list no-lines>
                     <ion-item>
                         <ion-input tappable (ionFocus)="showAddressModal()" [(ngModel)]="address.place" type="text"
-                                   placeholder="Choisissez l'addresse exacte" formControlName="town"
-                                   [class.invalid]="!slideFourForm.controls.town.valid &&
-                                          (slideFourForm.controls.town.dirty || submitAttempt)"></ion-input>
+                                   placeholder="Choisissez l'addresse exacte" formControlName="address"
+                                   [class.invalid]="!slideFourForm.controls.address.valid &&
+                                          (slideFourForm.controls.address.dirty || submitAttempt)"></ion-input>
                     </ion-item>
-                    <ion-item *ngIf="!slideFourForm.controls.town.valid
-                        && (slideFourForm.controls.town.dirty || submitAttempt)">
+                    <ion-item *ngIf="!slideFourForm.controls.address.valid
+                        && (slideFourForm.controls.address.dirty || submitAttempt)">
                         <p>Veuillez entrer une addresse.</p>
                     </ion-item>
 

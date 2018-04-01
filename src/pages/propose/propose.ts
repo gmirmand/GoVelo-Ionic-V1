@@ -17,6 +17,7 @@ import {NativeGeocoder, NativeGeocoderForwardResult} from '@ionic-native/native-
 import {Announcements} from '../../providers/providers';
 import {Style} from '../../providers/providers';
 import {Calendar} from '../../providers/providers';
+import {AnnouncementDetailsPage} from "../pages";
 
 
 @IonicPage()
@@ -30,7 +31,6 @@ export class ProposePage {
 
     propose: any = {};
     styles: any;
-    loader = this.loadSpinner();
 
     //PP file imgfileList;
     fileList: ICustomFile[] = [];
@@ -93,7 +93,8 @@ export class ProposePage {
                 public loadingCtrl: LoadingController) {
         //AutoGeoComplete
         this.address = {
-            place: ''
+            place: '',
+            town: ''
         };
 
         //Form
@@ -117,7 +118,7 @@ export class ProposePage {
         });
         //Slide4
         this.slideFourForm = formBuilder.group({
-            town: ['', Validators.required]
+            address: ['', Validators.required]
         });
         //Slide5
         this.slideFiveForm = formBuilder.group({
@@ -144,19 +145,22 @@ export class ProposePage {
 //    Get Styles
     getStyles() {
         // Attempt to create in through our Style service
-        this.styleProvider.get().subscribe((resp) => {
+        let loader = this.loadSpinner();
+        loader.present().then(() => this.styleProvider.get().subscribe((resp) => {
             this.styles = resp['hydra:member'];
+            loader.dismiss();
         }, (err) => {
             // Unable to sign up
             let toast = this.toastCtrl.create({
-                message: 'Fail to get styles',
+                message: 'Oops, an error occured.. contact the support (g#tSt#l#s)',
                 duration: 3000,
                 position: 'top'
             });
             toast.present();
             this.navCtrl.parent.select(2);
+            loader.dismiss();
             return 'Fail to get styles';
-        });
+        }));
     }
 
 //Steps slider signup
@@ -216,13 +220,19 @@ export class ProposePage {
     showAddressModal() {
         const modal = this.modalCtrl.create(AutocompletePage);
         modal.onDidDismiss(data => {
-            this.address.place = data;
+            this.address.place = data.description;
+            if (data.terms.length > 2) {
+                this.address.town = data.terms[data.terms.length - 2].value += ',' + data.terms[data.terms.length - 3].value;
+            } else {
+                this.address.town = data.terms[data.terms.length - 2].value;
+            }
         });
         modal.present();
     }
 
 //Global form functions
     save() {
+        let loader = this.loadSpinner();
         this.submitAttempt = true;
         if (!this.slideOneForm.valid) {
             this.proposeSlider.slideTo(1);
@@ -246,20 +256,21 @@ export class ProposePage {
             this.proposeSlider.slideTo(7);
         }
         else {
-            this.loader.present();
-            this.nativeGeocoder.forwardGeocode(this.address)
+            loader.present().then(() => this.nativeGeocoder.forwardGeocode(this.address)
                 .then((coordinates: NativeGeocoderForwardResult) => {
-                    this.lat = coordinates[0].latitude,
-                        this.long = coordinates[0].longitude
+                    this.lat = coordinates[0].latitude;
+                    this.long = coordinates[0].longitude;
+                    loader.dismiss();
                 })
                 .catch((error: any) => {
-                    console.log(error),
-                        this.lat = '45.039932',
-                        this.long = '3.880841'
+                    console.log(error);
+                    this.lat = '45.039932';
+                    this.long = '3.880841';
+                    loader.dismiss();
                 }).then(() => {
-                this.mergeData();
-                this.createCalendar();
-            });
+                    this.mergeData();
+                    this.createCalendar();
+                }));
         }
     };
 
@@ -273,12 +284,13 @@ export class ProposePage {
     }
 
     createUniqueSlot(slot) {
-        this.calendarProvider.add(slot).subscribe((resp) => {
-            console.log(resp['id']);
+        let loader = this.loadSpinner();
+        loader.present().then(() => this.calendarProvider.add(slot).subscribe((resp) => {
             this.pushedCalendars.push(resp['id']);
             if (this.pushedCalendars.length === this.propose.calendars.calendar.length) {
                 this.pushAnnouncement(this.pushedCalendars);
             }
+            loader.dismiss();
         }, (err) => {
             // Unable to sign up
             let toast = this.toastCtrl.create({
@@ -287,41 +299,17 @@ export class ProposePage {
                 position: 'top'
             });
             toast.present();
-        });
+            loader.dismiss();
+        }));
     }
 
 
 //Signup
-    pushAnnouncement(calendarsId) {
-        // Attempt to create in through our Items service
-        this.propose = Object.assign(this.propose, {'calendarsId': calendarsId});
-        this.announcementProvider.add(this.propose).subscribe((resp) => {
-            this.loader.dismiss();
-            // this.navCtrl.push(AnnouncementDetailsPage);
-            let toast = this.toastCtrl.create({
-                message: 'Annonce créé !',
-                duration: 3000,
-                position: 'top'
-            });
-            toast.present();
-        }, (err) => {
-            this.loader.dismiss();
-            // this.navCtrl.push(AnnouncementDetailsPage);
-
-            // Unable to sign up
-            let toast = this.toastCtrl.create({
-                message: 'error',
-                duration: 3000,
-                position: 'top'
-            });
-            toast.present();
-        });
-    }
-
     mergeData() {
         let lat = {lat: this.lat};
         let long = {long: this.long};
-        this.slideFiveData = Object.assign(this.slideFourForm.value, lat, long);
+        let town = {town: this.address.town};
+        this.slideFiveData = Object.assign(this.slideFourForm.value, town, lat, long);
 
         let calendar = {calendar: this.calendar.dateRangeArray};
         this.slideSixData = Object.assign(calendar);
@@ -335,6 +323,31 @@ export class ProposePage {
             "calendars": this.slideSixData,
             "security": this.slideSevenForm.value
         };
+    }
+
+    pushAnnouncement(calendarsId) {
+        // Attempt to create in through our Items service
+        let loader = this.loadSpinner();
+        this.propose = Object.assign(this.propose, {'calendarsId': calendarsId});
+        loader.present().then(() => this.announcementProvider.add(this.propose).subscribe((resp) => {
+            let toast = this.toastCtrl.create({
+                message: 'Annonce créé !',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+            this.navCtrl.push(AnnouncementDetailsPage);
+            loader.dismiss();
+        }, (err) => {
+            // Unable to sign up
+            let toast = this.toastCtrl.create({
+                message: 'error',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+            loader.dismiss();
+        }));
     }
 
 //    Loading controller

@@ -28,9 +28,7 @@ export class MenuPage {
     ];
   }
 
-  ionViewDidLoad() {
-    console.log('Hello MenuPage Page');
-  }
+  ionViewDidLoad() {}
 
   openPage(page: PageItem) {
     // Reset the content nav to have just this page

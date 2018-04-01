@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {IonicPageModule} from 'ionic-angular';
 import {AnnouncementPage} from './announcement';
 import {HitsComponent} from "../../components/hits/hits";
+import {PipesModule} from '../../pipes/pipes.module';
 
 @NgModule({
     declarations: [
@@ -9,7 +10,8 @@ import {HitsComponent} from "../../components/hits/hits";
         HitsComponent
     ],
     imports: [
-        IonicPageModule.forChild(AnnouncementPage)
+        IonicPageModule.forChild(AnnouncementPage),
+        PipesModule
     ],
 })
 export class AnnouncementPageModule {

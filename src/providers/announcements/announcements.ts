@@ -30,7 +30,7 @@ export class Announcements {
         announcement.pictures.forEach(function (img) {
             picture += img.imgSrc += '&';
         });
-
+        console.log(announcement);
         announcement = {
             "picture": picture,
             "description": announcement.infos.description,
@@ -38,7 +38,8 @@ export class Announcements {
             "priceD": parseInt(announcement.price.price),
             "longitude": announcement.address.long,
             "latitude": announcement.address.lat,
-            "adress": announcement.address.town,
+            "adress": announcement.address.address,
+            "city": announcement.address.town,
             "lockCode": lock,
             "author": {
                 "@id": "/api/users/1",
@@ -50,7 +51,6 @@ export class Announcements {
                 "id": announcement.type.type
             }]
         };
-        console.log(announcement);
 
 
         let seq = this.api.post('announcements', announcement).share();
