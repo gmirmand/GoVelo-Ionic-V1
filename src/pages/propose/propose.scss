@@ -5,35 +5,41 @@ page-propose {
 
   /*list bike*/
   .container-bike {
+    .slide-zoom {
+      overflow: visible;
+    }
     ion-slide {
       width: 50% !important;
-      padding-bottom:20px;
-      .h3,.h5,.h4{
-        color:$blanc;
+      padding-bottom: 20px;
+      .h3, .h5, .h4 {
+        color: $blanc;
       }
-      .list-bike{
-        position:relative;
+      .list-bike {
+        position: relative;
         margin: 0 5px;
-
-        img.header{
+        .button {
+          padding: 20px 20px 25px;
+          width: calc(100% - 2px);
+        }
+        img.header {
           border-radius: 50%;
           width: 100px;
-          height:auto;
-          margin-bottom:10px;
-          border:2px solid $bleu;
+          height: auto;
+          margin-bottom: 10px;
+          border: 2px solid $bleu;
         }
-        .h3{
-          font-size:15px;
-          font-weight:600;
+        .h3 {
+          font-size: 15px;
+          font-weight: 600;
         }
-        .h5{
-          font-size:12px;
-          font-weight:100;
-          text-transform:none;
+        .h5 {
+          font-size: 12px;
+          font-weight: 100;
+          text-transform: none;
         }
-        .h4{
-          margin-top:20px;
-          font-size:20px;
+        .h4 {
+          margin-top: 20px;
+          font-size: 20px;
         }
         .param {
           position: absolute;
@@ -46,52 +52,55 @@ page-propose {
         }
 
       }
-      button.bike{
-        background: linear-gradient(-132deg, $bleu,$vert);
-        border-radius:20px;
+      button.bike {
+        background: linear-gradient(-132deg, $bleu, $vert);
+        border-radius: 20px;
         //background:transparent;
-        padding-bottom:30px;
-        margin-bottom:0;
+        padding-bottom: 30px;
+        margin-bottom: 0;
       }
     }
   }
 
-  ion-slides{
-    height:inherit;
-    ion-slide{
+  ion-slides {
+    height: inherit;
+    ion-slide {
       overflow-y: auto;
       overflow-x: hidden;
-      .item-textarea{
-        margin-bottom:20px;
+      .item-textarea {
+        margin-bottom: 20px;
       }
     }
   }
 
-  .picture-bike{
-    .item-md.item-block .item-inner,.item-ios.item-block .item-inner{
-      border-bottom:none;
-      padding-right:0;
+  .picture-bike {
+    .item-md.item-block .item-inner, .item-ios.item-block .item-inner {
+      border-bottom: none;
+      padding-right: 0;
     }
   }
-  .list-type{
-    .item-radio{
-          border: 4px solid $bleu-clair !important;
-          color: $bleu;
-          background-color: $blanc;
-          margin-bottom: 4vh;
-          font-weight: bold;
-          border-radius: 50px;
-          padding: 5px 5px;
-      .input-wrapper{
-        text-align:center;
+  .list-type {
+    .item-radio {
+      border: 4px solid $bleu-clair !important;
+      color: $bleu;
+      background-color: $blanc;
+      margin-bottom: 4vh;
+      font-weight: bold;
+      border-radius: 50px;
+      padding: 5px 5px;
+      transition: .33s;
+      .input-wrapper {
+        text-align: center;
       }
-      &-checked{
-        border-color:$bleu !important;
-        color:$blanc !important;
+      &-checked {
+        border-color: $bleu !important;
+        color: $blanc !important;
+        background-color: #ededed;
+        box-shadow: inset 0 5px 10px 0px rgba(0,0,0,0.15);
       }
 
-      .radio-md{
-        margin:0;
+      .radio-md {
+        margin: 0;
         .radio-icon {
           display: none;
         }
@@ -99,41 +108,36 @@ page-propose {
     }
   }
 
-
-  .choice-price{
-    .form-price{
-      padding-bottom:20px;
-      .title-price{
-        text-align:left;
-        color:$bleu;
-        font-weight:900;
+  .choice-price {
+    .form-price {
+      padding-bottom: 20px;
+      .title-price {
+        text-align: left;
+        color: $bleu;
+        font-weight: 900;
       }
-      .price{
-        border-bottom:2px solid $bleu-clair;
-        font-size:30px;
-        color:$bleu;
-        font-weight:600;
-        display:flex;
-        justify-content:center;
-        input{
-          text-align:right;
+      .price {
+        border-bottom: 2px solid $bleu-clair;
+        font-size: 30px;
+        color: $bleu;
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        input {
+          text-align: right;
         }
-        span{
+        span {
           margin: 13px 8px;
         }
       }
 
     }
   }
-  .paiement{
-    ion-input{
-      border-bottom:2px solid $bleu-clair;
+  .paiement {
+    ion-input {
+      border-bottom: 2px solid $bleu-clair;
 
     }
-  }
-  .swiper-slide {
-    align-items: flex-start;
-    width:100%;
   }
   .input-cover {
     display: none;
@@ -142,17 +146,36 @@ page-propose {
     background-color: #d5d5d5;
     border-color: #d5d5d5;
   }
-
-  .file-contents {
-    height: 150px;
-    overflow: auto;
-  }
-
-  .file-container {
-    margin: 15px auto;
-    box-shadow: 1px 1px 5px 1px #d5d5d5;
-    padding: 3px;
-    max-height: 400px;
+  .files-container {
+    ion-label {
+      display: flex;
+      flex-wrap: wrap;
+      .file-container {
+        max-height: 400px;
+        width: 33%;
+        position: relative;
+        padding: 10px;
+        .file-contents {
+          border-radius: 5px;
+          overflow: hidden;
+          display: grid;
+        }
+        .remove {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          transform: translate(100% 100%);
+          color: map-get($colors, danger);
+          background-color: white;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          text-align: center;
+          opacity: .66;
+          line-height: 30px;
+        }
+      }
+    }
   }
 
   .error-container,
@@ -169,11 +192,15 @@ page-propose {
     }
   }
   .custom-file-label {
-    width: 100%;
-    height: 175px;
-    border: 3px solid rgba(cornflowerblue, .5);
-    display: block;
+    border: 2px solid map-get($colors, primary);
+    height: 160px;
+    width: 260px;
     border-radius: 10px;
+    background-image: url('../assets/img/icons/upload.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-position: center center;
   }
   #file {
     display: none;
@@ -185,9 +212,11 @@ page-propose {
   }
 
 }
+
 .item-ios .radio-ios {
-  margin:0;
+  margin: 0;
 }
+
 .radio-ios .radio-icon {
   display: none !important;
 }

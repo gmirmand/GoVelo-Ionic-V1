@@ -2,7 +2,7 @@
     <ion-navbar color="primary">
         <ion-title>Trouver</ion-title>
         <ion-buttons start class="start">
-            <button ion-button icon-left (click)="prev()">
+            <button ion-button icon-left (click)="prev()" [ngClass]="{'hide':hide}">
                 <ion-icon name="arrow-back"></ion-icon>
                 Prev
             </button>
@@ -11,11 +11,11 @@
 </ion-header>
 
 <ion-content padding class="bg-grey">
-    <ion-slides #findSlider ngClass="swiper-no-swiping">
+    <ion-slides #findSlider (ionSlideDidChange)="slideChanged()">
         <ion-slide>
             <h2>Où cherchez-vous votre vélo ?</h2>
             <p class="text-info">La fonctionnalité de géolocalisation sera disponible prochainement !</p>
-            <button ion-button icon-right (click)="next()" class="button button_inverse_blanc button-nonused">
+            <button ion-button icon-right disabled class="button button_inverse_blanc button-nonused">
                 {{'Ma position' | translate}}
                 <ion-icon ios="ios-disc" md="md-disc"></ion-icon>
             </button>

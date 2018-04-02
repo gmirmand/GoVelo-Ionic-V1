@@ -5,7 +5,7 @@ Error: Undefined variable: "$color-grey".
 6:     padding: 20px 0;
 7:     .info {
 8:       .title {
-9:         font-size: 26px;
+9:         font-size: 22px;
 10:         line-height: 1;
 11:         color: $color-grey;
 12:         font-weight: bold;
@@ -100,4 +100,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$color-grey\".\A         on line 11 of home.scss\A \A 6:     padding: 20px 0;\A 7:     .info {\A 8:       .title {\A 9:         font-size: 26px;\A 10:         line-height: 1;\A 11:         color: $color-grey;\A 12:         font-weight: bold;\A 13:       }\A 14:     }\A 15:   }\A 16:   .proposer, .trouver {"; }
+  content: "Error: Undefined variable: \"$color-grey\".\A         on line 11 of home.scss\A \A 6:     padding: 20px 0;\A 7:     .info {\A 8:       .title {\A 9:         font-size: 22px;\A 10:         line-height: 1;\A 11:         color: $color-grey;\A 12:         font-weight: bold;\A 13:       }\A 14:     }\A 15:   }\A 16:   .proposer, .trouver {"; }

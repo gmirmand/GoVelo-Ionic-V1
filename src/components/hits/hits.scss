@@ -2,4 +2,83 @@ hits {
   p {
     white-space: normal;
   }
+  .img-container {
+    .img {
+      border-radius: 50%;
+      overflow: hidden;
+      width: 80px;
+      height: 80px;
+      margin: 0;
+      background-position: center center;
+      background-size: cover;
+    }
+  }
+  .calendar-container {
+    ion-label {
+      margin: 0;
+    }
+    .item-md.calendar {
+      .item-inner {
+        border-bottom: 1px solid map-get($colors, primary);
+        padding: 5px 0;
+        ion-label {
+          p {
+            font-size: 12px;
+            text-align: center;
+            b {
+              font-weight: 500;
+            }
+          }
+        }
+      }
+      &:last-child {
+        .item-inner {
+          border-bottom: 0;
+        }
+      }
+      &:first-child, &:last-child {
+
+      }
+    }
+  }
+  .infos-container {
+    border-right: 2px solid map-get($colors, primary);
+    .price {
+      color: map-get($colors, primary);
+      font-weight: 300;
+      font-size: 18px;
+      margin-right: 10px;
+      .nb {
+        font-weight: bold;
+      }
+    }
+    .type {
+      background-color: map-get($colors, primary);
+      font-size: 13px;
+      color: white;
+      font-weight: bold;
+      padding: 1px 10px;
+      border-radius: 10px;
+      display: inline-block;
+      &-bmx {
+        background-color: map-get($colors, yellow);
+      }
+      &-velodeville {
+        background-color: map-get($colors, secondary);
+      }
+    }
+    .city {
+      padding: 8px 0;
+      font-weight: bold;
+      ion-icon {
+        margin-right: 5px;
+      }
+    }
+    .author {
+      color: map-get($colors, primary);
+    }
+  }
+  .item-md {
+    padding-left: 0;
+  }
 }

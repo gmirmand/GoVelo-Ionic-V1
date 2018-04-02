@@ -1,12 +1,10 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>Entrez votre addresse complète</ion-title>
-        <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()"
-                       (ionCancel)="dismiss()" placeholder="Rechercher..."></ion-searchbar>
-    </ion-toolbar>
-</ion-header>
 <ion-content>
     <ion-list>
+        <ion-item>
+            <ion-title>Entrez votre addresse complète</ion-title>
+            <ion-searchbar [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()"
+                           (ionCancel)="dismiss()" placeholder="Rechercher..."></ion-searchbar>
+        </ion-item>
         <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
             {{ item.description }}
         </ion-item>

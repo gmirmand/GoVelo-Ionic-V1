@@ -14,7 +14,15 @@
 
 
 <ion-content>
-    <ion-item ngClass="filters">
-    </ion-item>
+    <div class="filters-container" [ngClass]="{'active':active}">
+        <ion-item class="filters">
+            <div class="filter">
+                Les filtres arrivent bientôt !
+            </div>
+        </ion-item>
+        <ion-item class="expand" (click)="clickFilter()">
+            <ion-icon name="arrow-down"></ion-icon>
+        </ion-item>
+    </div>
     <hits></hits>
 </ion-content>

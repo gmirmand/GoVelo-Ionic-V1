@@ -1,22 +1,24 @@
 page-login {
 
-
-  .button-clear-md, .button-clear-ios{
-    &.forgot, &.created{
-      font-size:12px;
-      margin-bottom:10px;
-      padding:5px 0;
-      height:inherit;
+  .button-clear-md, .button-clear-ios {
+    &.forgot, &.created {
+      font-size: 12px;
+      margin-bottom: 10px;
+      padding: 5px 0;
+      height: inherit;
     }
 
-    &.forgot{
-      color:$bleu-clair;
+    &.forgot {
+      color: $bleu-clair;
     }
-    &.created{
-      color:$bleu;
+    &.created {
+      color: $bleu;
     }
   }
-  .no-margin{
-    margin-bottom:0;
+  .no-margin {
+    margin-bottom: 0;
+  }
+  .scroll-content {
+    padding-bottom: 0 !important;
   }
 }

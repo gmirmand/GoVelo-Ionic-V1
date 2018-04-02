@@ -20,6 +20,7 @@ import {InstantsearchProvider} from '../providers/instantsearch/instantsearch';
 
 import {registerLocaleData} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import {PipesModule} from "../pipes/pipes.module";
 
 registerLocaleData(localeFr, 'fr');
 
@@ -64,7 +65,8 @@ export function provideSettings(storage: Storage) {
             preloadModules: true
         }),
         IonicStorageModule.forRoot(),
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        PipesModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

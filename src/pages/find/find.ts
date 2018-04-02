@@ -23,6 +23,8 @@ export class FindPage {
     @ViewChild('findSlider')
     findSlider: any;
 
+    hide: boolean = true;
+
     find: any = {};
 
     styles: any;
@@ -106,7 +108,7 @@ export class FindPage {
             loader.dismiss();
         }, (err) => {
             let toast = this.toastCtrl.create({
-                message: 'Oops, an error occured.. contact the support (g#tSt#l#s)',
+                message: 'Oups, une erreur est survenue ... veuillez contacter le support (g#tSt#l#s)',
                 duration: 3000,
                 position: 'top'
             });
@@ -124,6 +126,11 @@ export class FindPage {
 
     prev() {
         this.findSlider.slidePrev();
+    }
+
+    slideChanged() {
+        let currentIndex = this.findSlider.getActiveIndex();
+        this.hide = currentIndex === 0;
     }
 
 //    FromTo

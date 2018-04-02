@@ -29,6 +29,8 @@ export class ProposePage {
     @ViewChild('proposeSlider')
     proposeSlider: any;
 
+    hide: boolean = true;
+
     propose: any = {};
     styles: any;
 
@@ -100,13 +102,13 @@ export class ProposePage {
         //Form
         //Slide1
         this.slideOneForm = formBuilder.group({
-            title: ['ToRemove',
+            title: ['',
                 Validators.compose([
                     Validators.minLength(5),
                     Validators.maxLength(50),
                     Validators.required]
                 )],
-            description: ['ToRemove', Validators.required]
+            description: ['', Validators.required]
         });
         //Slide2
         this.slideTwoForm = formBuilder.group({
@@ -152,7 +154,7 @@ export class ProposePage {
         }, (err) => {
             // Unable to sign up
             let toast = this.toastCtrl.create({
-                message: 'Oops, an error occured.. contact the support (g#tSt#l#s)',
+                message: 'Oups, une erreur est survenue ... veuillez contacter le support (g#tSt#l#s)',
                 duration: 3000,
                 position: 'top'
             });
@@ -170,6 +172,11 @@ export class ProposePage {
 
     prev() {
         this.proposeSlider.slidePrev();
+    }
+
+    slideChanged() {
+        let currentIndex = this.proposeSlider.getActiveIndex();
+        this.hide = currentIndex === 0;
     }
 
 //Calendar

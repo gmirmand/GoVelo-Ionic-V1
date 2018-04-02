@@ -24,7 +24,7 @@ page-tutorial {
 
   .slide-zoom {
     background: linear-gradient(135deg,$bleu,$vert);
-    height: 90%;
+    height: 100%;
     width:80%;
     color:$blanc;
     border-radius:10px;
@@ -35,6 +35,10 @@ page-tutorial {
   .slide-title {
     margin-top: 1.5rem;
     font-weight: 900;
+  }
+
+  .slide-sub-title{
+
   }
 
   .slide-image {

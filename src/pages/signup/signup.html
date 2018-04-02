@@ -2,7 +2,7 @@
     <ion-navbar color="primary">
         <ion-title>{{ 'SIGNUP_TITLE' | translate }}</ion-title>
         <ion-buttons start class="start">
-            <button ion-button icon-left (click)="prev()">
+            <button ion-button icon-left (click)="prev()" [ngClass]="{'hide':hide}">
                 <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
                 Retour
             </button>
@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content class="bg-grey">
-    <ion-slides #signupSlider pager class="container-9" >
+    <ion-slides #signupSlider pager class="container-9" (ionSlideDidChange)="slideChanged()">
         <ion-slide>
             <h1 class="title_page font-bleu">Inscription</h1>
 

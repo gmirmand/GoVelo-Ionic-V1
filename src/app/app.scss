@@ -138,9 +138,9 @@ a {
 
 .title_page {
 
-  text-align:center;
+  text-align: center;
   margin: 25px 0 25px 0;
-  font-weight:bold;
+  font-weight: bold;
 }
 
 /*************
@@ -193,8 +193,21 @@ STRUCTURE
 }
 
 //Headers
-.toolbar-md-primary .bar-button-default-md,.toolbar-ios-primary .bar-button-default-ios {
+.toolbar-md-primary .bar-button-default-md, .toolbar-ios-primary .bar-button-default-ios {
   color: $bleu;
+}
+
+.back-button {
+  background-color: white;
+  margin: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transform: translateX(-10px);
+  position: relative;
+  left: -4px;
+  margin-right: 5px;
+  padding: 5px 10px 5px 15px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.25);
 }
 
 .content {
@@ -372,20 +385,20 @@ ion-header.header {
 
 //Forms
 
-
-.label-md, .label-ios{
-  margin:13px 0;
+.label-md, .label-ios {
+  margin: 13px 0;
 }
-page-login, page-signup, page-propose, page-find{
-  h2{
-    text-align:left;
-    color:$bleu;
-    font-weight:bold;
+
+page-login, page-signup, page-propose, page-find {
+  h2 {
+    text-align: left;
+    color: $bleu;
+    font-weight: bold;
   }
 
-  .text-info{
-    text-align:left;
-    color:$bleu;
+  .text-info {
+    text-align: left;
+    color: $bleu;
 
   }
   .item-md, .item-ios, .list-ios > .item-block:last-child {
@@ -393,18 +406,18 @@ page-login, page-signup, page-propose, page-find{
     font-size: 1.6rem;
     background-color: transparent;
   }
-  .input-form{
-      .item-inner, .item-ios{
-        padding-right:0 !important;
-        border-bottom-color: $bleu !important;
-        border-bottom-width: 2px !important;
-        box-shadow: none !important;
-        .label-md,.label-ios{
-          color:$bleu;
-          margin: 3px 0 3px 0;
-          font-size:16px;
-        }
+  .input-form {
+    .item-inner, .item-ios {
+      padding-right: 0 !important;
+      border-bottom-color: $bleu !important;
+      border-bottom-width: 2px !important;
+      box-shadow: none !important;
+      .label-md, .label-ios {
+        color: $bleu;
+        margin: 3px 0 3px 0;
+        font-size: 16px;
       }
+    }
 
     &.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
     &.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
@@ -412,7 +425,7 @@ page-login, page-signup, page-propose, page-find{
     &.item-input.item-input-has-focus:last-child,
     &.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus):last-child,
     &.item-input:last-child,
-    &.list-ios > .item-block:last-child{
+    &.list-ios > .item-block:last-child {
       border-bottom-color: $bleu !important;
       border-bottom-width: 2px !important;
       box-shadow: none !important;
@@ -423,13 +436,14 @@ page-login, page-signup, page-propose, page-find{
 //Buttons
 .button {
   border-radius: 50px;
-  width: calc(100% - 2px);
-  margin-top:20px;
-  margin-bottom: 25px;
-  padding: 20px 0;
+  //width: calc(100% - 2px);
+  margin: 20px auto 25px;
+  padding: 25px 80px;
+  max-width: calc(100% - 2px);
   font-weight: bold;
   font-size: 14px;
   text-transform: uppercase;
+  display: inherit;
   &_inverse {
     &_blanc {
       border: 1px solid $bleu;
@@ -467,16 +481,16 @@ page-login, page-signup, page-propose, page-find{
     }
   }
 }
-.picker-wrapper{
+
+.picker-wrapper {
   .picker-ios .picker-toolbar-cancel {
     text-align: start;
     font-weight: 400;
   }
-  .picker-toolbar{
+  .picker-toolbar {
     justify-content: space-between;
   }
 }
-
 
 .button_end {
   @include flexCenter();
@@ -521,13 +535,66 @@ ion-toast.toast-md .toast-wrapper {
 }
 
 /**css temporelle*/
-.button-nonused{
-  border-color:$vert;
-  color:$vert;
+.button-nonused {
+  border-color: $vert;
+  color: $vert;
 }
-.info-box, .info-box:hover{
-  border:2px solid $vert;
-  background-color:$blanc;
-  color:$vert;
-  padding:5px;
+
+.info-box, .info-box:hover {
+  border: 2px solid $vert;
+  background-color: $blanc;
+  color: $vert;
+  padding: 5px;
+}
+
+//cards
+
+ion-card {
+  &.card-md {
+    border-radius: 10px;
+    margin: 15px auto;
+    padding: 10px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.25);
+    //border: 1px solid rgba(0,0,0,0.25);
+    p {
+      line-height: 1.2;
+    }
+  }
+}
+
+.slide-zoom {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 120px);
+}
+
+.swiper-slide {
+  align-items: flex-start;
+  width: 100%;
+}
+
+//ion-searchbar
+ion-searchbar {
+  background: transparent;
+  .button {
+    margin: 0;
+  }
+  ion-icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-55%);
+  }
+}
+
+.searchbar-ios {
+  background: transparent;
+  border-radius: inherit;
+  margin: inherit;
+  padding: inherit;
+  max-width: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  text-transform: inherit;
+  display: inherit;
 }

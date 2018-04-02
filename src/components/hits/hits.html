@@ -1,23 +1,30 @@
 <!-- Generated template for the HitsComponent component -->
 <ion-list>
-    <ion-item *ngFor="let hit of state.hits">
+    <ion-card *ngFor="let hit of state.hits" ngClass="item-container">
         <ion-row>
-            <ion-col col-2>
+            <ion-col ngClass="img-container">
+                <div class="img" style="background-image: url('assets/img/bikes/bike.jpeg');"></div>
             </ion-col>
-            <ion-col col-4>
-                <ion-row>
-                    <ion-col>{{ hit.priceD }}€ / jours</ion-col>
-                    <ion-col>{{ hit.style[0].nomStyle }}</ion-col>
-                </ion-row>
-                <p>{{ hit.city }}</p>
-                <p>{{ hit.author.firstnameAuthor }} {{ hit.author.lastnameAuthor|limit:1 }}.</p>
+            <ion-col col-5 ngClass="infos-container">
+                <div>
+                    <span ngClass="price"><span class="nb">{{ hit.priceD }}€</span> / jour</span>
+                    <span ngClass="type type-{{ hit.style[0].nomStyle | removeSpaces }}">{{ hit.style[0].nomStyle }}</span>
+                </div>
+                <p ngClass="city">
+                    <ion-icon name="pin"></ion-icon>
+                    {{ hit.city }}
+                </p>
+                <p ngClass="author">
+                    <ion-icon name="md-contact"></ion-icon>
+                    Par <b>{{ hit.author.firstnameAuthor }} {{ hit.author.lastnameAuthor|limit:1 }}.</b>
+                </p>
             </ion-col>
-            <ion-col col-4>
-                <ion-item *ngFor="let calendar of hit.calendar">
-                    <p>du {{calendar.startCalendar.date | date:'dd MMMM yyyy':'':'fr-FR'}}</p>
-                    <p>au {{calendar.endCalendar.date | date:'dd MMMM yyyy':'':'fr-FR'}}</p>
+            <ion-col ngClass="calendar-container">
+                <ion-item *ngFor="let calendar of hit.calendar" ngClass="calendar">
+                    <p>Du <b>{{calendar.startCalendar.date | date:'dd MMMM yyyy':'':'fr-FR'}}</b></p>
+                    <p>Au <b>{{calendar.endCalendar.date | date:'dd MMMM yyyy':'':'fr-FR'}}</b></p>
                 </ion-item>
             </ion-col>
         </ion-row>
-    </ion-item>
+    </ion-card>
 </ion-list>
