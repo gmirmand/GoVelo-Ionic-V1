@@ -122,12 +122,25 @@
         </div>
         <div class="infos info-user ">
           <a (click)="profil()">
-          <div class="info-img" [style.backgroundImage]="'url(assets/img/marty-avatar.png)'">
-              <img src="assets/img/icons/ok-bleu-contour-clair.png" alt="certified" class="certified">
-              <div class="level-user">
-                <span class="level">3</span>
-              </div>
-          </div>
+            <round-progress
+                    class="progress-profil"
+                    [current]=60
+                    [max]=70
+                    [color]="'#0B9CB3'"
+                    [background]="'#BCE0FD'"
+                    [stroke]="20"
+                    [rounded]="true"
+                    [clockwise]="true"
+                    [responsive]="true"
+                    [duration]="800"
+                    [animation]="'easeInOutQuart'"
+                    [animationDelay]="800"
+                    [style.backgroundImage]="'url(assets/img/marty-avatar.png)'">
+            </round-progress>
+            <img src="assets/img/icons/ok-bleu-contour-clair.png" alt="certified" class="certified">
+            <div class="level-user">
+              <span class="level">3</span>
+            </div>
           </a>
         </div>
       </div>
@@ -139,12 +152,12 @@
     <div class="separator"></div>
     <div class="button_end">
       <div class="contact">
-        <button (click)="chats()" class="button button_inverse_blanc">
+        <button (click)="chats()" class="button button_inverse_bleu">
             Contacter
         </button>
       </div>
       <div class="contact">
-        <button (click)="rental()" class="button button_inverse_bleu">
+        <button (click)="rental()" class="button button_inverse_blanc">
           Réserver
         </button>
       </div>

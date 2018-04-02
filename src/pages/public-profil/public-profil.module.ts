@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { AnnouncementDetailsPage } from './announcement-details';
+import { PublicProfilPage } from './public-profil';
 import {RoundProgressModule} from 'angular-svg-round-progressbar';
 
 @NgModule({
   declarations: [
-    AnnouncementDetailsPage,
+    PublicProfilPage,
   ],
   imports: [
-    IonicPageModule.forChild(AnnouncementDetailsPage),
+    IonicPageModule.forChild(PublicProfilPage),
       RoundProgressModule,
   ],
 })
-export class AnnouncementDetailsPageModule {}
+export class PublicProfilPageModule {}

@@ -88,16 +88,14 @@ page-announcement-details {
         -webkit-margin-after: 0.3em;
       }
       .info-user{
-        .info-img{
-          @include bgImg();
-          width: 115px;
-          height: 115px;
-          border-radius: 50%;
-          border: 10px solid;
-          margin:0 auto;
-          position:relative;
-          color:$bleu;
-          img{
+        a{
+          position: relative;
+          display:block;
+          .progress-profil{
+            border-radius:50%;
+            background-size:cover;
+          }
+          .certified{
             width: 25px;
             position: absolute;
             bottom: -15px;
@@ -115,15 +113,20 @@ page-announcement-details {
             right: -5px;
             z-index: 1;
             text-align:center;
+            @include respond-to(xs) {
+              width: 25%;
+              height: 25%;
+            }
             .level{
               line-height: 36px;
               font-size: 20px;
+              @include respond-to(xs) {
+                font-size: 40px;
+                line-height: 60px;
+              }
             }
-
           }
         }
-
-
       }
     }
   }

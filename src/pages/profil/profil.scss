@@ -1,4 +1,7 @@
 page-profil {
+  h2{
+    color:$bleu;
+  }
   .infos {
     position: relative;
   }
@@ -23,8 +26,9 @@ page-profil {
     }
   }
 
-  .img-user {
+  .img-user a{
     position: relative;
+    display:block;
     .progress-profil{
       border-radius:50%;
       background-size:cover;
@@ -47,9 +51,17 @@ page-profil {
         right: -5px;
         z-index: 1;
         text-align:center;
+        @include respond-to(xs) {
+          width: 25%;
+          height: 25%;
+        }
         .level{
           line-height: 36px;
           font-size: 20px;
+          @include respond-to(xs) {
+            font-size: 40px;
+            line-height: 60px;
+          }
         }
 
       }
