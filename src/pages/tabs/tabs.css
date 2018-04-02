@@ -1,21 +1,3 @@
-page-tabs .tabs-md .tab-button-icon {
-  width: 100%;
-  padding: 0 5px; }
-page-tabs ion-icon[class*="ion-md-"] {
-  mask-size: contain;
-  mask-position: 50% 50%;
-  mask-repeat: no-repeat;
-  width: 1em;
-  height: 1em; }
-page-tabs ion-icon[class*="ion-md-chatboxes"] {
-  mask-image: url(../assets/img/tabs/message.svg); }
-page-tabs ion-icon[class*="ion-md-propose"] {
-  mask-image: url(../assets/img/tabs/propose.svg); }
-page-tabs ion-icon[class*="ion-md-home"] {
-  mask-image: url(../assets/img/tabs/home.svg); }
-page-tabs ion-icon[class*="ion-md-search"] {
-  mask-image: url(../assets/img/tabs/search.svg); }
-page-tabs ion-icon[class*="ion-md-profil"] {
-  mask-image: url(../assets/img/tabs/profil.svg); }
+
 
 /*# sourceMappingURL=tabs.css.map */

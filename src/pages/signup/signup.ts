@@ -18,6 +18,8 @@ import {MainPage} from '../pages';
 export class SignupPage {
     @ViewChild('signupSlider') signupSlider: any;
 
+    hide: boolean = true;
+
     account: any = [];
 
     slideOneForm: FormGroup;
@@ -99,6 +101,11 @@ export class SignupPage {
 
     prev() {
         this.signupSlider.slidePrev();
+    }
+
+    slideChanged() {
+        let currentIndex = this.signupSlider.getActiveIndex();
+        this.hide = currentIndex === 0;
     }
 
     save() {

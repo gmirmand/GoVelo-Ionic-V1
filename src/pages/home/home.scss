@@ -6,7 +6,7 @@ page-home {
     padding: 20px 0;
     .info {
       .title {
-        font-size: 26px;
+        font-size: 22px;
         line-height: 1;
         color: $color-grey;
         font-weight: bold;
@@ -32,11 +32,9 @@ page-home {
         box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.2);
         border-radius: 50%;
         font-size: 3.2em;
-        transform: translateX(-50%);
       }
     }
     .proposer_left, .trouver_right {
-
       .title {
         font-size: 24px;
         font-weight: bold;
@@ -60,30 +58,26 @@ page-home {
     background-color: $bleu;
     .button-cercle {
       ion-icon {
+        transform: translateX(-60%);
         background-color: $bleu;
       }
     }
     .proposer_left {
-      margin-left: 50px;
+      margin-left: 40px;
       margin-right:20px;
-      p{
-        text-align: justify;
-      }
     }
   }
   .trouver {
     background-color: $vert;
     .button-cercle {
       ion-icon {
+        transform: translateX(-40%);
         background-color: $vert;
       }
     }
     .trouver_right {
-      margin-right: 50px;
+      margin-right: 40px;
       margin-left:20px;
-      p{
-        text-align: justify;
-      }
     }
   }
 }

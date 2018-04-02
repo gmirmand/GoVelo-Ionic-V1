@@ -15,8 +15,13 @@ import {InstantsearchProvider} from '../../providers/instantsearch/instantsearch
     templateUrl: 'announcement.html',
 })
 export class AnnouncementPage {
+    active: boolean = false;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private instantSearchService: InstantsearchProvider) {
+    }
+
+    clickFilter() {
+        this.active = !this.active;
     }
 
     ionViewDidLoad() {

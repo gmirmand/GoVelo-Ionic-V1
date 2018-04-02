@@ -2,7 +2,7 @@
     <ion-navbar>
         <ion-title>Proposes</ion-title>
         <ion-buttons start class="start">
-            <button ion-button icon-left (click)="prev()">
+            <button ion-button icon-left (click)="prev()" [ngClass]="{'hide':hide}">
                 <ion-icon name="arrow-back"></ion-icon>
                 Prev
             </button>
@@ -12,11 +12,11 @@
 
 
 <ion-content padding class="bg-grey">
-    <ion-slides #proposeSlider ngClass="swiper-no-swiping">
+    <ion-slides #proposeSlider (ionSlideDidChange)="slideChanged()">
         <ion-slide>
-            <div class="slide-container swiper-swiping container-9">
-                <h2 class="title_page font-bleu" > Choisissez un vélo </h2>
-                <ion-slides class="container-bike">
+            <div class="slide-container container-9">
+                <h2 class="title_page font-bleu"> Choisissez un vélo </h2>
+                <ion-slides class="container-bike" #cardsSlider>
                     <ion-slide>
                         <div class="list-bike">
                             <button type="button" class="button button-stable bike"> <!-- GO STEP 7 -->
@@ -25,7 +25,8 @@
                                 <div class="h5">Le Puy en velay</div>
                                 <div class="h4">7€ / jour</div>
                             </button>
-                            <div class="param"><img src="assets/img/icons/settings-bleu-contour.png" alt="paramètres"></div>
+                            <div class="param"><img src="assets/img/icons/settings-bleu-contour.png" alt="paramètres">
+                            </div>
                         </div>
                     </ion-slide>
                     <ion-slide>
@@ -36,7 +37,8 @@
                                 <div class="h5">Le Puy en velay</div>
                                 <div class="h4">11€ / jour</div>
                             </button>
-                            <div class="param"><img src="assets/img/icons/settings-bleu-contour.png" alt="paramètres"></div>
+                            <div class="param"><img src="assets/img/icons/settings-bleu-contour.png" alt="paramètres">
+                            </div>
                         </div>
                     </ion-slide>
                     <ion-slide>
@@ -47,7 +49,8 @@
                                 <div class="h5">Brives</div>
                                 <div class="h4">10€ / jour</div>
                             </button>
-                            <div class="param"><img src="assets/img/icons/settings-bleu-contour.png" alt="paramètres"></div>
+                            <div class="param"><img src="assets/img/icons/settings-bleu-contour.png" alt="paramètres">
+                            </div>
                         </div>
                     </ion-slide>
                 </ion-slides>
@@ -107,7 +110,8 @@
         <ion-slide class="picture-bike">
             <div class="container-9">
                 <h2> Ajouter des photos de votre vélo </h2>
-                <p class="text-info">Les annonces avec photo sont bien plus susceptibles d'interesser de futurs locataires</p>
+                <p class="text-info">Les annonces avec photo sont bien plus susceptibles d'interesser de futurs
+                    locataires</p>
                 <!--Fichier-->
                 <ion-item>
                     <form class="form-group" [formGroup]="slideTwoForm">
@@ -127,7 +131,8 @@
                             </label>
                         </div>
                         <div class="col-12 error-container">
-                            <div [ngClass]="{'text-danger': slideTwoForm.get('file').hasError('fileType')}">Type de fichier
+                            <div [ngClass]="{'text-danger': slideTwoForm.get('file').hasError('fileType')}">Type de
+                                fichier
                                 non autorisé
                             </div>
                             <div [ngClass]="{'text-danger': slideTwoForm.get('file').hasError('fileExt')}">Extension de
@@ -138,9 +143,8 @@
                             </div>
                         </div>
                     </form>
-
-                    <ion-item *ngFor="let file of fileList; let i = index">
-                        <div class="file-container">
+                    <ion-item class="files-container">
+                        <div *ngFor="let file of fileList; let i = index" class="file-container">
                             <div class="file-contents">
                                 <img *ngIf="file.imgSrc" [src]="file.imgSrc"/>
                                 <p *ngIf="file.textContent" [innerHtml]="file.textContent"></p>
@@ -150,6 +154,9 @@
                             </div>
                         </div>
                     </ion-item>
+                    <div *ngIf="fileList.length>0">
+                        <i>{{fileList.length}} photo(s) ajoutée(s) !</i>
+                    </div>
                 </ion-item>
 
                 <button ion-button icon-right (click)="next()" class="button button_inverse_bleu">
@@ -186,7 +193,7 @@
             <div class="container-9">
                 <h2>Où louez-vous votre vélo ?</h2>
                 <p class="text-info">La fonctionnalité de géolocalisation sera disponible prochainement !</p>
-                <button ion-button icon-right (click)="next()" class="button button_inverse_blanc button-nonused">
+                <button ion-button icon-right disabled class="button button_inverse_blanc button-nonused">
                     {{'Ma position' | translate}}
                     <ion-icon ios="ios-disc" md="md-disc"></ion-icon>
                 </button>
@@ -248,7 +255,8 @@
                 <h2> Pour quelle(s) période(s) ?</h2>
                 <ion-list no-lines>
                     <ion-item>
-                        <ion-calendar (onChange)="onCalendarChange($event)" name="calendar" [(ngModel)]="calendar.dateRange"
+                        <ion-calendar (onChange)="onCalendarChange($event)" name="calendar"
+                                      [(ngModel)]="calendar.dateRange"
                                       [options]="optionsRange"
                                       [type]="type"
                                       [format]="'DD/MM/YYYY'">
@@ -291,18 +299,20 @@
                 <ion-list no-lines>
                     <form [formGroup]="slideSevenForm">
                         <!--Locker-->
-                        <h2>Code cadena <ion-icon ios="ios-unlock" md="md-unlock"></ion-icon></h2>
+                        <h2>Code cadena
+                            <ion-icon ios="ios-unlock" md="md-unlock"></ion-icon>
+                        </h2>
                         <p class="text-info">L'utilisation du cadena est fortement conseillé</p>
                         <div class="lockInput">
                             <ion-row>
                                 <ion-col col-3>
-                                    <ion-input type="number" maxlength="1" name="lock1"
+                                    <ion-input type="number" [maxlength]="1" name="lock1"
                                                [(ngModel)]="propose.lock1"
                                                formControlName="lock1"
                                                id="lock1"></ion-input>
                                 </ion-col>
                                 <ion-col col-3>
-                                    <ion-input type="number" maxlength="1" name="lock2"
+                                    <ion-input type="number" max="1" name="lock2"
                                                [(ngModel)]="propose.lock2"
                                                formControlName="lock2"
                                                id="lock2"></ion-input>
@@ -321,14 +331,14 @@
                                 </ion-col>
                             </ion-row>
                         </div>
-                        <div class="preview">
+                        <!--<div class="preview">
                             <ion-row>
                                 <ion-col col-3>{{propose.lock1}}</ion-col>
                                 <ion-col col-3>{{propose.lock2}}</ion-col>
                                 <ion-col col-3>{{propose.lock3}}</ion-col>
                                 <ion-col col-3>{{propose.lock4}}</ion-col>
                             </ion-row>
-                        </div>
+                        </div>-->
                     </form>
 
                     <button ion-button icon-right (click)="save()" class=" button button_inverse_blanc">
