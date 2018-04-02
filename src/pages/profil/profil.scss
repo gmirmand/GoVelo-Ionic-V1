@@ -22,19 +22,14 @@ page-profil {
       }
     }
   }
+
   .img-user {
     position: relative;
-
-    .info-img{
-      @include bgImg();
-      width: 115px;
-      height: 115px;
-      border-radius: 50%;
-      border: 10px solid;
-      margin:0 auto;
-      position:relative;
-      color:$bleu;
-      img{
+    .progress-profil{
+      border-radius:50%;
+      background-size:cover;
+    }
+      .certified{
         width: 25px;
         position: absolute;
         bottom: -15px;
@@ -58,16 +53,16 @@ page-profil {
         }
 
       }
-    }
   }
   .account-own {
         display: flex;
         text-align: center;
         border-top: 2px solid $bleu;
+        margin-top:10px;
         a.booking {
           width: 50%;
           padding: 2vh 0;
-          h4{
+          h5{
             min-height:48px;
           }
           ion-img {
@@ -86,15 +81,16 @@ page-profil {
         }
       }
     .params-list {
-      .item-block {
+      .item-block,.item-ios,.item-block:first-child,.item-block:last-child {
         border-top: 2px solid $bleu;
+        border-bottom:none;
         padding: 0;
         a{
           display: flex;
           align-items: center;
           .h4 {
             width: 60%;
-            font-size:20px;
+            font-size:18px;
             color:$bleu;
           }
           .img-icon {
@@ -113,4 +109,5 @@ page-profil {
   .list-md .item-block .item-inner{
     border:none;
   }
+
 }

@@ -15,6 +15,7 @@
 
 <ion-content padding>
     <div class="container-9">
+
         <ion-row class="account-infos">
             <ion-col col-7 class="infos info-user">
                 <h1 class="name font-bleu">
@@ -37,22 +38,35 @@
             </ion-col>
             <ion-col col-5 class="infos img-user">
                 <a (click)="profil()">
-                    <div class="info-img" [style.backgroundImage]="'url(assets/img/marty-avatar.png)'">
-                        <img src="assets/img/icons/ok-bleu-contour-clair.png" alt="certified" class="certified">
-                        <div class="level-user">
-                            <span class="level">3</span>
-                        </div>
+                    <round-progress
+                            class="progress-profil"
+                            [current]=60
+                            [max]=70
+                            [color]="'#0B9CB3'"
+                            [background]="'#727272'"
+                            [stroke]="20"
+                            [rounded]="true"
+                            [clockwise]="true"
+                            [responsive]="true"
+                            [duration]="800"
+                            [animation]="'easeInOutQuart'"
+                            [animationDelay]="800"
+                            [style.backgroundImage]="'url(assets/img/marty-avatar.png)'">
+                    </round-progress>
+                    <img src="assets/img/icons/ok-bleu-contour-clair.png" alt="certified" class="certified">
+                    <div class="level-user">
+                        <span class="level">3</span>
                     </div>
                 </a>
             </ion-col>
         </ion-row>
         <div class="account-own ">
             <a class="booking reserv">
-                <h4  class="font-bleu ">Mes réservations</h4>
+                <h5  class="font-bleu ">Mes réservations</h5>
                 <ion-img src="assets/img/icons/shopping-cart-degrade.png" alt="Booking img"></ion-img>
             </a>
             <a class="booking">
-                <h4 class="font-bleu">Mes vélos</h4>
+                <h5 class="font-bleu">Mes vélos</h5>
                 <ion-img src="assets/img/icons/bicycle-degrade.png" alt="Bike img"></ion-img>
             </a>
         </div>
@@ -68,7 +82,7 @@
             </ion-item>
             <ion-item>
                 <a class="payment">
-                    <p class="h4">Préférences de paiement</p>
+                    <p class="h4">Paiement</p>
                     <div class="img-icon">
                         <ion-img src="assets/img/icons/credit-card-degrade.png" alt="Payement img"></ion-img>
                     </div>
