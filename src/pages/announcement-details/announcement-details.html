@@ -5,22 +5,20 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>announcement-details</ion-title>
+    <ion-title>Annonce</ion-title>
+    <ion-buttons start class="start">
+      <button ion-button icon-left (click)="prev()" [ngClass]="{'hide':hide}">
+        <ion-icon name="arrow-back"></ion-icon>
+        Prev
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content>
   <div class="header" [style.backgroundImage]="'url(assets/img/bike.jpeg)'">
-    <!--<div class="icon-share">-->
-      <!--<a href="/share">-->
-        <!--<img src="assets/img/icons/share-bleu.png" alt="Photo principal">-->
-      <!--</a>-->
-    <!--</div>-->
-
   </div>
   <div class="container-9">
     <div class="desc-container">

@@ -121,7 +121,7 @@ p {
 }
 
 .scroll-content, .fixed-content {
-  margin-top: 50px !important;
+  margin-top: 40px !important;
 }
 
 .scroll-content {
@@ -193,7 +193,7 @@ STRUCTURE
 }
 
 //Headers
-.toolbar-md-primary .bar-button-default-md, .toolbar-ios-primary .bar-button-default-ios {
+.toolbar-md-primary .bar-button-default-md, .toolbar-ios-primary ,.bar-button-default-ios,.bar-button-default-md {
   color: $bleu;
 }
 
