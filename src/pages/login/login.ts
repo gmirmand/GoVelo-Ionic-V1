@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {IonicPage, NavController, ToastController, Events} from 'ionic-angular';
+import {IonicPage, NavController, ToastController, Events, LoadingController} from 'ionic-angular';
 
 import {User} from '../../providers/providers';
 import {MainPage} from '../pages';
@@ -30,6 +30,7 @@ export class LoginPage {
                 public toastCtrl: ToastController,
                 public translateService: TranslateService,
                 public evts: Events,
+                public loadingCtrl: LoadingController,
                 public formBuilder: FormBuilder) {
 
         this.translateService.get('LOGIN_ERROR').subscribe((value) => {
@@ -54,17 +55,53 @@ export class LoginPage {
 
     // Attempt to login in through our User service
     doLogin() {
-        this.user.login(this.account).subscribe((resp) => {
-            this.navCtrl.push(MainPage);
+        let loader = this.loadSpinner();
+        //Will be remove
+        let ok: boolean = false;
+        let self = this;
+        loader.present().then(() => this.user.login(this.account).subscribe((resp) => {
+            console.log(resp);
+            resp['hydra:member'].forEach(function (user) {
+                if (user.email.toLowerCase() == self.account.email) {
+                    ok = true;
+                }
+            });
+            loader.dismiss();
+            this.afterLogin(ok);
         }, (err) => {
+            loader.dismiss();
+            this.afterLogin(ok);
+        }));
+    }
+
+    afterLogin(ok){
+        if (ok) {
             this.navCtrl.push(MainPage);
-            // Unable to log in
             let toast = this.toastCtrl.create({
-                message: this.loginErrorString,
+                message: 'Connecté !',
                 duration: 3000,
                 position: 'top'
             });
             toast.present();
+        } else {
+            this.navCtrl.push(MainPage);
+            // Unable to log in
+            let toast = this.toastCtrl.create({
+                message: "Oups, nous n'avons pas pu vous connecter...",
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+        }
+    }
+
+//    Loading controller
+    loadSpinner() {
+        return this.loadingCtrl.create({
+            spinner: 'hide',
+            content: `
+                <img src="assets/icon/spinner.gif"/>
+            `
         });
     }
 }

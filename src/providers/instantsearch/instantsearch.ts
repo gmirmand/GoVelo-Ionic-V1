@@ -17,6 +17,7 @@ export class InstantsearchProvider {
         urlSync: true
     });
 
+
     constructor(public http: HttpClient) {}
 
 }

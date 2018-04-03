@@ -36,7 +36,6 @@ export class HitsComponent {
             });
         }
 
-
         this.state = state;
     }
 }

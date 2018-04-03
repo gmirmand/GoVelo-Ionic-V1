@@ -29,7 +29,7 @@
             <button ion-button icon-right class="button button_inverse_bleu" (click)="next()">
                 {{'MAIL_SIGNUP' | translate}}
             </button>
-            <a ng-href="#/tab/auth/login">{{'ALREADY_HAVE_ACCOUNT' | translate}}</a>
+            <a (click)="goToLogin()">{{'ALREADY_HAVE_ACCOUNT' | translate}}</a>
         </ion-slide>
 
         <ion-slide>

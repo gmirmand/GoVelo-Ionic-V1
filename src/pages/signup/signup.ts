@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {IonicPage, NavController, ToastController, Events} from 'ionic-angular';
+import {IonicPage, NavController, ToastController, Events, LoadingController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 //Validators
@@ -9,6 +9,7 @@ import {EmailValidator} from '../../validators/email';
 
 import {User} from '../../providers/providers';
 import {MainPage} from '../pages';
+import {LoginPage} from "../login/login";
 
 @IonicPage()
 @Component({
@@ -37,7 +38,8 @@ export class SignupPage {
                 public toastCtrl: ToastController,
                 public translateService: TranslateService,
                 public evts: Events,
-                public formBuilder: FormBuilder) {
+                public formBuilder: FormBuilder,
+                public loadingCtrl: LoadingController) {
 
         //Form
         //Slide1
@@ -129,10 +131,16 @@ export class SignupPage {
         }
     }
 
+    //goToLogin
+    goToLogin() {
+        this.navCtrl.setRoot('LoginPage');
+    }
+
     //Signup
     doSignup() {
         // Attempt to sugnup in through our User service
-        this.user.signup(this.account).subscribe((resp) => {
+        let loader = this.loadSpinner();
+        loader.present().then(() => this.user.signup(this.account).subscribe((resp) => {
             this.navCtrl.push(MainPage);
         }, (err) => {
 
@@ -145,6 +153,16 @@ export class SignupPage {
                 position: 'top'
             });
             toast.present();
+        }));
+    }
+
+//    Loading controller
+    loadSpinner() {
+        return this.loadingCtrl.create({
+            spinner: 'hide',
+            content: `
+                <img src="assets/icon/spinner.gif"/>
+            `
         });
     }
 }

@@ -17,7 +17,7 @@ hits {
     ion-label {
       margin: 0;
     }
-    .item-md.calendar {
+    .item-md.calendar, .item-ios.calendar {
       .item-inner {
         border-bottom: 1px solid map-get($colors, primary);
         padding: 5px 0;
@@ -78,7 +78,7 @@ hits {
       color: map-get($colors, primary);
     }
   }
-  .item-md {
+  .item-md, .item-ios {
     padding-left: 0;
   }
 }

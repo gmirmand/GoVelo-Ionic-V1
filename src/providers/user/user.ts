@@ -36,17 +36,14 @@ export class User {
      */
     login(accountInfo: any) {
         accountInfo = {
-            "email": accountInfo.email,
+            "email": accountInfo.email.toLowerCase(),
             "password": accountInfo.passWord
         };
         let seq = this.api.get('users', accountInfo).share();
 
         seq.subscribe((res: any) => {
             // If the API returned a successful response, mark the user as logged in
-            if (res.status == 'success') {
-                this._loggedIn(res);
-            } else {
-            }
+            this._loggedIn(res);
         }, err => {
             console.error('ERROR', err);
         });

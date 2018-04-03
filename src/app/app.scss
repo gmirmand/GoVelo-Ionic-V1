@@ -395,6 +395,7 @@ page-login, page-signup, page-propose, page-find {
 //Buttons
 .button {
   border-radius: 50px;
+  white-space: inherit;
   //width: calc(100% - 2px);
   margin: 20px auto 25px;
   padding: 25px 80px;
@@ -467,8 +468,9 @@ page-login, page-signup, page-propose, page-find {
   border: 1px solid #ea6153;
 }
 
-ion-toast.toast-md .toast-wrapper {
+ion-toast.toast-md .toast-wrapper, .toast-ios .toast-wrapper {
   background: linear-gradient(to right, map-get($colors, primary), map-get($colors, secondary));
+  width: calc(100% - 20px);
   font-size: 14px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -509,7 +511,7 @@ ion-toast.toast-md .toast-wrapper {
 //cards
 
 ion-card {
-  &.card-md {
+  &.card-md, &.card-ios {
     border-radius: 10px;
     margin: 15px auto;
     padding: 10px;
@@ -517,6 +519,7 @@ ion-card {
     //border: 1px solid rgba(0,0,0,0.25);
     p {
       line-height: 1.2;
+      color: #222;
     }
   }
 }

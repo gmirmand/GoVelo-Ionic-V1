@@ -12,6 +12,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NativeGeocoder, NativeGeocoderForwardResult} from "@ionic-native/native-geocoder";
 import {Style} from "../../providers/providers";
 import {AutocompletePage} from "../../components/autocomplete/autocomplete";
+import {AnnouncementPage} from "../pages";
 
 @IonicPage()
 @Component({
@@ -184,8 +185,8 @@ export class FindPage {
                     loader.dismiss();
                 }).then(() => {
                     this.mergeData();
-                    this.navCtrl.push('AnnouncementPage');
                 }));
+            this.navCtrl.setRoot(AnnouncementPage);
         }
     }
 

@@ -1,26 +1,26 @@
 page-public-profil {
-  h2{
-    color:$bleu;
+  h2 {
+    color: $bleu;
   }
   .infos {
     text-align: center;
-    .infos-img{
+    .infos-img {
       position: relative;
-      display:block;
+      display: block;
       width: 60%;
       margin: 0 auto;
-      .progress-profil{
-        border-radius:50%;
-        background-size:cover;
+      .progress-profil {
+        border-radius: 50%;
+        background-size: cover;
       }
-      .certified{
+      .certified {
         width: 37px;
         position: absolute;
         bottom: -15px;
         right: 36px;
         z-index: 2;
       }
-      .level-user{
+      .level-user {
         border-radius: 50%;
         border: 2px solid $bleu-clair;
         background-color: $blanc;
@@ -30,16 +30,16 @@ page-public-profil {
         bottom: 0;
         right: 0;
         z-index: 1;
-        text-align:center;
+        text-align: center;
         @include respond-to(xs) {
           width: 25%;
           height: 25%;
         }
-        .level{
+        .level {
           line-height: 47px;
           font-size: 25px;
-          color:$bleu;
-          font-weight:900;
+          color: $bleu;
+          font-weight: 900;
           @include respond-to(xs) {
             font-size: 40px;
             line-height: 60px;
@@ -48,28 +48,28 @@ page-public-profil {
 
       }
     }
-    .certified-title{
-      color:$vert;
-      margin:20px 0;
+    .certified-title {
+      color: $vert;
+      margin: 20px 0;
     }
-    .name{
-      font-size:25px;
-      color:$bleu;
-      font-weight:600;
-      margin-bottom:5px;
+    .name {
+      font-size: 25px;
+      color: $bleu;
+      font-weight: 600;
+      margin-bottom: 5px;
     }
-    .town{
-      color:$color-grey;
-      font-size:15px;
-      margin-bottom:20px;
+    .town {
+      color: $color-grey;
+      font-size: 15px;
+      margin-bottom: 20px;
     }
     .desc {
       text-align: center;
     }
   }
   .notes {
-    p{
-      color:$bleu;
+    p {
+      color: $bleu;
     }
     .stars {
       a {
@@ -82,8 +82,8 @@ page-public-profil {
       .comment-item {
         .comment {
           display: flex;
-          p{
-            color:$bleu;
+          p {
+            color: $bleu;
           }
           .name {
             font-size: 12px;
@@ -133,5 +133,10 @@ page-public-profil {
       height: 17%;
       margin: 1.5%;
     }
+  }
+
+  .button {
+    padding: 15px 20px;
+    font-size: 12px;
   }
 }

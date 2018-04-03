@@ -15,8 +15,8 @@
 
         <div class="container-8 ">
             <div class="list-connect">
-                <button ion-button clear class="button  button_inverse_blanc">SE CONNECTER AVEC FACEBOOK</button>
-                <button ion-button clear class="button  button_inverse_blanc">SE CONNECTER AVEC GOOGLE+</button>
+                <button disabled ion-button clear class="button  button_inverse_blanc">SE CONNECTER AVEC FACEBOOK</button>
+                <button disabled ion-button clear class="button  button_inverse_blanc">SE CONNECTER AVEC GOOGLE+</button>
             </div>
             <div class="line-under">
                 <p>OU</p>
@@ -27,7 +27,7 @@
                         <ion-label floating>Adresse e-mail</ion-label>
                         <ion-input
                                 [class.invalid]="!logForm.controls.email.valid && (logForm.controls.email.dirty || submitAttempt)"
-                                formControlName="email" type="text"></ion-input>
+                                formControlName="email" type="mail"></ion-input>
                     </ion-item>
                     <ion-item class="input-form">
                         <ion-label floating>{{"PASSWORD" | translate}}</ion-label>

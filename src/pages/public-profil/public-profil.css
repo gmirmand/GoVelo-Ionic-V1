@@ -1,18 +1,18 @@
 /*
 Error: Undefined variable: "$bleu".
-        on line 3 of profil.scss
+        on line 3 of public-profil.scss
 
-1: page-profil {
-2:   h2{
-3:     color:$bleu;
+1: page-public-profil {
+2:   h2 {
+3:     color: $bleu;
 4:   }
 5:   .infos {
-6:     position: relative;
-7:   }
-8:   .info-user{
+6:     text-align: center;
+7:     .infos-img {
+8:       position: relative;
 
 Backtrace:
-profil.scss:3
+public-profil.scss:3
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/node.rb:58:in `perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
@@ -75,4 +75,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$bleu\".\A         on line 3 of profil.scss\A \A 1: page-profil {\A 2:   h2{\A 3:     color:$bleu;\A 4:   }\A 5:   .infos {\A 6:     position: relative;\A 7:   }\A 8:   .info-user{"; }
+  content: "Error: Undefined variable: \"$bleu\".\A         on line 3 of public-profil.scss\A \A 1: page-public-profil {\A 2:   h2 {\A 3:     color: $bleu;\A 4:   }\A 5:   .infos {\A 6:     text-align: center;\A 7:     .infos-img {\A 8:       position: relative;"; }

@@ -6,6 +6,7 @@ export const FirstRunPage = 'SplashPage';
 export const MainPage = 'TabsPage';
 
 export const AnnouncementDetailsPage = 'AnnouncementDetailsPage';
+export const AnnouncementPage = 'AnnouncementPage';
 
 // The initial root pages for our tabs (remove if not using tabs)
 export const tabProposeRoot = 'ProposePage';

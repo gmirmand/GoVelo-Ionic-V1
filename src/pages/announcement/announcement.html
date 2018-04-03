@@ -24,5 +24,8 @@
             <ion-icon name="arrow-down"></ion-icon>
         </ion-item>
     </div>
-    <hits></hits>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <hits (click)="goToDetail()"></hits>
 </ion-content>
