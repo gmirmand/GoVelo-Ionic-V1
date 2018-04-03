@@ -37,8 +37,8 @@ export class ProposePage {
     //PP file imgfileList;
     fileList: ICustomFile[] = [];
 
-    allowedFileTypes = '(gif|jpe?g|jpeg|tiff|png)';
-    allowedFileExt = '(.(gif|jpe?g|jpeg|tiff|png)$)';
+    allowedFileTypes = '(jpe?g|jpeg|png)';
+    allowedFileExt = '(.(jpe?g|jpeg|png)$)';
     withMeta = true;
     size = 1000000;
 
@@ -212,6 +212,7 @@ export class ProposePage {
     FileUploadWatcher() {
         this.slideTwoForm.get('file').valueChanges
             .subscribe((val) => {
+                console.log('test');
                 let errors = Object.keys(val[0].errors);
                 if (errors.length === 0) {
                     this.fileList = this.fileList ? this.fileList.concat(val[0]) : [];

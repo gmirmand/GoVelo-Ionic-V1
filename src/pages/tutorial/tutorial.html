@@ -7,21 +7,18 @@
 </ion-header>
 
 <ion-content no-bounce>
-    <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">
+    <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)" (click)="next()" #tutorialSlider>
         <ion-slide *ngFor="let slide of slides">
             <img [src]="slide.image" class="slide-image"/>
             <h2 class="slide-title" [innerHTML]="slide.title"></h2>
             <p [innerHTML]="slide.description"></p>
-
         </ion-slide>
-        <ion-slide>
-            <img src="assets/img/logo/logo-sim-blanc.png" class="slide-image"/>
+        <ion-slide (click)="startApp()">
+            <img src="assets/img/icons/velo-nuages-blanc.png" class="slide-image"/>
             <h2 class="slide-title">{{ 'TUTORIAL_SLIDE4_TITLE' | translate }}</h2>
-            <p>{{ 'TUTORIAL_SLIDE4_SUB_TITLE' | translate }}</p>
-            <button ion-button icon-end large clear (click)="startApp()">
-                {{ 'Prêt à rouler ?' | translate }}
-                <ion-icon name="arrow-forward"></ion-icon>
-            </button>
+            <p>Vous pouvez accéder directement à certaines fonctionnalités de l’application mais nous vous conseillons
+                de commencer par vous inscrire.</p>
+            <ion-icon name="arrow-forward"></ion-icon>
         </ion-slide>
     </ion-slides>
 </ion-content>

@@ -1,21 +1,21 @@
 page-tutorial {
-  .swiper-container-horizontal > .swiper-pagination-bullets{
+  .swiper-container-horizontal > .swiper-pagination-bullets {
     bottom: 50px;
   }
-  h2{
+  h2 {
     padding: 5px 0;
   }
-  .swiper-pagination-bullet{
-    border:2px solid $blanc;
-    opacity:1;
-    background:transparent;
+  .swiper-pagination-bullet {
+    border: 2px solid $blanc;
+    opacity: 1;
+    background: transparent;
     width: 15px;
     height: 15px;
 
   }
-  .swiper-pagination-bullet-active{
-    background:$blanc;
-    opacity:1;
+  .swiper-pagination-bullet-active {
+    background: $blanc;
+    opacity: 1;
   }
   .toolbar-background {
     background: transparent;
@@ -23,13 +23,20 @@ page-tutorial {
   }
 
   .slide-zoom {
-    background: linear-gradient(135deg,$bleu,$vert);
+    background: linear-gradient(135deg, $bleu, $vert);
     height: 100%;
-    width:80%;
-    color:$blanc;
-    border-radius:10px;
-    padding:0 10px;
+    width: 80%;
+    color: $blanc;
+    border-radius: 10px;
+    padding: 0 20px;
     box-shadow: 5px 5px 25px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+      padding: 0 10px;
+    }
   }
 
   .slide-title {
@@ -37,14 +44,14 @@ page-tutorial {
     font-weight: 900;
   }
 
-  .slide-sub-title{
+  .slide-sub-title {
 
   }
 
   .slide-image {
     height: 20%;
     width: auto;
-    margin: 36px 0 10px;
+    margin: -10px 0 10px;
   }
 
   b {
@@ -58,10 +65,10 @@ page-tutorial {
 
     b {
       color: $blanc;
-      font-weight:900;
+      font-weight: 900;
     }
   }
-  .button-clear-md, .button-ios{
-    color:$blanc;
+  .button-clear-md, .button-ios {
+    color: $blanc;
   }
 }

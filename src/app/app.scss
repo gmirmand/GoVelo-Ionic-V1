@@ -120,10 +120,6 @@ p {
   margin: 0;
 }
 
-.scroll-content, .fixed-content {
-  margin-top: 50px !important;
-}
-
 .scroll-content {
   margin-bottom: 0 !important;
   padding-bottom: 50px !important;
@@ -395,7 +391,6 @@ page-login, page-signup, page-propose, page-find {
 //Buttons
 .button {
   border-radius: 50px;
-  white-space: inherit;
   //width: calc(100% - 2px);
   margin: 20px auto 25px;
   padding: 25px 80px;

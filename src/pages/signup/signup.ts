@@ -10,6 +10,7 @@ import {EmailValidator} from '../../validators/email';
 import {User} from '../../providers/providers';
 import {MainPage} from '../pages';
 import {LoginPage} from "../login/login";
+import {ICustomFile} from "file-input-accessor";
 
 @IonicPage()
 @Component({
@@ -29,6 +30,14 @@ export class SignupPage {
     slideFourForm: FormGroup;
 
     submitAttempt: boolean = false;
+
+    //PP file imgfileList;
+    fileList: ICustomFile[] = [];
+
+    allowedFileTypes = '(jpe?g|jpeg|png)';
+    allowedFileExt = '(.(jpe?g|jpeg|png)$)';
+    withMeta = true;
+    size = 1000000;
 
     // Our translated text strings
     private signupErrorString: string;
@@ -87,12 +96,18 @@ export class SignupPage {
 
         //Slide4
         this.slideFourForm = formBuilder.group({
-            profilPicture: ['']
+            file: ['']
         });
 
         this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
             this.signupErrorString = value;
         });
+    }
+
+
+    ionViewDidEnter() {
+        //Slides forms
+        this.FileUploadWatcher();
     }
 
 
@@ -122,9 +137,6 @@ export class SignupPage {
         else if (!this.slideThreeForm.valid) {
             this.signupSlider.slideTo(3);
         }
-        else if (!this.slideFourForm.valid) {
-            this.signupSlider.slideTo(4);
-        }
         else {
             this.account = this.account.concat(this.slideOneForm.value).concat(this.slideTwoForm.value).concat(this.slideThreeForm.value).concat(this.slideFourForm.value);
             this.doSignup();
@@ -133,7 +145,7 @@ export class SignupPage {
 
     //goToLogin
     goToLogin() {
-        this.navCtrl.setRoot('LoginPage');
+        this.navCtrl.setRoot(LoginPage);
     }
 
     //Signup
@@ -154,6 +166,18 @@ export class SignupPage {
             });
             toast.present();
         }));
+    }
+
+//File
+    FileUploadWatcher() {
+        this.slideFourForm.get('file').valueChanges
+            .subscribe((val) => {
+                console.log(val);
+                let errors = Object.keys(val[0].errors);
+                if (errors.length === 0) {
+                    this.fileList = this.fileList ? val[0] : [];
+                }
+            });
     }
 
 //    Loading controller

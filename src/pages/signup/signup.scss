@@ -5,7 +5,7 @@ page-signup {
 
   /*profile picture*/
   .profil-picture {
-    .list-md .item-input:last-child, .list-ios .item-input:last-child {
+    .list-md .item-md:last-child, .list-ios .item-md:last-child {
       border: 2px solid $bleu-clair;
       border-bottom-color: $bleu-clair !important;
       border-radius: 50%;
@@ -101,5 +101,11 @@ page-signup {
   }
   .scroll-content {
     padding-bottom: 0 !important;
+  }
+  .profilPicture {
+    height: 100%;
+    input {
+      height: 100%;
+    }
   }
 }

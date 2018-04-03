@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {IonicPage, MenuController, NavController, Platform} from 'ionic-angular';
 
 import {TranslateService} from '@ngx-translate/core';
@@ -17,6 +17,7 @@ export interface Slide {
     templateUrl: 'tutorial.html'
 })
 export class TutorialPage {
+    @ViewChild('tutorialSlider') tutorialSlider: any;
     slides: Slide[];
     showSkip = true;
     dir: string = 'ltr';
@@ -49,6 +50,11 @@ export class TutorialPage {
                     }
                 ];
             });
+    }
+
+
+    next() {
+        this.tutorialSlider.slideNext();
     }
 
     startApp() {
