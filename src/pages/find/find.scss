@@ -8,21 +8,25 @@ page-find {
       border: 4px solid $bleu-clair !important;
       color: $bleu;
       background-color: $blanc;
-      margin-bottom: 4vh;
+      margin-bottom: 2vh;
       font-weight: bold;
       border-radius: 50px;
       padding: 5px 5px;
-      .input-wrapper{
-        text-align:center;
+      transition: .33s;
+      .input-wrapper {
+        text-align: center;
       }
-      &-checked{
-        border-color:$bleu !important;
-        color:$blanc !important;
+      &-checked {
+        border-color: $bleu !important;
+        color: $blanc !important;
+        background-color: #ededed;
+        box-shadow: inset 0 5px 10px 0px rgba(0,0,0,0.15);
       }
-      ion-radio.radio-md{
-        margin:0;
-        .radio-icon{
-          display:none;
+
+      .radio-md {
+        margin: 0;
+        .radio-icon {
+          display: none;
         }
       }
     }
