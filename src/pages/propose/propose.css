@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$blanc".
-        on line 15 of propose.scss
+        on line 19 of propose.scss
 
-10:     }
-11:     ion-slide {
-12:       width: 50% !important;
-13:       padding-bottom: 20px;
-14:       .h3, .h5, .h4 {
-15:         color: $blanc;
-16:       }
-17:       .list-bike {
-18:         position: relative;
-19:         margin: 0 5px;
-20:         .button {
+14:     }
+15:     ion-slide {
+16:       width: 50% !important;
+17:       padding-bottom: 20px;
+18:       .h3, .h5, .h4 {
+19:         color: $blanc;
+20:       }
+21:       .list-bike {
+22:         position: relative;
+23:         margin: 0 5px;
+24:         .button {
 
 Backtrace:
-propose.scss:15
+propose.scss:19
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/node.rb:58:in `perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
@@ -100,4 +100,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$blanc\".\A         on line 15 of propose.scss\A \A 10:     }\A 11:     ion-slide {\A 12:       width: 50% !important;\A 13:       padding-bottom: 20px;\A 14:       .h3, .h5, .h4 {\A 15:         color: $blanc;\A 16:       }\A 17:       .list-bike {\A 18:         position: relative;\A 19:         margin: 0 5px;\A 20:         .button {"; }
+  content: "Error: Undefined variable: \"$blanc\".\A         on line 19 of propose.scss\A \A 14:     }\A 15:     ion-slide {\A 16:       width: 50% !important;\A 17:       padding-bottom: 20px;\A 18:       .h3, .h5, .h4 {\A 19:         color: $blanc;\A 20:       }\A 21:       .list-bike {\A 22:         position: relative;\A 23:         margin: 0 5px;\A 24:         .button {"; }

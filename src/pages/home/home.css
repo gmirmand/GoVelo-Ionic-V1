@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$color-grey".
-        on line 11 of home.scss
+        on line 15 of home.scss
 
-6:     padding: 20px 0;
-7:     .info {
-8:       .title {
-9:         font-size: 22px;
-10:         line-height: 1;
-11:         color: $color-grey;
-12:         font-weight: bold;
-13:       }
-14:     }
-15:   }
-16:   .proposer, .trouver {
+10:     padding: 20px 0;
+11:     .info {
+12:       .title {
+13:         font-size: 22px;
+14:         line-height: 1;
+15:         color: $color-grey;
+16:         font-weight: bold;
+17:       }
+18:     }
+19:   }
+20:   .proposer, .trouver {
 
 Backtrace:
-home.scss:11
+home.scss:15
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/node.rb:58:in `perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
@@ -100,4 +100,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$color-grey\".\A         on line 11 of home.scss\A \A 6:     padding: 20px 0;\A 7:     .info {\A 8:       .title {\A 9:         font-size: 22px;\A 10:         line-height: 1;\A 11:         color: $color-grey;\A 12:         font-weight: bold;\A 13:       }\A 14:     }\A 15:   }\A 16:   .proposer, .trouver {"; }
+  content: "Error: Undefined variable: \"$color-grey\".\A         on line 15 of home.scss\A \A 10:     padding: 20px 0;\A 11:     .info {\A 12:       .title {\A 13:         font-size: 22px;\A 14:         line-height: 1;\A 15:         color: $color-grey;\A 16:         font-weight: bold;\A 17:       }\A 18:     }\A 19:   }\A 20:   .proposer, .trouver {"; }

@@ -288,19 +288,21 @@ export class ProposePage {
     createCalendar() {
         // Attempt to create a calendar item in through our User service
         let self = this;
-        this.propose.calendars.calendar.forEach(function (slot) {
+        let loader = this.loadSpinner();
+        loader.present().then(() => this.propose.calendars.calendar.forEach(function (slot) {
             self.createUniqueSlot(slot);
-        });
+        }));
     }
 
     createUniqueSlot(slot) {
         let loader = this.loadSpinner();
-        loader.present().then(() => this.calendarProvider.add(slot).subscribe((resp) => {
+        this.calendarProvider.add(slot).subscribe((resp) => {
             this.pushedCalendars.push(resp['id']);
             if (this.pushedCalendars.length === this.propose.calendars.calendar.length) {
                 this.pushAnnouncement(this.pushedCalendars);
             }
-            loader.dismiss();
+            let check = [];
+            return check = [this.pushedCalendars.length, this.propose.calendars.calendar.length];
         }, (err) => {
             // Unable to sign up
             let toast = this.toastCtrl.create({
@@ -309,8 +311,7 @@ export class ProposePage {
                 position: 'top'
             });
             toast.present();
-            loader.dismiss();
-        }));
+        });
     }
 
 
@@ -346,8 +347,8 @@ export class ProposePage {
                 position: 'top'
             });
             toast.present();
-            this.navCtrl.push(AnnouncementDetailsPage);
             loader.dismiss();
+            this.navCtrl.push(AnnouncementDetailsPage);
         }, (err) => {
             // Unable to sign up
             let toast = this.toastCtrl.create({

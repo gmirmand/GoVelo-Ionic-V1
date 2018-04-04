@@ -66,6 +66,9 @@ hits {
       &-velodeville {
         background-color: map-get($colors, secondary);
       }
+      &-veloélectrique{
+        background-color: #222222;
+      }
     }
     .city {
       padding: 8px 0;

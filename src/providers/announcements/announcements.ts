@@ -3,11 +3,13 @@ import 'rxjs/add/operator/toPromise';
 import {Injectable} from '@angular/core';
 
 import {Api} from '../api/api';
+import {Storage} from '@ionic/storage';
 
 @Injectable()
 export class Announcements {
 
-    constructor(public api: Api) {
+    constructor(public api: Api,
+                private storage: Storage) {
     }
 
     add(announcement: any) {
@@ -26,6 +28,10 @@ export class Announcements {
                 "id": id
             })
         });
+        let id: number;
+        this.storage.get('age').then((val) => {
+            id = val;
+        });
 
         announcement.pictures.forEach(function (img) {
             picture += img.imgSrc += '&';
@@ -42,8 +48,8 @@ export class Announcements {
             "city": announcement.address.town,
             "lockCode": lock,
             "author": {
-                "@id": "/api/users/1",
-                "id": 1
+                "@id": "/api/users/2",
+                "id": 2
             },
             "calendar": calendar,
             "style": [{

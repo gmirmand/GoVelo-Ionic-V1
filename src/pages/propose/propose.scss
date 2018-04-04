@@ -3,6 +3,10 @@ page-propose {
     z-index: 9999999999 !important;
   }
 
+  .addcalendar {
+    margin-top: 0;
+  }
+
   /*list bike*/
   .container-bike {
     .slide-zoom {
@@ -63,10 +67,8 @@ page-propose {
   }
 
   ion-slides {
-    height: inherit;
+    height: 100%;
     ion-slide {
-      overflow-y: auto;
-      overflow-x: hidden;
       .item-textarea {
         margin-bottom: 20px;
       }
@@ -96,7 +98,7 @@ page-propose {
         border-color: $bleu !important;
         color: $blanc !important;
         background-color: #ededed;
-        box-shadow: inset 0 5px 10px 0px rgba(0,0,0,0.15);
+        box-shadow: inset 0 5px 10px 0px rgba(0, 0, 0, 0.15);
       }
 
       .radio-md {

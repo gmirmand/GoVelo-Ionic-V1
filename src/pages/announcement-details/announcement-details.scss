@@ -2,7 +2,7 @@
 ANNOUNCEMENTS
 *****************/
 page-announcement-details {
-    .header{
+    .subheader{
       height:250px;
       overflow:hidden;
       position:relative;
@@ -186,7 +186,8 @@ page-announcement-details {
     }
   }
   .button{
-    padding: 10px 20px;
+    padding: 20px 30px;
     margin: 0 auto 40px;
+    width: 100%;
   }
 }

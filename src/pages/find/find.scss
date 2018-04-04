@@ -3,8 +3,8 @@ page-find {
   ion-modal {
     z-index: 9999999999 !important;
   }
-  .list-type{
-    .item-radio{
+  .list-type {
+    .item-radio {
       border: 4px solid $bleu-clair !important;
       color: $bleu;
       background-color: $blanc;
@@ -20,7 +20,7 @@ page-find {
         border-color: $bleu !important;
         color: $blanc !important;
         background-color: #ededed;
-        box-shadow: inset 0 5px 10px 0px rgba(0,0,0,0.15);
+        box-shadow: inset 0 5px 10px 0px rgba(0, 0, 0, 0.15);
       }
 
       .radio-md {
@@ -32,21 +32,20 @@ page-find {
     }
   }
 
-
-  ion-slides{
-    height:inherit;
-    ion-slide{
-      padding:0 20px;
+  ion-slides {
+    height: inherit;
+    ion-slide {
+      padding: 0 20px;
       overflow-y: auto;
       overflow-x: hidden;
-      width:100%;
-      .search{
-        margin-bottom:15px;
+      width: 100%;
+      .search {
+        margin-bottom: 15px;
       }
-      .label-range{
-        color:$bleu;
-        font-size:20px;
-        font-weight:600;
+      .label-range {
+        color: $bleu;
+        font-size: 20px;
+        font-weight: 600;
       }
 
     }
@@ -92,5 +91,13 @@ page-find {
     display: block;
     text-align: center;
   }
-
+  .showprice {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: map-get($colors, primary);
+    .nb{
+      font-size: 26px;
+    }
+  }
 }

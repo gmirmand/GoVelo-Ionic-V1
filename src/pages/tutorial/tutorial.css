@@ -3,13 +3,13 @@ Error: Undefined variable: "$blanc".
         on line 9 of tutorial.scss
 
 4:   }
-5:   h2{
+5:   h2 {
 6:     padding: 5px 0;
 7:   }
-8:   .swiper-pagination-bullet{
-9:     border:2px solid $blanc;
-10:     opacity:1;
-11:     background:transparent;
+8:   .swiper-pagination-bullet {
+9:     border: 2px solid $blanc;
+10:     opacity: 1;
+11:     background: transparent;
 12:     width: 15px;
 13:     height: 15px;
 14: 
@@ -82,4 +82,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$blanc\".\A         on line 9 of tutorial.scss\A \A 4:   }\A 5:   h2{\A 6:     padding: 5px 0;\A 7:   }\A 8:   .swiper-pagination-bullet{\A 9:     border:2px solid $blanc;\A 10:     opacity:1;\A 11:     background:transparent;\A 12:     width: 15px;\A 13:     height: 15px;\A 14: "; }
+  content: "Error: Undefined variable: \"$blanc\".\A         on line 9 of tutorial.scss\A \A 4:   }\A 5:   h2 {\A 6:     padding: 5px 0;\A 7:   }\A 8:   .swiper-pagination-bullet {\A 9:     border: 2px solid $blanc;\A 10:     opacity: 1;\A 11:     background: transparent;\A 12:     width: 15px;\A 13:     height: 15px;\A 14: "; }

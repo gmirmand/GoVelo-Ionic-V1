@@ -5,8 +5,8 @@ Error: Undefined variable: "$bleu-clair".
 3:   ion-modal {
 4:     z-index: 9999999999 !important;
 5:   }
-6:   .list-type{
-7:     .item-radio{
+6:   .list-type {
+7:     .item-radio {
 8:       border: 4px solid $bleu-clair !important;
 9:       color: $bleu;
 10:       background-color: $blanc;
@@ -93,4 +93,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$bleu-clair\".\A         on line 8 of find.scss\A \A 3:   ion-modal {\A 4:     z-index: 9999999999 !important;\A 5:   }\A 6:   .list-type{\A 7:     .item-radio{\A 8:       border: 4px solid $bleu-clair !important;\A 9:       color: $bleu;\A 10:       background-color: $blanc;\A 11:       margin-bottom: 2vh;\A 12:       font-weight: bold;\A 13:       border-radius: 50px;"; }
+  content: "Error: Undefined variable: \"$bleu-clair\".\A         on line 8 of find.scss\A \A 3:   ion-modal {\A 4:     z-index: 9999999999 !important;\A 5:   }\A 6:   .list-type {\A 7:     .item-radio {\A 8:       border: 4px solid $bleu-clair !important;\A 9:       color: $bleu;\A 10:       background-color: $blanc;\A 11:       margin-bottom: 2vh;\A 12:       font-weight: bold;\A 13:       border-radius: 50px;"; }

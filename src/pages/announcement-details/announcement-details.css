@@ -4,7 +4,7 @@ Error: Undefined mixin 'bgImg'.
         from line 9 of announcement-details.scss
 
 4: page-announcement-details {
-5:     .header{
+5:     .subheader{
 6:       height:250px;
 7:       overflow:hidden;
 8:       position:relative;
@@ -82,4 +82,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined mixin 'bgImg'.\A         on line 9 of announcement-details.scss, in `bgImg'\A         from line 9 of announcement-details.scss\A \A 4: page-announcement-details {\A 5:     .header{\A 6:       height:250px;\A 7:       overflow:hidden;\A 8:       position:relative;\A 9:       @include bgImg();\A 10:       .icon-share{\A 11:         position:absolute;\A 12:         top:0;\A 13:         right:0;\A 14:         a img{"; }
+  content: "Error: Undefined mixin 'bgImg'.\A         on line 9 of announcement-details.scss, in `bgImg'\A         from line 9 of announcement-details.scss\A \A 4: page-announcement-details {\A 5:     .subheader{\A 6:       height:250px;\A 7:       overflow:hidden;\A 8:       position:relative;\A 9:       @include bgImg();\A 10:       .icon-share{\A 11:         position:absolute;\A 12:         top:0;\A 13:         right:0;\A 14:         a img{"; }

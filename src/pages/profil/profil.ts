@@ -24,7 +24,7 @@ export class ProfilPage {
     }
 
     goToPublicProfil() {
-        this.navCtrl.push('PublicProfilPage');
+        this.navCtrl.push(PublicProfilPage);
     }
 
 }

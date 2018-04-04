@@ -6,6 +6,7 @@ import {User} from '../../providers/providers';
 import {MainPage} from '../pages';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EmailValidator} from "../../validators/email";
+import {Storage} from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -31,7 +32,8 @@ export class LoginPage {
                 public translateService: TranslateService,
                 public evts: Events,
                 public loadingCtrl: LoadingController,
-                public formBuilder: FormBuilder) {
+                public formBuilder: FormBuilder,
+                private storage: Storage) {
 
         this.translateService.get('LOGIN_ERROR').subscribe((value) => {
             this.loginErrorString = value;
@@ -60,9 +62,9 @@ export class LoginPage {
         let ok: boolean = false;
         let self = this;
         loader.present().then(() => this.user.login(this.account).subscribe((resp) => {
-            console.log(resp);
             resp['hydra:member'].forEach(function (user) {
-                if (user.email.toLowerCase() == self.account.email) {
+                if (user.email.toLowerCase() == self.account.email.toLowerCase()) {
+                    self.storage.set('id', user.id);
                     ok = true;
                 }
             });
@@ -74,7 +76,7 @@ export class LoginPage {
         }));
     }
 
-    afterLogin(ok){
+    afterLogin(ok) {
         if (ok) {
             this.navCtrl.push(MainPage);
             let toast = this.toastCtrl.create({

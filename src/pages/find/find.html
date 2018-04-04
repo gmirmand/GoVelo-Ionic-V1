@@ -131,6 +131,15 @@
                                 formControlName="price">
                         </ion-range>
                     </ion-item>
+                    <ion-item class="showprice">
+                        <ion-row>
+                            <ion-col>Entre</ion-col>
+                            <ion-col class="nb">{{slideFourForm.value.price.lower}} €</ion-col>
+                            <ion-col>et</ion-col>
+                            <ion-col class="nb">{{slideFourForm.value.price.upper}} €</ion-col>
+                            <ion-col></ion-col>
+                        </ion-row>
+                    </ion-item>
                 </form>
 
                 <button ion-button icon-right class="button button_inverse_blanc" (click)="save()">

@@ -13,7 +13,7 @@ export class CardsPage {
     this.cardItems = [
       {
         user: {
-          avatar: 'assets/img/marty-avatar.png',
+          avatar: 'assets/img/jp.jpg',
           name: 'Marty McFly'
         },
         date: 'November 5, 1955',

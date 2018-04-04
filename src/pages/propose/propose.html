@@ -233,7 +233,7 @@
                                 <ion-label>Prix journalier</ion-label>
                             </ion-col>
                             <ion-col class="price">
-                                <ion-input formControlName="price" type="number" min="3" max="999" placeholder="5"
+                                <ion-input formControlName="price" type="number" min="3" max="999"
                                            [class.invalid]="!slideFiveForm.controls.price.valid
                                        && (slideFiveForm.controls.price.dirty || submitAttempt)">
                                 </ion-input>
@@ -263,13 +263,10 @@
                         </ion-calendar>
                     </ion-item>
                     <p class="text-info">Appuyez 2 fois sur la même date pour sélectionner une seule journée.</p>
-                    <button [disabled]="disabled" ion-button clear class="button button_inverse_bleu bike"
-                            (click)="addCalendar()"> Ajouter la période
-                    </button>
                     <ion-item>
                         <!--Calendars-->
                         <ion-list>
-                            <ion-item *ngFor="let item of calendar.dateRangeArray;let i = index">
+                            <ion-card *ngFor="let item of calendar.dateRangeArray;let i = index">
                                 <ion-row id="{{i}}">
                                     <ion-col col-5>Du {{item.from | date:'dd/MM/yyyy'}}</ion-col>
                                     <ion-col col-5>au {{item.to | date:'dd/MM/yyyy'}}</ion-col>
@@ -277,9 +274,12 @@
                                         <ion-icon name="close"></ion-icon>
                                     </ion-col>
                                 </ion-row>
-                            </ion-item>
+                            </ion-card>
                         </ion-list>
                     </ion-item>
+                    <button [disabled]="disabled" ion-button clear class="button addcalendar button_inverse_bleu bike"
+                            (click)="addCalendar()"> Ajouter la période
+                    </button>
 
                     <button ion-button icon-right (click)="next()" class="button button_inverse_bleu">
                         {{'NEXT' | translate}}

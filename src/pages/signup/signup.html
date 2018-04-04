@@ -99,8 +99,7 @@
 
                     <ion-item
                             *ngIf="!slideTwoForm.controls.passWord.valid  && (slideTwoForm.controls.passWord.dirty || submitAttempt)">
-                        <p>Please enter a valid password (at least 1 lowercase, 1 uppercase, 1 numeric, one special
-                            character & must be eight characters or longer)</p>
+                        <p>Veuillez entrer un mot de passe valide (au moins 1 minuscule, 1 majuscule, 1 chiffre, un caractère spécial et supérieur à 8 caractères)</p>
                     </ion-item>
                 </ion-list>
             </form>
@@ -182,6 +181,8 @@
                 <ion-list no-lines>
                     <ion-item>
                         <div class="custom-file">
+                            <img src="{{fileList[0]?fileList[0].imgSrc:defaultbg}}" alt="">
+                            <img class="imgbg" src="{{fileList[0]?fileList[0].imgSrc:''}}" alt="">
                             <input type="file" multiple
                                    id="file"
                                    class="custom-file-input"

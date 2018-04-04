@@ -1,6 +1,10 @@
 page-home {
+  .scroll-content, .fixed-content{
+    margin-top: 0 !important;
+  }
   .home {
     padding-bottom: 20px;
+    position: fixed;
   }
   .info_plus {
     padding: 20px 0;

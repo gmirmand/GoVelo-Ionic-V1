@@ -18,13 +18,13 @@ export class AnnouncementDetailsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
   profil() {
-    this.navCtrl.push('LoginPage');
+    this.navCtrl.push('ProfilPage');
   }
     velos_user() {
-        this.navCtrl.push('LoginPage');
+        this.navCtrl.push('ProfilPage');
     }
     chats() {
-        this.navCtrl.push('LoginPage');
+        this.navCtrl.push('MessagePage');
     }
     rental() {
         this.navCtrl.push('LoginPage');

@@ -1,21 +1,21 @@
 /*
 Error: Undefined variable: "$bleu-clair".
-        on line 12 of login.scss
+        on line 11 of login.scss
 
-7:       padding: 5px 0;
-8:       height: inherit;
-9:     }
-10: 
-11:     &.forgot {
-12:       color: $bleu-clair;
-13:     }
-14:     &.created {
-15:       color: $bleu;
-16:     }
-17:   }
+6:       padding: 5px 0;
+7:       height: inherit;
+8:     }
+9: 
+10:     &.forgot {
+11:       color: $bleu-clair;
+12:     }
+13:     &.created {
+14:       color: $bleu;
+15:     }
+16:   }
 
 Backtrace:
-login.scss:12
+login.scss:11
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/script/tree/node.rb:58:in `perform'
 C:/Ruby23/lib/ruby/gems/2.3.0/gems/sass-3.4.23/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
@@ -89,4 +89,4 @@ C:/Ruby23/bin/scss:22:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$bleu-clair\".\A         on line 12 of login.scss\A \A 7:       padding: 5px 0;\A 8:       height: inherit;\A 9:     }\A 10: \A 11:     &.forgot {\A 12:       color: $bleu-clair;\A 13:     }\A 14:     &.created {\A 15:       color: $bleu;\A 16:     }\A 17:   }"; }
+  content: "Error: Undefined variable: \"$bleu-clair\".\A         on line 11 of login.scss\A \A 6:       padding: 5px 0;\A 7:       height: inherit;\A 8:     }\A 9: \A 10:     &.forgot {\A 11:       color: $bleu-clair;\A 12:     }\A 13:     &.created {\A 14:       color: $bleu;\A 15:     }\A 16:   }"; }

@@ -21,8 +21,8 @@
             </ion-col>
             <ion-col ngClass="calendar-container">
                 <ion-item *ngFor="let calendar of hit.calendar" ngClass="calendar">
-                    <p>Du <b>{{calendar.startCalendar.date | date:'dd MMMM yyyy':'':'fr-FR'}}</b></p>
-                    <p>Au <b>{{calendar.endCalendar.date | date:'dd MMMM yyyy':'':'fr-FR'}}</b></p>
+                    <p>Du <b>{{calendar.startCalendar.date | date:'dd MMM yy':'':'fr-FR'}}</b></p>
+                    <p>Au <b>{{calendar.endCalendar.date | date:'dd MMM yy':'':'fr-FR'}}</b></p>
                 </ion-item>
             </ion-col>
         </ion-row>

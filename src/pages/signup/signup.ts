@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {IonicPage, NavController, ToastController, Events, LoadingController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Storage} from '@ionic/storage';
 
 //Validators
 import {AgeValidator} from '../../validators/age';
@@ -33,6 +34,7 @@ export class SignupPage {
 
     //PP file imgfileList;
     fileList: ICustomFile[] = [];
+    defaultbg = '../assets/img/profil.png';
 
     allowedFileTypes = '(jpe?g|jpeg|png)';
     allowedFileExt = '(.(jpe?g|jpeg|png)$)';
@@ -48,7 +50,8 @@ export class SignupPage {
                 public translateService: TranslateService,
                 public evts: Events,
                 public formBuilder: FormBuilder,
-                public loadingCtrl: LoadingController) {
+                public loadingCtrl: LoadingController,
+                private storage: Storage) {
 
         //Form
         //Slide1
@@ -89,7 +92,6 @@ export class SignupPage {
             age: ['', AgeValidator.isValid],
             phone: ['',
                 Validators.compose([
-                    Validators.required,
                     Validators.pattern('(\\+\\d+(\\s|-))?0\\d(\\s|-)?(\\d{2}(\\s|-)?){4}')]
                 )]
         });
@@ -154,17 +156,26 @@ export class SignupPage {
         let loader = this.loadSpinner();
         loader.present().then(() => this.user.signup(this.account).subscribe((resp) => {
             this.navCtrl.push(MainPage);
+            this.storage.set('id', resp['id']);
+            let toast = this.toastCtrl.create({
+                message: 'Connecté ! Bienvenu',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+            loader.dismiss();
         }, (err) => {
 
             this.navCtrl.push(MainPage);
 
             // Unable to sign up
             let toast = this.toastCtrl.create({
-                message: this.signupErrorString,
+                message: "Oups, nous n'avons pas pu vous inscrire... ",
                 duration: 3000,
                 position: 'top'
             });
             toast.present();
+            loader.dismiss();
         }));
     }
 
@@ -172,10 +183,9 @@ export class SignupPage {
     FileUploadWatcher() {
         this.slideFourForm.get('file').valueChanges
             .subscribe((val) => {
-                console.log(val);
                 let errors = Object.keys(val[0].errors);
                 if (errors.length === 0) {
-                    this.fileList = this.fileList ? val[0] : [];
+                    this.fileList = this.fileList ? this.fileList = [val[0]] : [];
                 }
             });
     }
