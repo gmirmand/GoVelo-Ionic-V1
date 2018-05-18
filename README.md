@@ -3,13 +3,13 @@
 <img src="http://govelo.tp.iut-lepuy.fr/web/img/mockup-home.png" width="400" />
 
 You will find below the readme of the application Go Vélo. This Readme this base on the starter Ionic, being already perfectly explained. This project includes various technical issues such as language management, API calls or access to phone storage.
+There is no witchcraft! We let you consult the documentation of the different technologies used and let you consult / understand the code thanks to the comments.
 
 ## Table of Contents
 
-1. [Getting Started](#getting-started)
-2. [Pages](#pages)
-3. [Providers](#providers)
-4. [i18n](#i18n) (adding languages)
+1. [Pages](#pages)
+2. [Providers](#providers)
+3. [i18n](#i18n) (adding languages)
 
 ## Pages
 
