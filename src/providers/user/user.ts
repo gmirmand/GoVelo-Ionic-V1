@@ -35,15 +35,16 @@ export class User {
      * the user entered on the form.
      */
     login(accountInfo: any) {
-        let seq = this.api.get('check_login', accountInfo).share();
+        accountInfo = {
+            "email": accountInfo.email.toLowerCase(),
+            "password": accountInfo.passWord
+        };
+        let seq = this.api.get('users', accountInfo).share();
 
         seq.subscribe((res: any) => {
-            console.log(res);
             // If the API returned a successful response, mark the user as logged in
-            if (res.status == 'success') {
-                this._loggedIn(res);
-            } else {
-            }
+            console.log(res);
+            this._loggedIn(res);
         }, err => {
             console.error('ERROR', err);
         });
@@ -56,7 +57,19 @@ export class User {
      * the user entered on the form.
      */
     signup(accountInfo: any) {
-        let seq = this.api.post('signup', accountInfo).share();
+        accountInfo = {
+            "email": accountInfo[1].email,
+            "username": accountInfo[1].email,
+            "enabled": true,
+            "plainPassword": accountInfo[1].passWord,
+            "firstname": accountInfo[0].firstName,
+            "lastname": accountInfo[0].lastName,
+            "phone": accountInfo[2].phone,
+            "birth": "2018-03-01T11:03:47.845Z"/*accountInfo[2].age*/,
+            "picture": accountInfo[3].profilPicture,
+            "sexe": parseInt(accountInfo[2].sex)
+        };
+        let seq = this.api.post('users', accountInfo).share();
 
         seq.subscribe((res: any) => {
             // If the API returned a successful response, mark the user as logged in
@@ -64,7 +77,7 @@ export class User {
                 this._loggedIn(res);
             }
         }, err => {
-            console.error('ERROR', err);
+            console.error('ERROR user.ts', err);
         });
 
         return seq;

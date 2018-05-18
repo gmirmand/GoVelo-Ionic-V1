@@ -1,0 +1,121 @@
+page-splash .container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff; }
+  page-splash .container svg {
+    stroke: black; }
+  page-splash .container .btn-test {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 30px;
+    color: white;
+    font-weight: bold;
+    z-index: 9999;
+    background-color: #009ab7;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), #009ab7, rgba(255, 255, 255, 0));
+    transition: .2s;
+    border-radius: 7px; }
+    page-splash .container .btn-test:hover {
+      background-color: #85be4c;
+      cursor: pointer;
+      background-image: linear-gradient(rgba(255, 255, 255, 0), #85be4c, rgba(255, 255, 255, 0));
+      transition: .2s; }
+  page-splash .container .anim-container {
+    width: 200px;
+    height: 200px; }
+  page-splash .container .not-load, page-splash .container .load {
+    position: absolute;
+    opacity: 1;
+    transition: .5s;
+    margin-left: 22px; }
+  page-splash .container .not-load {
+    transform: translate(0, 0); }
+    page-splash .container .not-load .cls-1 {
+      transform-origin: center center;
+      animation: turn .8s linear infinite; }
+      page-splash .container .not-load .cls-1-recovery {
+        transition: 1s; }
+      page-splash .container .not-load .cls-1-progress {
+        stroke: url(#a);
+        stroke-width: 60px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        fill: none;
+        animation: dash 6s ease infinite;
+        animation-delay: 1s;
+        transition: 3s; }
+        page-splash .container .not-load .cls-1-progress-recovery {
+          fill: none;
+          stroke: url(#a);
+          stroke-width: 25px;
+          stroke-dasharray: 280;
+          stroke-dashoffset: 560; }
+  page-splash .container .load .lns {
+    z-index: -1;
+    fill: none;
+    stroke: url(#a);
+    stroke-width: 60px;
+    stroke-dasharray: 280;
+    stroke-linejoin: round;
+    stroke-linecap: round; }
+    page-splash .container .load .lns.lns-1 {
+      stroke-dashoffset: 500; }
+    page-splash .container .load .lns.lns-2 {
+      stroke-dashoffset: 280; }
+  page-splash .container .load .cls {
+    transition: 1s;
+    z-index: 1;
+    fill: none;
+    stroke: url(#a);
+    stroke-width: 60px;
+    stroke-dashoffset: 1000;
+    stroke-dasharray: 1000;
+    stroke-linejoin: round;
+    stroke-linecap: round; }
+  page-splash .container .o0 {
+    opacity: 0; }
+page-splash .anim {
+  animation: pushLeft 1s forwards; }
+  page-splash .anim.not-load {
+    transform: translate(-126.5px, -41px); }
+  page-splash .anim .lns-1, page-splash .anim .lns-2 {
+    animation: lnsG .8s ease forwards; }
+  page-splash .anim .cls-2 {
+    animation: lnsG2 .8s ease forwards; }
+  page-splash .anim .cls-3 {
+    animation: lnsG3 .8s ease forwards; }
+@keyframes dash {
+  60% {
+    stroke-dasharray: 1700; }
+  100% {
+    stroke-dasharray: 1000; } }
+@keyframes turn {
+  from {
+    transform: rotate(0); }
+  to {
+    transform: rotate(360deg); } }
+@keyframes lnsG {
+  100% {
+    stroke-dashoffset: 560; } }
+@keyframes lnsG2 {
+  100% {
+    stroke-dasharray: 1570; } }
+@keyframes lnsG3 {
+  100% {
+    stroke-dasharray: 1700; } }
+@keyframes pushLeft {
+  100% {
+    transform: translateX(-30px); } }
+
+/*# sourceMappingURL=splash.css.map */

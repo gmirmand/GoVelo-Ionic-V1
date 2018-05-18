@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACE,0BAAQ;EACN,gBAAgB,EAAE,IAAI",
+"sources": ["announcement.scss"],
+"names": [],
+"file": "announcement.css"
+}

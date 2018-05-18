@@ -2,7 +2,7 @@
 ANNOUNCEMENTS
 *****************/
 page-announcement-details {
-    .header{
+    .subheader{
       height:250px;
       overflow:hidden;
       position:relative;
@@ -88,15 +88,14 @@ page-announcement-details {
         -webkit-margin-after: 0.3em;
       }
       .info-user{
-        .info-img{
-          @include bgImg();
-          width: 115px;
-          height: 115px;
-          border-radius: 50%;
-          border: 10px solid;
-          margin:0 auto;
-          position:relative;
-          img{
+        a{
+          position: relative;
+          display:block;
+          .progress-profil{
+            border-radius:50%;
+            background-size:cover;
+          }
+          .certified{
             width: 25px;
             position: absolute;
             bottom: -15px;
@@ -105,8 +104,8 @@ page-announcement-details {
           }
           .level-user{
             border-radius: 50%;
-            border: 2px solid #BCE0FD;
-            background-color: #fff;
+            border: 2px solid $bleu-clair;
+            background-color: $blanc;
             width: 40px;
             height: 40px;
             position: absolute;
@@ -114,20 +113,81 @@ page-announcement-details {
             right: -5px;
             z-index: 1;
             text-align:center;
+            @include respond-to(xs) {
+              width: 25%;
+              height: 25%;
+            }
             .level{
               line-height: 36px;
               font-size: 20px;
+              @include respond-to(xs) {
+                font-size: 40px;
+                line-height: 60px;
+              }
             }
-
           }
         }
-
-
       }
     }
   }
   .links{
     @include flexCenter();
     a{}
+  }
+
+  @keyframes load{0%{stroke-dashoffset:0}}
+  .progress {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    text-align: center;
+    &>li {
+      display: inline-block;
+      position: relative;
+      text-align: center;
+      color: #93A2AC;
+      font-family: Lato;
+      font-weight:100;
+      margin: 2rem;
+      &:before {
+        content: attr(data-name);
+        position: absolute;
+        width: 100%;
+        bottom: -2rem;
+        font-weight:400;
+      }
+      &:after {
+        background-image: attr(data-percent);
+        position: absolute;
+        width: 100%;
+        top: 3.7rem;
+        left: 0;
+        font-size: 2rem;
+        text-align: center;
+      }
+    }
+    svg {
+      width: 10rem;
+      height: 10rem;
+      &:nth-child(2) {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform: rotate(-90deg);
+      }
+      &:nth-child(2) path {
+        fill: none;
+        stroke-width: 25;
+        stroke-dasharray: 629;
+        stroke: #fff;
+        opacity:.9;
+        animation: load 10s;
+      }
+    }
+  }
+  .button{
+    padding: 20px 30px;
+    margin: 0 auto 40px;
+    width: 100%;
   }
 }

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class Api {
-  url: string = 'http://govelo.tp.iut-lepuy.fr/GoVelo-Symfony/web';
+  url: string = 'http://govelo.tp.iut-lepuy.fr/web/api';
 
   constructor(public http: HttpClient) {
   }

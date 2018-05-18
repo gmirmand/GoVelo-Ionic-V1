@@ -1,123 +1,152 @@
-<!--
-  Generated template for the FindPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-    <ion-navbar>
-        <ion-title>find</ion-title>
+    <ion-navbar color="primary">
+        <ion-title>Trouver</ion-title>
+        <ion-buttons start class="start">
+            <button ion-button icon-left (click)="prev()" [ngClass]="{'hide':hide}">
+                <ion-icon name="arrow-back"></ion-icon>
+                Retour
+            </button>
+        </ion-buttons>
     </ion-navbar>
-
 </ion-header>
 
+<ion-content padding class="bg-grey">
+    <ion-slides #findSlider (ionSlideDidChange)="slideChanged()">
+        <ion-slide>
+            <h2>Où cherchez-vous votre vélo ?</h2>
+            <p class="text-info">La fonctionnalité de géolocalisation sera disponible prochainement !</p>
+            <button ion-button icon-right disabled class="button button_inverse_blanc button-nonused">
+                {{'Ma position' | translate}}
+                <ion-icon ios="ios-disc" md="md-disc"></ion-icon>
+            </button>
+            <div class="line-under">
+                <p>{{"OR" | translate}}</p>
+            </div>
+            <p class="text-info">Entrez l'addresse la plus exacte possible</p>
+            <p *ngIf="submitAttempt" style="color: #ea6153;">Veuillez vérifier les champs s'il vous plaît.</p>
+            <form [formGroup]="slideOneForm">
+                <ion-list no-lines>
+                    <ion-item class="input-form search">
+                        <ion-input tappable (ionFocus)="showAddressModal()"
+                                   [(ngModel)]="address.place"
+                                   type="text"
+                                   placeholder="Choisissez l'addresse exacte"
+                                   formControlName="town"
+                                   [class.invalid]="!slideOneForm.controls.town.valid
+                               && (slideOneForm.controls.town.dirty || submitAttempt)">
+                        </ion-input>
+                    </ion-item>
+                    <ion-item *ngIf="!slideOneForm.controls.town.valid
+                        && (slideOneForm.controls.town.dirty || submitAttempt)">
+                        <p>Veuillez entrer une addresse.</p>
+                    </ion-item>
 
-<ion-content padding>
-    <form class="slides-form" (ngSubmit)="findForm(step)">
-        <ion-simple-wizard [(step)]="step" [showSteps]="true" [finishIcon]="'done-all'"
-                           [(stepCondition)]="stepCondition">
-            <ion-wizard-step>
-                <div class="slide-container">
-
-                    <h1> Où cherchez-vous un vélo ? </h1>
-                    <button class="button button-block button-calm" (click)="toggle()">Ma position
-                    </button>
-
-                    <div class="separator">Ou</div>
-
-                    <div class="list list-inset">
-                        <label class="item item-input">Ville
-                            <input type="text" (input)="step1($event)" [(ngModel)]="find.town" name="town">
-                        </label>
-                        <label class="item item-input"> Adresse
-                            <input type="text" (input)="step1($event)" [(ngModel)]="find.address" name="address">
-                        </label>
-                    </div>
-                    <ion-item>
+                    <!--Range-->
+                    <ion-item class="input-form">
                         <ion-label>Dans un rayon de</ion-label>
-                        <ion-select name="radius" (ionChange)="step1($event)" [(ngModel)]="find.radius" type="number">
-                            <ion-option value="100">100</ion-option>
-                            <ion-option value="200">200</ion-option>
-                            <ion-option value="400">400</ion-option>
-                            <ion-option value="800">800</ion-option>
-                            <ion-option value="1200">1200</ion-option>
-                            <ion-option value="2000">2200</ion-option>
-                            <ion-option value="3000">2030</ion-option>
+                        <ion-select
+                                formControlName="range"
+                                type="number">
+                            <ion-option value="100">100 mètres</ion-option>
+                            <ion-option value="200">200 mètres</ion-option>
+                            <ion-option value="400">400 mètres</ion-option>
+                            <ion-option value="800">800 mètres</ion-option>
+                            <ion-option value="1200">1200 mètres</ion-option>
+                            <ion-option value="2000">1800 mètres</ion-option>
+                            <ion-option value="2000">2200 mètres</ion-option>
                         </ion-select>
-                        mètres
                     </ion-item>
-                </div>
-            </ion-wizard-step>
 
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h2> Quel type de vélo ? </h2>
-                    <ion-item>
-                        <ion-label>VTT</ion-label>
-                        <ion-checkbox (click)="step2($event)" name="type" [(ngModel)]="find.type1" value="VTT"
-                                      id="VTT">
-                        </ion-checkbox>
+                    <button ion-button icon-right (click)="next()" class="button button_inverse_bleu">
+                        {{'NEXT' | translate}}
+                        <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+                    </button>
+                </ion-list>
+            </form>
+        </ion-slide>
+        <ion-slide class="list-type">
+            <h2>Quel type de vélo ?</h2>
+            <p *ngIf="submitAttempt" style="color: #ea6153;">Veuillez vérifier les champs s'il vous plaît.</p>
+            <form [formGroup]="slideTwoForm">
+                <ion-list no-lines>
+                    <!--TYPE-->
+                    <ion-row radio-group formControlName="type">
+                        <ion-item *ngFor="let style of styles">
+                            <ion-label>{{style.style}}</ion-label>
+                            <ion-radio value="{{style.id}}" id="{{style.style}}">
+                            </ion-radio>
+                        </ion-item>
+                    </ion-row>
+                </ion-list>
+            </form>
+            <button ion-button icon-right (click)="next()" class="button button_inverse_bleu">
+                {{'NEXT' | translate}}
+                <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+            </button>
+        </ion-slide>
+        <ion-slide>
+            <h2> De quand à quand ? </h2>
+            <p *ngIf="submitAttempt" style="color: #ea6153;">Veuillez vérifier les champs s'il vous plaît.</p>
+            <ion-list no-lines>
+                <form [formGroup]="slideThreeForm">
+                    <!--FROM-->
+                    <ion-item class="input-form">
+                        <ion-label floating>Du</ion-label>
+                        <ion-datetime formControlName="from"
+                                      displayFormat="DD/MM/YYYY"
+                                      pickerFormat="DD-MM-YYYY"
+                                      [min]="fromMinStr"
+                                      [max]="fromMaxStr">
+                        </ion-datetime>
                     </ion-item>
-                    <ion-item>
-                        <ion-label>BMX</ion-label>
-                        <ion-checkbox (click)="step2($event)" name="type" [(ngModel)]="find.type2" value="BMX"
-                                      id="BMX">
-                        </ion-checkbox>
+                    <!--TO-->
+                    <ion-item class="input-form">
+                        <ion-label floating>Au</ion-label>
+                        <ion-datetime formControlName="to"
+                                      displayFormat="DD/MM/YYYY"
+                                      pickerFormat="DD-MM-YYYY"
+                                      [min]="toMinStr"
+                                      [max]="toMaxStr">
+                        </ion-datetime>
                     </ion-item>
+                </form>
+                <button ion-button icon-right class="button button_inverse_bleu" (click)="next()">
+                    {{'NEXT' | translate}}
+                    <ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>
+                </button>
+            </ion-list>
+        </ion-slide>
+        <ion-slide>
+            <h2> Et pour quel prix ? </h2>
+            <p *ngIf="submitAttempt" style="color: #ea6153;">Veuillez vérifier les champs s'il vous plaît.</p>
+            <ion-list no-lines>
+                <form [formGroup]="slideFourForm">
+                    <!--RANGE-->
                     <ion-item>
-                        <ion-label>Route</ion-label>
-                        <ion-checkbox (click)="step2($event)" name="type" [(ngModel)]="find.type3" value="Route"
-                                      id="Route">
-                        </ion-checkbox>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>Pliant</ion-label>
-                        <ion-checkbox (click)="step2($event)" name="type" [(ngModel)]="find.type4" value="Pliant"
-                                      id="Pliant">
-                        </ion-checkbox>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>Electrique</ion-label>
-                        <ion-checkbox (click)="step2($event)" name="type" [(ngModel)]="find.type5" value="Electrique"
-                                      id="Electrique">
-                        </ion-checkbox>
-                    </ion-item>
-                </div>
-            </ion-wizard-step>
-
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h1> De quand à quand ? </h1>
-                    <ion-item>
-                        <ion-label>Du</ion-label>
-                        <ion-datetime name="started" displayFormat="DD/MM/YYYY" [(ngModel)]="find.started"
-                                      (ngModelChange)="step3($event)"></ion-datetime>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>Au</ion-label>
-                        <ion-datetime name="ended" displayFormat="DD/MM/YYYY" [(ngModel)]="find.ended"
-                                      (ngModelChange)="step3($event)"></ion-datetime>
-                    </ion-item>
-                </div>
-            </ion-wizard-step>
-
-            <ion-wizard-step>
-                <div class="slide-container">
-                    <h1> Pour quel prix ?</h1>
-                    <div class="values">
-                        <span class="lower">{{find.price.lower}}</span>
-                        <span class="upper">{{find.price.upper}}</span>
-                    </div>
-                    <ion-item>
-                        <ion-range [min]="0" [max]="50" [step]="3" name="price" dualKnobs="true" pin="true"
-                                   [(ngModel)]="find.price" (ionChange)="step4($event)">
-                            <ion-label range-left>0</ion-label>
-                            <ion-label range-right>100</ion-label>
+                        <ion-range
+                                [min]="0"
+                                [max]="25"
+                                [dualKnobs]="true"
+                                [pin]="true"
+                                formControlName="price">
                         </ion-range>
                     </ion-item>
-                </div>
-            </ion-wizard-step>
-        </ion-simple-wizard>
-    </form>
+                    <ion-item class="showprice">
+                        <ion-row>
+                            <ion-col>Entre</ion-col>
+                            <ion-col class="nb">{{slideFourForm.value.price.lower}} €</ion-col>
+                            <ion-col>et</ion-col>
+                            <ion-col class="nb">{{slideFourForm.value.price.upper}} €</ion-col>
+                            <ion-col></ion-col>
+                        </ion-row>
+                    </ion-item>
+                </form>
+
+                <button ion-button icon-right class="button button_inverse_blanc" (click)="save()">
+                    Rechercher
+                    <ion-icon ios="ios-search" md="md-search"></ion-icon>
+                </button>
+            </ion-list>
+        </ion-slide>
+    </ion-slides>
 </ion-content>

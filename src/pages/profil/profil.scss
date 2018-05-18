@@ -1,0 +1,125 @@
+page-profil {
+  h2{
+    color:$bleu;
+  }
+  .infos {
+    position: relative;
+  }
+  .info-user{
+    .name {
+      font-weight: bold;
+      ion-img {
+        min-width: 25px;
+        min-height: 25px;
+        transform: translateY(25%);
+      }
+    }
+    .list-badges {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+      ion-img {
+        min-width: 25px;
+        min-height: 25px;
+        margin: 5px;
+      }
+    }
+  }
+
+  .img-user a{
+    position: relative;
+    display:block;
+    .progress-profil{
+      border-radius:50%;
+      background-size:cover;
+    }
+      .certified{
+        width: 25px;
+        position: absolute;
+        bottom: -15px;
+        right: 25px;
+        z-index:2;
+      }
+      .level-user{
+        border-radius: 50%;
+        border: 2px solid $bleu-clair;
+        background-color: $blanc;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        bottom: -12px;
+        right: -5px;
+        z-index: 1;
+        text-align:center;
+        @include respond-to(xs) {
+          width: 25%;
+          height: 25%;
+        }
+        .level{
+          line-height: 36px;
+          font-size: 20px;
+          @include respond-to(xs) {
+            font-size: 40px;
+            line-height: 60px;
+          }
+        }
+
+      }
+  }
+  .account-own {
+        display: flex;
+        text-align: center;
+        border-top: 2px solid $bleu;
+        margin-top:10px;
+        a.booking {
+          width: 50%;
+          padding: 2vh 0;
+          h5{
+            min-height:48px;
+          }
+          ion-img {
+            height: 50px;
+            width:100%;
+            margin-top: 10px;
+            img {
+              height: 100%;
+              margin:0 auto;
+            }
+          }
+          &.reserv {
+            border-right: 2px solid $bleu;
+
+          }
+        }
+      }
+    .params-list {
+      .item-block,.item-ios,.item-block:first-child,.item-block:last-child {
+        border-top: 2px solid $bleu;
+        border-bottom:none;
+        padding: 0;
+        a{
+          display: flex;
+          align-items: center;
+          .h4 {
+            width: 60%;
+            font-size:18px;
+            color:$bleu;
+          }
+          .img-icon {
+            text-align: right;
+            width: 40%;
+            ion-img {
+              width: 30px;
+              height:30px;
+              margin-top: 7px;
+            }
+          }
+
+        }
+      }
+    }
+  .list-md .item-block .item-inner{
+    border:none;
+  }
+
+}

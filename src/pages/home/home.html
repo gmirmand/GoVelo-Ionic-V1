@@ -14,42 +14,40 @@
 
 
 <ion-content>
-
-<div class=" ">
-    <div class=" container-8 header logo_little">
-        <img src="assets/img/govelo-logo-200.png" alt="GoVélo!">
-        <div class="header-icon">
+    <div class="home">
+        <div class=" container-8 header logo_little">
+            <img src="assets/img/logo/logo-large.png" alt="GoVélo!">
+            <div class="header-icon">
+            </div>
+        </div>
+        <div class="info_plus content-center bg-grey">
+            <div class="info container-8">
+                <span class="title font-black-light">Service de location de vélos entre particuliers</span>
+            </div>
+        </div>
+        <div class="proposer container-8" (click)="goPropose()" tappable>
+            <div class="button-cercle">
+                <ion-icon name="ios-arrow-back"></ion-icon>
+            </div>
+            <div class="proposer_left">
+                <p class="title">Proposer</p>
+                <p>Un vélo inutilisé dans votre garage ? Nous vous proposons une solution facile et pour mettre votre vélo en location.</p>
+            </div>
+            <div class="proposer_right">
+                <img src="assets/img/icons/velo-blanc.png" alt="Proposer un vélo en location">
+            </div>
+        </div>
+        <div class="trouver container-8" (click)="goFind()" tappable>
+            <div class="trouver_left">
+                <img src="assets/img/icons/loupe-blanc.png" alt="Proposer un vélo en location">
+            </div>
+            <div class="trouver_right">
+                <p class="title">Trouver</p>
+                <p>Une envie de vélo ? Mais vous n'en possédez pas ? Grâce à une recherche rapide, trouvez ce qu'il vous faut à moindre coût !</p>
+            </div>
+            <div class="button-cercle">
+                <ion-icon name="ios-arrow-forward"></ion-icon>
+            </div>
         </div>
     </div>
-    <div class="info_plus content-center bg-grey">
-        <div class="info container-8">
-            <span class="title font-black-light">Service de location de vélos entre particuliers</span>
-        </div>
-    </div>
-    <div class="proposer container-8" (click)="goPropose()">
-        <div class="button-cercle">
-            <ion-icon name="ios-arrow-back"></ion-icon>
-        </div>
-        <div class="proposer_left" >
-            <p class="title">Proposer</p>
-            <p>Un vélo au fond du jardin ? Proposer en toute sécurité votre vélo en location !</p>
-        </div>
-        <div class="proposer_right">
-            <img src="assets/img/icons/velo-blanc.png" alt="Proposer un vélo en location">
-        </div>
-    </div>
-    <div class="trouver container-8" (click)="goFind()">
-        <div class="trouver_left">
-            <img src="assets/img/icons/loupe-blanc.png" alt="Proposer un vélo en location">
-        </div>
-        <div class="trouver_right">
-            <p class="title">Trouver</p>
-            <p>Envi de promenade ? Trouver facilement le vélo qui vous convient proche de chez vous !</p>
-        </div>
-        <div class="button-cercle">
-            <ion-icon name="ios-arrow-forward"></ion-icon>
-        </div>
-    </div>
-</div>
-
 </ion-content>

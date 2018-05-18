@@ -5,46 +5,36 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>announcement-details</ion-title>
+    <ion-title>Annonce</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content>
-  <div class="header" [style.backgroundImage]="'url(assets/img/bike.jpeg)'">
-    <!--<div class="icon-share">-->
-      <!--<a href="/share">-->
-        <!--<img src="assets/img/icons/share-bleu.png" alt="Photo principal">-->
-      <!--</a>-->
-    <!--</div>-->
-
+  <div class="subheader" [style.backgroundImage]="'url(assets/img/bike.jpeg)'">
   </div>
   <div class="container-9">
     <div class="desc-container">
       <div class="desc-header">
         <h2 class="font-bleu">
-          Loue bon vélo à la journée
+          Vtt bon état
         </h2>
         <div class="type">
           <div class="button_static_bleu button">
-            Route
+            VTT
           </div>
 
         </div>
       </div>
       <p class="desc">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquid assumenda
-        consequatur dicta distinctio doloribus, ea eos facilis fugiat harum hic, laborum mollitia, nostrum
-        numquam quidem quod similique ullam vel?
+        Etat quasi neuf, 24"
       </p>
     </div>
     <div class="price-container">
       <div class="title">
         <p>Prix journalier :</p>
-          <p><span class="bold">3€</span>/jour</p>
+          <p><span class="bold">6€</span>/jour</p>
       </div>
     </div>
     <div class="img-container">
@@ -71,31 +61,20 @@
       <div class="title font-bleu">Disponibilités</div>
 
       <div class="calendar">
-        <div class="calendar-header">
-          <div class="previous"></div>
-          <div class="next"></div>
-        </div>
-        <div class="calendar-dates">
-          <table>
-            <tr class="week">
-              <td>Lun.</td>
-              <td>Mar.</td>
-              <td>Mer.</td>
-              <td>Jeu.</td>
-              <td>Vre.</td>
-              <td>Sam.</td>
-              <td>Dim.</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <!--2/3/4/5/...-->
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="infos">
-        <div class="color"></div>
-        jours de disponibilités de location du vélo.
+        <ion-list>
+          <ion-card >
+            <ion-row id="calendar-1">
+              <ion-col col-5>Du 12 Avril 2018</ion-col>
+              <ion-col col-5>au 17 Avril 2018</ion-col>
+            </ion-row>
+          </ion-card>
+          <ion-card >
+            <ion-row id="calendar-2">
+              <ion-col col-5>Du 19 Avril 2018</ion-col>
+              <ion-col col-5>au 22 Avril 2018</ion-col>
+            </ion-row>
+          </ion-card>
+        </ion-list>
       </div>
     </div>
     <div class="separator"></div>
@@ -104,7 +83,7 @@
       <div class="container account-infos">
         <div class="infos">
           <h1 class="name font-bleu">
-            Clark
+            Jean-Paul M.
           </h1>
           <div class="location">
             Le Puy-en-Velay
@@ -122,12 +101,25 @@
         </div>
         <div class="infos info-user ">
           <a (click)="profil()">
-          <div class="info-img" [style.backgroundImage]="'url(assets/img/marty-avatar.png)'">
-              <img src="assets/img/icons/ok-bleu-contour-clair.png" alt="certified" class="certified">
-              <div class="level-user">
-                <span class="level">3</span>
-              </div>
-          </div>
+            <round-progress
+                    class="progress-profil"
+                    [current]=60
+                    [max]=70
+                    [color]="'#0B9CB3'"
+                    [background]="'#BCE0FD'"
+                    [stroke]="20"
+                    [rounded]="true"
+                    [clockwise]="true"
+                    [responsive]="true"
+                    [duration]="800"
+                    [animation]="'easeInOutQuart'"
+                    [animationDelay]="800"
+                    [style.backgroundImage]="'url(assets/img/jp.jpg)'">
+            </round-progress>
+            <img src="assets/img/icons/ok-bleu-contour-clair.png" alt="certified" class="certified">
+            <div class="level-user">
+              <span class="level">3</span>
+            </div>
           </a>
         </div>
       </div>
@@ -139,12 +131,12 @@
     <div class="separator"></div>
     <div class="button_end">
       <div class="contact">
-        <button (click)="chats()" class="button button_inverse_blanc">
+        <button (click)="chats()" class="button button_inverse_bleu">
             Contacter
         </button>
       </div>
       <div class="contact">
-        <button (click)="rental()" class="button button_inverse_bleu">
+        <button (click)="rental()" class="button button_inverse_blanc">
           Réserver
         </button>
       </div>

@@ -1,0 +1,124 @@
+<!--
+  Generated template for the PublicProfilPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title>Profil public</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <div class="container-9">
+        <h2 class="center">
+            Profil
+        </h2>
+        <div class="infos">
+            <div class="infos-img">
+                <round-progress
+                        class="progress-profil"
+                        [current]=60
+                        [max]=70
+                        [color]="'#0B9CB3'"
+                        [background]="'#BCE0FD'"
+                        [stroke]="20"
+                        [rounded]="true"
+                        [clockwise]="true"
+                        [responsive]="true"
+                        [duration]="800"
+                        [animation]="'easeInOutQuart'"
+                        [animationDelay]="800"
+                        [style.backgroundImage]="'url(assets/img/jp.jpg)'">
+                </round-progress>
+                <img src="assets/img/icons/ok-bleu-contour-clair.png" alt="certified" class="certified">
+                <div class="level-user">
+                    <span class="level">3</span>
+                </div>
+            </div>
+            <div class="certified-title"><p>PROFIL CERTIFIÉ</p></div>
+            <div class="name">Clark Kent</div>
+            <div class="town">Le Puy-en-Velay</div>
+            <div class="desc">
+                <p>Adepte du vélo depuis mon plus jeune âge. J'utilise désormais GoVélo! pour louer mon VTT et mon BMX.
+                    Je suis sympathique et sérieux. N'hésitez pas à prendre contact avec moi !</p>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+        <div class="notes">
+            <p>Notes moyennes</p>
+            <div class="stars">
+                <a href="#5" title="Donner 5 étoiles">★</a>
+                <a href="#4" title="Donner 4 étoiles">★</a>
+                <a href="#3" title="Donner 3 étoiles">★</a>
+                <a href="#2" title="Donner 2 étoiles">★</a>
+                <a href="#1" title="Donner 1 étoile">☆</a>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="comments">
+            <p class="font-bleu"><span class="number">12</span> commentaires</p>
+            <div class="comments-list">
+                <div class="comment-item ">
+                    <ion-row>
+                        <ion-col col-4>
+                            <div class="pp">
+                                <img src="assets/img/ben.png" alt="Photo profil commentaire">
+                            </div>
+
+                        </ion-col>
+                        <ion-col col-8>
+                            <div class="comment ">
+                                <p class="name">Ben Maillard<span>- 16 sept 2017</span></p>
+
+                                <div class="stars">
+                                    <a href="#5" title="Donner 5 étoiles">☆</a>
+                                    <a href="#4" title="Donner 4 étoiles">☆</a>
+                                    <a href="#3" title="Donner 3 étoiles">☆</a>
+                                    <a href="#2" title="Donner 2 étoiles">☆</a>
+                                    <a href="#1" title="Donner 1 étoile">☆</a>
+                                </div>
+                            </div>
+
+                            <p class="comment_text">Très gentil, je le recommande !</p>
+                        </ion-col>
+                    </ion-row>
+
+                    <p class="font-bleu see_comment">Voir les commentaires<i class="ion-chevron-right"></i></p>
+                </div>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div class="badges">
+            <p class="font-bleu">Badges</p>
+            <div class="list-badges">
+                <img src="assets/img/badges/arrow-rondbleu.svg" alt="badges">
+                <img src="assets/img/badges/arrow-rondvert.svg" alt="badges">
+                <img src="assets/img/badges/arrow-rondvert.svg" alt="badges">
+                <img src="assets/img/badges/arrow-rondbleu.svg" alt="badges">
+                <img src="assets/img/badges/arrow-rondbleu.svg" alt="badges">
+                <img src="assets/img/badges/arrow-rondvert.svg" alt="badges">
+                <img src="assets/img/badges/arrow-rondbleu.svg" alt="badges">
+                <img src="assets/img/badges/arrow-rondbleu.svg" alt="badges">
+            </div>
+
+        </div>
+        <div class="separator"></div>
+        <div class="button_end">
+            <div class="contact">
+                <button (click)="chats()" class="button button_inverse_bleu">
+                    Contacter
+                </button>
+            </div>
+            <div class="contact">
+                <button (click)="rental()" class="button button_inverse_blanc">
+                    VÉLO EN LOCATION
+                </button>
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ion-icon ios="ios-arrow-forward" md="md-arrow-forward"></ion-icon>

@@ -91,17 +91,38 @@ $enable-media-queries: true;
 }
 
 //Global
-ion-app {
+ion-content {
   background-color: $blanc;
-  font-family: $font-text;
+  font-family: $font-regular;
+  font-weight: 300;
   @include fontSize(18px);
   @include respond-to(s) {
     font-size: inherit;
   }
+  h1 {
+    font-size: 28px;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    margin: 0;
+  }
+  p {
+    font-size: 12px;
+    font-weight: 300;
+  }
 }
 
-.scroll-content, .fixed-content{
-  margin-top: 28px !important;
+ion-img {
+  background: none;
+}
+
+p {
+  margin: 0;
+}
+
+.scroll-content {
+  margin-bottom: 0 !important;
+  padding-bottom: 50px !important;
 }
 
 a {
@@ -111,9 +132,20 @@ a {
   }
 }
 
+.title_page {
+  text-align: center;
+  margin: 15px 0 0 0;
+  font-weight: bold;
+}
+
 /*************
 STRUCTURE
 *************/
+.container-7 {
+  width: 70%;
+  margin: 0 auto;
+}
+
 .container-8 {
   width: 80%;
   margin: 0 auto;
@@ -128,6 +160,10 @@ STRUCTURE
 
 #auth .scroll, #home .scroll, #login .scroll {
   height: 90vh;
+}
+
+.row {
+  align-items: center;
 }
 
 .header {
@@ -149,6 +185,24 @@ STRUCTURE
 
 .content-center {
   text-align: center;
+}
+
+//Headers
+.toolbar-md-primary .bar-button-default-md, .toolbar-ios-primary ,.bar-button-default-ios,.bar-button-default-md {
+  color: $bleu;
+}
+
+.back-button {
+  background-color: white;
+  margin: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transform: translateX(-10px);
+  position: relative;
+  left: -4px;
+  margin-right: 5px;
+  padding: 5px 10px 5px 15px;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.25);
 }
 
 .content {
@@ -190,6 +244,26 @@ h2 {
   &.center {
     text-align: center;
   }
+}
+
+.line-under {
+  height: 2px;
+  padding: 0;
+  background: $color-grey;
+  overflow: visible;
+  position: relative;
+  margin: 25px auto 25px auto;
+  text-align: center;
+}
+
+.line-under p {
+  color: $color-grey;
+  background-color: $color-lightgrey;
+  top: -10px;
+  margin-left: -40px;
+  padding: 5px 25px;
+  display: inline;
+  position: absolute;
 }
 
 .separator {
@@ -263,165 +337,67 @@ ion-header.header {
   top: 0;
 }
 
-/****carousel de vélo******/
-.carousel_bike {
-  background-image: linear-gradient(-240deg, $bleu, $vert);
-  border-radius: 5%;
-  width: 200px;
-  padding: 20px 10px;
-  text-align: center;
-  position: relative;
-  .circle-img {
-    border-radius: 50%;
-    border: 2px solid $blanc;
-    overflow: hidden;
-    width: 120px;
-    height: 120px;
-    margin: 0 auto;
-    img {
-      width: 120px;
-    }
-  }
-  .h3 {
-    color: $blanc;
-    font-size: 24px;
-    margin-bottom: 0px;
-  }
-  .h4 {
-    margin-top: 0px;
-    font-size: 14px;
-    line-height: 14px;
-    color: $blanc;
-  }
-  .param {
-    position: absolute;
-    right: -25px;
-    bottom: -25px;
-    img {
-      width: 50px;
-    }
-
-  }
-}
-
 //Forms
 
-.slides-form {
-  height: 100%;
+.label-md, .label-ios {
+  margin: 13px 0;
 }
 
-.left-buttons .button-form {
-  i {
-    font-size: 20px;
+page-login, page-signup, page-propose, page-find {
+  h2 {
+    text-align: left;
     color: $bleu;
+    font-weight: bold;
   }
-}
 
-.pass_form {
-  margin-left: 5px;
-}
+  .text-info {
+    text-align: left;
+    color: $bleu;
 
-.list-input {
-  text-align: left;
-  padding-bottom: 2vh;
-  color: $bleu;
-  .champ {
-    .label {
-      font-weight: bold;
-      .message {
-        font-size: 14px;
-        color: $bleu-clair;
+  }
+  .item-md, .item-ios, .list-ios > .item-block:last-child {
+    padding-left: 0;
+    font-size: 1.6rem;
+    background-color: transparent;
+  }
+  .input-form {
+    .item-inner, .item-ios {
+      padding-right: 0 !important;
+      border-bottom-color: $bleu !important;
+      border-bottom-width: 2px !important;
+      box-shadow: none !important;
+      .label-md, .label-ios {
+        color: $bleu;
+        margin: 3px 0 3px 0;
+        font-size: 16px;
       }
     }
-    input, textarea {
-      width: 100%;
-      background-color: transparent;
-      border-bottom: 2px solid $bleu-clair;
-      margin-bottom: 3vh;
-      color: $bleu;
-      font-size: 14px;
-    }
-    textarea {
-      min-height: 120px;
-    }
-  }
-  .locker {
-    display: flex;
-    justify-content: space-between;
-    label {
-      width: 55%;
-    }
-    .preview {
-      text-align: right;
-      width: 35%;
-      margin-left: 10px;
-      font-size: 50px;
-    }
-  }
-}
 
-.list_button {
-  text-align: center;
-  .item-checkbox {
-    .checkbox {
-      display: none;
+    &.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
+    &.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child,
+    &.item-input.item-input-has-focus:last-child,
+    &.item-input.item-input-has-focus:last-child,
+    &.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus):last-child,
+    &.item-input:last-child,
+    &.list-ios > .item-block:last-child {
+      border-bottom-color: $bleu !important;
+      border-bottom-width: 2px !important;
+      box-shadow: none !important;
     }
-  }
-  .checkbox_form {
-    border: 4px solid $bleu-clair;
-    color: $bleu;
-    background-color: $blanc;
-    margin-bottom: 4vh;
-    font-weight: bold;
-    border-radius: 50px;
-    padding: 10px 50px;
-    &.active {
-      border: 4px solid $bleu-clair;
-      color: $blanc;
-      background-color: $bleu;
-    }
-    &_light {
-      display: inline-block;
-    }
-    &_full {
-      width: 100%;
-    }
-  }
-}
-
-/**********
-PROPOSE FORM
-**********/
-#propose-form {
-  .line-under {
-    height: 2px;
-    padding: 0;
-    background: $noir;
-    overflow: visible;
-    position: relative;
-    margin: 5vh auto 5vh auto;
-    text-align: center;
-  }
-
-  .line-under p {
-    color: $noir;
-    background-color: $blanc;
-    top: -10px;
-    margin-left: -40px;
-    padding: 5px 25px;
-    display: inline;
-    position: absolute;
   }
 }
 
 //Buttons
 .button {
   border-radius: 50px;
-  width: 100%;
-  margin-bottom: 45px;
-  padding: 20px 0;
+  //width: calc(100% - 2px);
+  margin: 20px auto 25px;
+  padding: 25px 80px;
+  max-width: calc(100% - 2px);
   font-weight: bold;
   font-size: 14px;
+  text-transform: uppercase;
+  display: inherit;
   &_inverse {
     &_blanc {
       border: 1px solid $bleu;
@@ -452,8 +428,6 @@ PROPOSE FORM
       background-color: $bleu;
       color: $blanc;
     }
-  }
-  &_static {
     &_blanc {
       background-color: $blanc;
       color: $bleu;
@@ -462,9 +436,121 @@ PROPOSE FORM
   }
 }
 
+.picker-wrapper {
+  .picker-ios .picker-toolbar-cancel {
+    text-align: start;
+    font-weight: 400;
+  }
+  .picker-toolbar {
+    justify-content: space-between;
+  }
+}
+
 .button_end {
   @include flexCenter();
   > div {
     width: 45%;
   }
+}
+
+//Slides
+.bar-buttons-md.start {
+  order: 1;
+}
+
+.invalid {
+  border: 1px solid #ea6153;
+}
+
+ion-toast.toast-md .toast-wrapper, .toast-ios .toast-wrapper {
+  background: linear-gradient(to right, map-get($colors, primary), map-get($colors, secondary));
+  width: calc(100% - 20px);
+  font-size: 14px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.loading-md .loading-wrapper, .loading-ios .loading-wrapper {
+  background: transparent;
+  box-shadow: none;
+  width: 150px;
+  .loading-content {
+    animation: rotate 5s linear infinite;
+    transform-origin: center center;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/**css temporelle*/
+.button-nonused {
+  border-color: $vert;
+  color: $vert;
+}
+
+.info-box, .info-box:hover {
+  border: 2px solid $vert;
+  background-color: $blanc;
+  color: $vert;
+  padding: 5px;
+}
+
+//cards
+
+ion-card {
+  &.card-md, &.card-ios {
+    border-radius: 10px;
+    margin: 15px auto;
+    padding: 10px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.25);
+    //border: 1px solid rgba(0,0,0,0.25);
+    p {
+      line-height: 1.2;
+      color: #222;
+    }
+  }
+}
+
+.slide-zoom {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 120px);
+}
+
+.swiper-slide {
+  align-items: flex-start;
+  width: 100%;
+}
+
+//ion-searchbar
+ion-searchbar {
+  background: transparent;
+  .button {
+    margin: 0;
+  }
+  ion-icon {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-55%);
+  }
+}
+
+.searchbar-ios {
+  background: transparent;
+  border-radius: inherit;
+  margin: inherit;
+  padding: inherit;
+  max-width: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  text-transform: inherit;
+  display: inherit;
 }

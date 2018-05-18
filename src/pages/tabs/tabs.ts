@@ -6,7 +6,7 @@ import {tabProposeRoot} from '../pages';
 import {tabFindRoot} from '../pages';
 import {tabHomeRoot} from '../pages';
 import {tabMessageRoot} from '../pages';
-import {tabParamsRoot} from '../pages';
+import {tabProfilRoot} from '../pages';
 
 @IonicPage()
 @Component({
@@ -18,21 +18,21 @@ export class TabsPage {
     tabFindRoot: any = tabFindRoot;
     tabHomeRoot: any = tabHomeRoot;
     tabMessageRoot: any = tabMessageRoot;
-    tabParamsRoot: any = tabParamsRoot;
+    tabProfilRoot: any = tabProfilRoot;
 
     tabProposeTitle = " ";
     tabFindTitle = " ";
     tabHomeTitle = " ";
     tabMessageTitle = " ";
-    tabParamsTitle = " ";
+    tabProfilTitle = " ";
 
     constructor(public navCtrl: NavController, public translateService: TranslateService) {
-        translateService.get(['TAB_PROPOSE', 'TAB_FIND', 'TAB_HOME', 'TAB_MESSAGE', 'TAB_PARAMS']).subscribe(values => {
+        translateService.get(['TAB_PROPOSE', 'TAB_FIND', 'TAB_HOME', 'TAB_MESSAGE', 'TAB_PROFIL']).subscribe(values => {
             this.tabProposeTitle = values['TAB_PROPOSE'];
             this.tabFindTitle = values['TAB_FIND'];
             this.tabHomeTitle = values['TAB_HOME'];
             this.tabMessageTitle = values['TAB_MESSAGE'];
-            this.tabParamsTitle = values['TAB_PARAMS'];
+            this.tabProfilTitle = values['TAB_PROFIL'];
         });
     }
 }

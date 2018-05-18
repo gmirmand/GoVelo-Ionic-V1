@@ -1,12 +1,18 @@
-import {Component} from '@angular/core';
-import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
-
-/**
- * Generated class for the FindPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Component, ViewChild} from '@angular/core';
+import {
+    Events,
+    IonicPage,
+    LoadingController,
+    ModalController,
+    NavController,
+    NavParams,
+    ToastController
+} from 'ionic-angular';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {NativeGeocoder, NativeGeocoderForwardResult} from "@ionic-native/native-geocoder";
+import {Style} from "../../providers/providers";
+import {AutocompletePage} from "../../components/autocomplete/autocomplete";
+import {AnnouncementPage} from "../pages";
 
 @IonicPage()
 @Component({
@@ -15,99 +21,196 @@ import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
 })
 
 export class FindPage {
-    step: any;
-    stepCondition: any;
-    stepDefaultCondition: any;
-    currentStep: any;
-    find: {
-        town: string,
-        address: string,
-        type1: boolean,
-        type2: boolean,
-        type3: boolean,
-        type4: boolean,
-        type5: boolean,
-        started: String,
-        ended: String,
-        radius: number,
-        price: any,
-    } = {
-        town: '',
-        address: '',
-        type1: false,
-        type2: false,
-        type3: false,
-        type4: false,
-        type5: false,
-        started: undefined /*new Date().toISOString()*/,
-        ended: undefined /*new Date().toISOString()*/,
-        radius: null,
-        price: {lower: 3, upper: 9},
-    };
+    @ViewChild('findSlider')
+    findSlider: any;
+
+    hide: boolean = true;
+
+    find: any = {};
+
+    styles: any;
+
+    //Slides forms
+    slideOneForm: FormGroup;
+    slideTwoForm: FormGroup;
+    slideThreeForm: FormGroup;
+    slideFourForm: FormGroup;
+
+    submitAttempt: boolean = false;
+
+    //AutoGeoComplete
+    address;
+    lat;
+    long;
+    slideOneData;
+
+    //FromTO
+    fromMin;
+    fromMinStr;
+    fromMax;
+    fromMaxStr;
+    toMin;
+    toMinStr;
+    toMax;
+    toMaxStr;
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
-                public evts: Events) {
-        /**
-         * Step Wizard Settings
-         */
-        this.step = 1;//The value of the first step, always 1
-        this.stepCondition = false;//Set to true if you don't need condition in every step
-        this.stepDefaultCondition = this.stepCondition;//Save the default condition for every step
-        this.evts.subscribe('step:changed', step => {
-            //Handle the current step if you need
-            this.currentStep = step[0];
-            //Set the step condition to the default value
-            this.stepCondition = this.stepDefaultCondition;
+                public evts: Events,
+                public formBuilder: FormBuilder,
+                private nativeGeocoder: NativeGeocoder,
+                public toastCtrl: ToastController,
+                public loadingCtrl: LoadingController,
+                public styleProvider: Style,
+                private modalCtrl: ModalController) {
+
+        //FromTo
+        this.fromMin = new Date();
+        this.fromMinStr = this.fromMin.toISOString().substring(0, 10);
+        this.fromMax = this.fromMin;
+        this.fromMax.setFullYear(this.fromMin.getFullYear() + 2);
+        this.fromMaxStr = this.fromMax.toISOString().substring(0, 10);
+        this.toMin = this.fromMin;
+        this.toMinStr = this.fromMinStr;
+        this.toMax = this.fromMax;
+        this.toMaxStr = this.fromMaxStr;
+
+        //AutoGeoComplete
+        this.address = {
+            place: '',
+            range: ''
+        };
+        //Slide1
+        this.slideOneForm = formBuilder.group({
+            town: [''],
+            range: [200]
         });
-        this.evts.subscribe('step:next', () => {
-            //Do something if next
-            console.log('Next pressed: ', this.currentStep);
+        //Slide2
+        this.slideTwoForm = formBuilder.group({
+            type: ['']
         });
-        this.evts.subscribe('step:back', () => {
-            //Do something if back
-            console.log('Back pressed: ', this.currentStep);
+        //Slide3
+        this.slideThreeForm = formBuilder.group({
+            from: undefined,
+            to: undefined
+        });
+        //Slide3
+        this.slideFourForm = formBuilder.group({
+            price: [{lower: 5, upper: 20}]
         });
     }
 
-    //Wizard
-    toggle() {
-        this.stepCondition = !this.stepCondition;
+//    Get Styles
+    getStyles() {
+        // Attempt to create in through our Style service
+        let loader = this.loadSpinner();
+        loader.present().then(() => this.styleProvider.get().subscribe((resp) => {
+            this.styles = resp['hydra:member'];
+            loader.dismiss();
+        }, (err) => {
+            let toast = this.toastCtrl.create({
+                message: 'Oups, une erreur est survenue ... veuillez contacter le support (g#tSt#l#s)',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+            this.navCtrl.parent.select(2);
+            loader.dismiss();
+            return 'Fail to get styles';
+        }));
     }
 
-    step1(e) {
-        console.log(this.find.radius);
-        this.stepCondition = !!(this.find.town && this.find.town.trim() !== ''
-            && this.find.address && this.find.address.trim() !== ''
-            && this.find.radius > 0);
+//Steps slider signup
+    next() {
+        this.findSlider.slideNext();
     }
 
-    step2(e) {
-        console.log(this.find.type1);
-        this.stepCondition = (
-            this.find.type1
-            || this.find.type2
-            || this.find.type3
-            || this.find.type4
-            || this.find.type5);
+    prev() {
+        this.findSlider.slidePrev();
     }
 
-    step3(e) {
-        this.stepCondition = !!(this.find.started && this.find.ended);
+    slideChanged() {
+        let currentIndex = this.findSlider.getActiveIndex();
+        this.hide = currentIndex === 0;
     }
 
-    step4(e) {
-        this.stepCondition = !!(this.find.started && this.find.ended);
+//    FromTo
+    fromtoupdate(e) {
+        //    Test if max/min values when edit
     }
 
+
+// AutoGeoComplete
+    showAddressModal() {
+        const modal = this.modalCtrl.create(AutocompletePage);
+        modal.onDidDismiss(data => {
+            if (data) {
+                this.address.place = data.description;
+            }
+        });
+        modal.present();
+    }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad FindPage');
     }
 
-    //Send form
-    findForm() {
+    ionViewDidEnter() {
+        this.getStyles();
+    }
 
+//    Save
+    save() {
+        let loader = this.loadSpinner();
+        this.submitAttempt = true;
+        if (!this.slideOneForm.valid) {
+            this.findSlider.slideTo(0);
+        } else if (!this.slideTwoForm.valid) {
+            this.findSlider.slideTo(1);
+        } else if (!this.slideThreeForm.valid) {
+            this.findSlider.slideTo(2);
+        } else if (!this.slideFourForm.valid) {
+            this.findSlider.slideTo(3);
+        } else {
+            loader.present().then(() => this.nativeGeocoder.forwardGeocode(this.address)
+                .then((coordinates: NativeGeocoderForwardResult) => {
+                    this.lat = coordinates[0].latitude;
+                    this.long = coordinates[0].longitude;
+                    loader.dismiss();
+                })
+                .catch((error: any) => {
+                    console.log(error);
+                    this.lat = '45.039932';
+                    this.long = '3.880841';
+                    loader.dismiss();
+                }).then(() => {
+                    this.mergeData();
+                }));
+            this.navCtrl.setRoot(AnnouncementPage);
+        }
+    }
+
+    mergeData() {
+        let lat = {lat: this.lat};
+        let long = {long: this.long};
+        this.slideOneData = Object.assign(this.slideOneForm.value, lat, long);
+
+        this.find = {
+            "address": this.slideOneData,
+            "type": this.slideTwoForm.value,
+            "fromto": this.slideThreeForm.value,
+            "price": this.slideFourForm.value,
+        };
+    }
+
+//    Loading controller
+    loadSpinner() {
+        return this.loadingCtrl.create({
+            spinner: 'hide',
+            content: `
+                <img src="assets/icon/spinner.gif"/>
+            `
+        });
     }
 
 }

@@ -1,0 +1,30 @@
+<!-- Generated template for the HitsComponent component -->
+<ion-list>
+    <ion-card *ngFor="let hit of state.hits" ngClass="item-container">
+        <ion-row>
+            <ion-col ngClass="img-container">
+                <div class="img" style="background-image: url('assets/img/bikes/bike.jpeg');"></div>
+            </ion-col>
+            <ion-col col-5 ngClass="infos-container">
+                <div>
+                    <span ngClass="price"><span class="nb">{{ hit.priceD }}€</span> / jour</span>
+                    <span ngClass="type type-{{ hit.style[0].nomStyle | removeSpaces }}">{{ hit.style[0].nomStyle }}</span>
+                </div>
+                <p ngClass="city">
+                    <ion-icon name="pin"></ion-icon>
+                    {{ hit.city }}
+                </p>
+                <p ngClass="author">
+                    <ion-icon name="md-contact"></ion-icon>
+                    Par <b>{{ hit.author.firstnameAuthor }} {{ hit.author.lastnameAuthor|limit:1 }}.</b>
+                </p>
+            </ion-col>
+            <ion-col ngClass="calendar-container">
+                <ion-item *ngFor="let calendar of hit.calendar" ngClass="calendar">
+                    <p>Du <b>{{calendar.startCalendar.date | date:'dd MMM yy':'':'fr-FR'}}</b></p>
+                    <p>Au <b>{{calendar.endCalendar.date | date:'dd MMM yy':'':'fr-FR'}}</b></p>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+</ion-list>

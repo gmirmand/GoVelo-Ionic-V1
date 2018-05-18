@@ -1,21 +1,18 @@
 import {NgModule} from '@angular/core';
 import {TranslateModule} from '@ngx-translate/core';
 import {IonicPageModule} from 'ionic-angular';
+import {FileInputAccessorModule} from "file-input-accessor";
 
 import {SignupPage} from './signup';
 
-import {IonSimpleWizard} from "../../components/ion-simple-wizard-signup/ion-simple-wizard.component";
-import {IonSimpleWizardStep} from "../../components/ion-simple-wizard-signup/ion-simple-wizard.step.component";
-
 @NgModule({
     declarations: [
-        SignupPage,
-        IonSimpleWizard,
-        IonSimpleWizardStep,
+        SignupPage
     ],
     imports: [
         IonicPageModule.forChild(SignupPage),
-        TranslateModule.forChild()
+        TranslateModule.forChild(),
+        FileInputAccessorModule
     ],
     exports: [
         SignupPage

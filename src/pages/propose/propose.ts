@@ -1,14 +1,24 @@
-import {Component} from '@angular/core';
-import {Events, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {
+    Events,
+    IonicPage,
+    NavController,
+    NavParams,
+    ModalController,
+    ToastController,
+    LoadingController
+} from 'ionic-angular';
+import {CalendarComponentOptions} from 'ion2-calendar';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ICustomFile} from "file-input-accessor";
+import {AutocompletePage} from '../../components/autocomplete/autocomplete';
+import {NativeGeocoder, NativeGeocoderForwardResult} from '@ionic-native/native-geocoder';
+//Api providers
+import {Announcements} from '../../providers/providers';
+import {Style} from '../../providers/providers';
+import {Calendar} from '../../providers/providers';
+import {AnnouncementDetailsPage} from "../pages";
 
-import {CalendarComponentOptions} from 'ion2-calendar'
-
-/**
- * Generated class for the ProposePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -16,142 +26,348 @@ import {CalendarComponentOptions} from 'ion2-calendar'
     templateUrl: 'propose.html',
 })
 export class ProposePage {
-    step: any;
-    stepCondition: any;
-    stepDefaultCondition: any;
-    currentStep: any;
-    disabled: boolean = true;
-    propose: {
-        title: string,
-        description: string,
-        img: FileList,
-        picnb: number,
-        type: boolean,
-        town: string,
-        address: string,
-        price: number,
-        started: string,
-        ended: string,
-        bankname: string,
-        RIB: string,
-        lock1: number,
-        lock2: number,
-        lock3: number,
-        lock4: number,
+    @ViewChild('proposeSlider')
+    proposeSlider: any;
+
+    hide: boolean = true;
+
+    propose: any = {};
+    styles: any;
+
+    //PP file imgfileList;
+    fileList: ICustomFile[] = [];
+
+    allowedFileTypes = '(jpe?g|jpeg|png)';
+    allowedFileExt = '(.(jpe?g|jpeg|png)$)';
+    withMeta = true;
+    size = 1000000;
+
+    //AutoGeoComplete
+    address;
+    lat;
+    long;
+
+    //Calendar
+    calendar: {
+        dateRangeArray: any[],
         dateRange: {
             from: string,
             to: string
-        },
-        dateRangeArray: any[]
+        }
     } = {
-        title: '',
-        description: '',
-        img: undefined,
-        picnb: 0,
-        type: false,
-        town: '',
-        address: '',
-        price: null,
-        started: '',
-        ended: '',
-        bankname: '',
-        RIB: '',
-        lock1: null,
-        lock2: null,
-        lock3: null,
-        lock4: null,
         dateRange: undefined,
         dateRangeArray: []
     };
+    pushedCalendars = [];
+
+    //Slides forms
+    slideOneForm: FormGroup;
+    slideTwoForm: FormGroup;
+    slideThreeForm: FormGroup;
+    slideFourForm: FormGroup;
+    slideFiveForm: FormGroup;
+    slideFiveData: object;
+    slideSixForm: FormGroup;
+    slideSixData: object;
+    slideSevenForm: FormGroup;
+
+    submitAttempt: boolean = false;
+
+    disabled: boolean = true;
     type: 'js-date'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
     optionsRange: CalendarComponentOptions = {
-        pickMode: 'range'
+        pickMode: 'range',
+        color: 'secondary',
+        weekdays: ['D', 'L', 'Ma', 'Me', 'J', 'V', 'S'],
+        weekStart: 1
     };
 
     constructor(public navCtrl: NavController,
+                private modalCtrl: ModalController,
                 public navParams: NavParams,
-                public evts: Events) {
-        /**
-         * Step Wizard Settings
-         */
-        this.step = 1;//The value of the first step, always 1
-        this.stepCondition = false;//Set to true if you don't need condition in every step
-        this.stepDefaultCondition = this.stepCondition;//Save the default condition for every step
-        this.evts.subscribe('step:changed', step => {
-            //Handle the current step if you need
-            this.currentStep = step[0];
-            //Set the step condition to the default value
-            this.stepCondition = this.stepDefaultCondition;
+                public evts: Events,
+                public formBuilder: FormBuilder,
+                private nativeGeocoder: NativeGeocoder,
+                public toastCtrl: ToastController,
+                public announcementProvider: Announcements,
+                public styleProvider: Style,
+                public calendarProvider: Calendar,
+                public loadingCtrl: LoadingController) {
+        //AutoGeoComplete
+        this.address = {
+            place: '',
+            town: ''
+        };
+
+        //Form
+        //Slide1
+        this.slideOneForm = formBuilder.group({
+            title: ['',
+                Validators.compose([
+                    Validators.minLength(5),
+                    Validators.maxLength(50),
+                    Validators.required]
+                )],
+            description: ['', Validators.required]
         });
-        this.evts.subscribe('step:next', () => {
-            //Do something if next
-            console.log('Next pressed: ', this.currentStep);
+        //Slide2
+        this.slideTwoForm = formBuilder.group({
+            file: ['']
         });
-        this.evts.subscribe('step:back', () => {
-            //Do something if back
-            console.log('Back pressed: ', this.currentStep);
+        //Slide3
+        this.slideThreeForm = formBuilder.group({
+            type: ['VTT']
+        });
+        //Slide4
+        this.slideFourForm = formBuilder.group({
+            address: ['', Validators.required]
+        });
+        //Slide5
+        this.slideFiveForm = formBuilder.group({
+            price: [5, Validators.compose([
+                Validators.required,
+                Validators.min(3),
+                Validators.max(25),
+            ])]
+        });
+        //Slide6
+        this.slideSixForm = formBuilder.group({
+            calendar: ['', Validators.required]
+        });
+        //Slide7
+        this
+            .slideSevenForm = formBuilder.group({
+            lock1: undefined,
+            lock2: undefined,
+            lock3: undefined,
+            lock4: undefined
         });
     }
 
-    //Wizard
-    toggle() {
-        this.stepCondition = !this.stepCondition;
+//    Get Styles
+    getStyles() {
+        // Attempt to create in through our Style service
+        let loader = this.loadSpinner();
+        loader.present().then(() => this.styleProvider.get().subscribe((resp) => {
+            this.styles = resp['hydra:member'];
+            loader.dismiss();
+        }, (err) => {
+            // Unable to sign up
+            let toast = this.toastCtrl.create({
+                message: 'Oups, une erreur est survenue ... veuillez contacter le support (g#tSt#l#s)',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+            this.navCtrl.parent.select(2);
+            loader.dismiss();
+            return 'Fail to get styles';
+        }));
     }
 
-    //Steps
-    step1(e) {
-        this.stepCondition = !!(this.propose.title && this.propose.title.trim() !== ''
-            && this.propose.description && this.propose.description.trim() !== '');
+//Steps slider signup
+    next() {
+        this.proposeSlider.slideNext();
     }
 
-    step2(e) {
-        this.propose.img = e.target.files;
-        this.propose.picnb = this.propose.img.length;
-        this.stepCondition = (this.propose.picnb > 0);
+    prev() {
+        this.proposeSlider.slidePrev();
     }
 
-    step3(e) {
-        console.log(this.propose.type);
-        this.stepCondition = (this.propose.type);
+    slideChanged() {
+        let currentIndex = this.proposeSlider.getActiveIndex();
+        this.hide = currentIndex === 0;
     }
 
-    step4(e) {
-        this.stepCondition = !!(this.propose.town && this.propose.town.trim() !== ''
-            && this.propose.address && this.propose.address.trim() !== '');
-    }
-
-    step5(e) {
-        this.stepCondition = (this.propose.price && this.propose.price < 50);
-    }
-
-    step6(e) {
+//Calendar
+    onCalendarChange(e) {
         this.disabled = false;
-        this.stepCondition = (this.propose.dateRangeArray);
-    }
-
-    step7(e) {
-        this.stepCondition = (this.propose.bankname && this.propose.bankname.trim() !== ''
-            && this.propose.RIB && this.propose.RIB.trim() !== '');
     }
 
     addCalendar() {
-        if (this.propose.dateRange.from) {
+        if (this.calendar.dateRange.from) {
             this.disabled = true;
-            if (!this.propose.dateRange.to)
-                this.propose.dateRange.to = this.propose.dateRange.from;
-            this.propose.dateRangeArray.push(this.propose.dateRange);
+            if (!this.calendar.dateRange.to)
+                this.calendar.dateRange.to = this.calendar.dateRange.from;
+            this.calendar.dateRangeArray.push(this.calendar.dateRange);
         }
     }
 
     delete(index) {
-        this.propose.dateRangeArray.splice(index, 1);
+        this.calendar.dateRangeArray.splice(index, 1);
     }
 
-    proposeForm() {
-
-    }
-
+//View global
     ionViewDidLoad() {
         console.log('ionViewDidLoad ProposePage');
+    }
+
+    ionViewDidEnter() {
+        //Slides forms
+        this.getStyles();
+        this.FileUploadWatcher();
+    }
+
+//File
+    FileUploadWatcher() {
+        this.slideTwoForm.get('file').valueChanges
+            .subscribe((val) => {
+                console.log('test');
+                let errors = Object.keys(val[0].errors);
+                if (errors.length === 0) {
+                    this.fileList = this.fileList ? this.fileList.concat(val[0]) : [];
+                }
+            });
+    }
+
+    removeFile(index) {
+        this.fileList.splice(index, 1);
+    }
+
+// AutoGeoComplete
+    showAddressModal() {
+        const modal = this.modalCtrl.create(AutocompletePage);
+        modal.onDidDismiss(data => {
+            if (data) {
+                this.address.place = data.description;
+                if (data.terms.length > 2) {
+                    this.address.town = data.terms[data.terms.length - 2].value += ',' + data.terms[data.terms.length - 3].value;
+                } else {
+                    this.address.town = data.terms[data.terms.length - 2].value;
+                }
+            }
+        });
+        modal.present();
+    }
+
+//Global form functions
+    save() {
+        let loader = this.loadSpinner();
+        this.submitAttempt = true;
+        if (!this.slideOneForm.valid) {
+            this.proposeSlider.slideTo(1);
+        }
+        else if (!this.slideTwoForm.valid) {
+            this.proposeSlider.slideTo(2);
+        }
+        else if (!this.slideThreeForm.valid) {
+            this.proposeSlider.slideTo(3);
+        }
+        else if (!this.slideFourForm.valid) {
+            this.proposeSlider.slideTo(4);
+        }
+        else if (!this.slideFiveForm.valid) {
+            this.proposeSlider.slideTo(5);
+        }
+        else if (this.calendar.dateRangeArray.length === 0) {
+            this.proposeSlider.slideTo(6);
+        }
+        else if (!this.slideSevenForm.valid) {
+            this.proposeSlider.slideTo(7);
+        }
+        else {
+            loader.present().then(() => this.nativeGeocoder.forwardGeocode(this.address)
+                .then((coordinates: NativeGeocoderForwardResult) => {
+                    this.lat = coordinates[0].latitude;
+                    this.long = coordinates[0].longitude;
+                    loader.dismiss();
+                })
+                .catch((error: any) => {
+                    console.log(error);
+                    this.lat = '45.039932';
+                    this.long = '3.880841';
+                    loader.dismiss();
+                }).then(() => {
+                    this.mergeData();
+                    this.createCalendar();
+                }));
+        }
+    };
+
+//    Calendar push
+    createCalendar() {
+        // Attempt to create a calendar item in through our User service
+        let self = this;
+        let loader = this.loadSpinner();
+        loader.present().then(() => this.propose.calendars.calendar.forEach(function (slot) {
+            self.createUniqueSlot(slot);
+        }));
+    }
+
+    createUniqueSlot(slot) {
+        let loader = this.loadSpinner();
+        this.calendarProvider.add(slot).subscribe((resp) => {
+            this.pushedCalendars.push(resp['id']);
+            if (this.pushedCalendars.length === this.propose.calendars.calendar.length) {
+                this.pushAnnouncement(this.pushedCalendars);
+            }
+            let check = [];
+            return check = [this.pushedCalendars.length, this.propose.calendars.calendar.length];
+        }, (err) => {
+            // Unable to sign up
+            let toast = this.toastCtrl.create({
+                message: 'Error Calendar',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+        });
+    }
+
+
+//Signup
+    mergeData() {
+        let lat = {lat: this.lat};
+        let long = {long: this.long};
+        let town = {town: this.address.town};
+        this.slideFiveData = Object.assign(this.slideFourForm.value, town, lat, long);
+
+        let calendar = {calendar: this.calendar.dateRangeArray};
+        this.slideSixData = Object.assign(calendar);
+
+        this.propose = {
+            "infos": this.slideOneForm.value,
+            "pictures": this.fileList,
+            "type": this.slideThreeForm.value,
+            "address": this.slideFiveData,
+            "price": this.slideFiveForm.value,
+            "calendars": this.slideSixData,
+            "security": this.slideSevenForm.value
+        };
+    }
+
+    pushAnnouncement(calendarsId) {
+        // Attempt to create in through our Items service
+        let loader = this.loadSpinner();
+        this.propose = Object.assign(this.propose, {'calendarsId': calendarsId});
+        loader.present().then(() => this.announcementProvider.add(this.propose).subscribe((resp) => {
+            let toast = this.toastCtrl.create({
+                message: 'Annonce créé !',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+            loader.dismiss();
+            this.navCtrl.push(AnnouncementDetailsPage);
+        }, (err) => {
+            // Unable to sign up
+            let toast = this.toastCtrl.create({
+                message: 'error',
+                duration: 3000,
+                position: 'top'
+            });
+            toast.present();
+            loader.dismiss();
+        }));
+    }
+
+//    Loading controller
+    loadSpinner() {
+        return this.loadingCtrl.create({
+            spinner: 'hide',
+            content: `
+                <img src="assets/icon/spinner.gif"/>
+            `
+        });
     }
 }
